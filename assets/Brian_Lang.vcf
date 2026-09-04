@@ -3,13 +3,11 @@ VERSION:3.0
 PRODID:-//Apple Inc.//macOS 14.0//EN
 N:Lang;Brian;;;
 FN:Brian Lang
-ORG:Robust Computing
 TITLE:Technical Software Architect
 EMAIL;type=INTERNET;type=WORK;type=pref:brian.lang@robustcomputing.com
 TEL;type=CELL;type=VOICE;type=pref:+1 785-550-3966
 item1.URL;type=pref:https://wa.me/flyingwedge05
 item1.X-ABLabel:WhatsApp
 X-SOCIALPROFILE;type=whatsapp:https://wa.me/flyingwedge05
-ADR;type=WORK;type=pref:;;;Kansas City Area;MO;;USA
 NOTE:Technical Software Architect specializing in large scale system transformations and enterprise integrations. WhatsApp: @flyingwedge05
 END:VCARD
