@@ -185,7 +185,7 @@ body.no-aurora {
   position: relative;
   background: #000000;
   height: 30px;
-  min-width: 124px;
+  min-width: 130px;
   border-radius: var(--radius-pill);
   border: 0.5px solid rgba(255, 255, 255, 0.16);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.9);
