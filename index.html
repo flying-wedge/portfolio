@@ -132,18 +132,6 @@
           <span class="icon-label">Resume</span>
         </div>
 
-        <!-- App 3: Architecture & Systems -->
-        <div class="app-icon-item" data-launch="app-projects" tabindex="0" role="button" aria-label="Open Architecture Projects App">
-          <div class="icon-squircle icon-projects">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
-              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
-              <line x1="6" y1="6" x2="6.01" y2="6"></line>
-              <line x1="6" y1="18" x2="6.01" y2="18"></line>
-            </svg>
-          </div>
-          <span class="icon-label">Architecture</span>
-        </div>
 
         <!-- App 4: Stack & Skills -->
         <div class="app-icon-item" data-launch="app-skills" tabindex="0" role="button" aria-label="Open Tech Stack App">
@@ -207,7 +195,7 @@
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
-        <span>Search Stack &amp; Projects</span>
+        <span>Search Stack &amp; Experience</span>
       </div>
 
     </main>
@@ -409,75 +397,12 @@
         </div>
       </section>
 
-      <!-- 3. ARCHITECTURE PROJECTS SHEET -->
-      <section class="ios-sheet" id="app-projects" role="dialog" aria-labelledby="title-projects" aria-modal="true">
-        <header class="sheet-navbar">
-          <button class="sheet-btn-left" data-dismiss aria-label="Close Architecture Projects">Done</button>
-          <h2 class="sheet-title" id="title-projects">System Architecture</h2>
-          <button class="sheet-btn-right" data-launch="app-skills" aria-label="View Stack">Stack</button>
-        </header>
-
-        <div class="sheet-content">
-          <div class="projects-list">
-            <div class="project-card">
-              <div class="proj-badge">MULTI-REGION PLATFORM</div>
-              <h3 class="proj-title">Event-Driven Global Telemetry Fabric</h3>
-              <p class="proj-desc">
-                Enterprise messaging layer orchestrating cross-region Kafka partitions, dead-letter re-routing, and guaranteed at-least-once delivery semantics for financial transaction verification.
-              </p>
-              <div class="proj-specs">
-                <span class="spec-pill">Go</span>
-                <span class="spec-pill">Apache Kafka</span>
-                <span class="spec-pill">Kubernetes</span>
-                <span class="spec-pill">AWS + GCP</span>
-              </div>
-              <div class="proj-metric-row">
-                <span class="metric-val">15M+</span> <span class="metric-lbl">Daily Events</span> • 
-                <span class="metric-val">&lt;12ms</span> <span class="metric-lbl">p95 Latency</span>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <div class="proj-badge">HIGH PERFORMANCE</div>
-              <h3 class="proj-title">Distributed Cache Federation</h3>
-              <p class="proj-desc">
-                Two-tier cache synchronization layer combining in-memory local RingBuffers with a distributed Redis cluster mesh, utilizing probabilistic bloom filters to prevent cache stampedes.
-              </p>
-              <div class="proj-specs">
-                <span class="spec-pill">Redis</span>
-                <span class="spec-pill">Rust</span>
-                <span class="spec-pill">gRPC</span>
-                <span class="spec-pill">Envoy</span>
-              </div>
-              <div class="proj-metric-row">
-                <span class="metric-val">99.4%</span> <span class="metric-lbl">Cache Hit Rate</span> • 
-                <span class="metric-val">-45%</span> <span class="metric-lbl">Database Load</span>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <div class="proj-badge">SECURITY & INFRASTRUCTURE</div>
-              <h3 class="proj-title">Zero-Trust Declarative Infrastructure</h3>
-              <p class="proj-desc">
-                Automated Terraform and GitOps pipeline establishing SPIFFE/SPIRE cryptographic workload identities, automated mTLS rotation, and cell-based network security zoning.
-              </p>
-              <div class="proj-specs">
-                <span class="spec-pill">Terraform</span>
-                <span class="spec-pill">SPIFFE/SPIRE</span>
-                <span class="spec-pill">ArgoCD</span>
-                <span class="spec-pill">Docker</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- 4. TECH STACK & SKILLS SHEET -->
       <section class="ios-sheet" id="app-skills" role="dialog" aria-labelledby="title-skills" aria-modal="true">
         <header class="sheet-navbar">
           <button class="sheet-btn-left" data-dismiss aria-label="Close Tech Stack">Done</button>
           <h2 class="sheet-title" id="title-skills">Tech Stack</h2>
-          <button class="sheet-btn-right" data-launch="app-projects" aria-label="View Projects">Projects</button>
+          <button class="sheet-btn-right" data-launch="app-terminal" aria-label="Open Terminal">Terminal</button>
         </header>
 
         <div class="sheet-content">

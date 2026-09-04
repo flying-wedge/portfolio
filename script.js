@@ -160,7 +160,6 @@
   const searchableItems = [
     { title: 'Resume / Curriculum Vitae', sub: 'PDF, Work Experience, Education', target: 'app-resume', icon: '📄' },
     { title: 'Large Scale Transformations & Integrations', sub: 'Enterprise System Modernization, Architecture & Strategy', target: 'app-resume', icon: '🔄' },
-    { title: 'System Architecture & Integration', sub: 'Global Telemetry Fabric, Multi-Region Consensus', target: 'app-projects', icon: '🏛️' },
     { title: 'Apache Kafka & Event Fabrics', sub: 'Streaming, Partitioning, Consumer Groups', target: 'app-skills', icon: '⚡' },
     { title: 'Go (Golang)', sub: 'Concurrency, Microservices, Network Engines', target: 'app-skills', icon: '🔷' },
     { title: 'Kubernetes & Docker', sub: 'Multi-Region Orchestration, Helm, Envoy', target: 'app-skills', icon: '☸️' },
