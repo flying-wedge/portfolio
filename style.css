@@ -1179,6 +1179,7 @@ body.no-aurora {
 .row-icon.orange { background: var(--ios-orange); }
 .row-icon.purple { background: var(--ios-purple); }
 .row-icon.red { background: var(--ios-red); }
+.row-icon.whatsapp { background: #25D366; }
 
 .row-main {
   flex: 1;
@@ -1365,7 +1366,9 @@ body.no-aurora {
 
 .contact-quick-actions {
   display: flex;
-  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
   margin-top: 20px;
 }
 
