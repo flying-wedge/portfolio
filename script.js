@@ -238,14 +238,32 @@
     spotlightInput.addEventListener('input', (e) => renderSpotlightResults(e.target.value));
   }
 
-  // --- 6. AURORA THEME AMBIENT TOGGLE ---
+  // --- 6. THEME APPEARANCE TOGGLES (LIGHT MODE & AURORA) ---
+  const toggleLightMode = document.getElementById('toggle-light-mode');
+  if (toggleLightMode) {
+    const savedTheme = localStorage.getItem('portfolio-theme-appearance');
+    if (savedTheme === 'light') {
+      document.body.classList.add('light-mode');
+      toggleLightMode.textContent = 'On';
+      toggleLightMode.classList.add('active');
+    }
+
+    toggleLightMode.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
+      const isLight = document.body.classList.contains('light-mode');
+      toggleLightMode.textContent = isLight ? 'On' : 'Off';
+      toggleLightMode.classList.toggle('active', isLight);
+      localStorage.setItem('portfolio-theme-appearance', isLight ? 'light' : 'dark');
+    });
+  }
+
   const toggleAurora = document.getElementById('toggle-aurora');
   if (toggleAurora) {
     toggleAurora.addEventListener('click', () => {
       document.body.classList.toggle('no-aurora');
-      const isPureBlack = document.body.classList.contains('no-aurora');
-      toggleAurora.textContent = isPureBlack ? 'Off' : 'On';
-      toggleAurora.classList.toggle('active', !isPureBlack);
+      const isPlain = document.body.classList.contains('no-aurora');
+      toggleAurora.textContent = isPlain ? 'Off' : 'On';
+      toggleAurora.classList.toggle('active', !isPlain);
     });
   }
 

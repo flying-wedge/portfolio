@@ -63,6 +63,25 @@
   --z-desktop-chassis: 10000;
 }
 
+/* Light Mode Token Overrides */
+body.light-mode {
+  --ios-bg: #F2F2F7;
+  --ios-card-glass: rgba(255, 255, 255, 0.78);
+  --ios-card-border: rgba(0, 0, 0, 0.08);
+  --ios-sheet-bg: rgba(246, 246, 248, 0.96);
+  --ios-sheet-border: rgba(0, 0, 0, 0.1);
+  --ios-dock-bg: rgba(235, 235, 240, 0.72);
+  --ios-dock-border: rgba(0, 0, 0, 0.08);
+
+  --ios-blue: #007AFF;
+  --ios-blue-hover: #0056B3;
+
+  --text-primary: #000000;
+  --text-secondary: rgba(60, 60, 67, 0.75);
+  --text-tertiary: rgba(60, 60, 67, 0.45);
+  --text-quaternary: rgba(60, 60, 67, 0.25);
+}
+
 /* --------------------------------------------------------------------------
    2. GLOBAL RESET & BASE
    -------------------------------------------------------------------------- */
@@ -1502,7 +1521,155 @@ body.no-aurora {
 }
 
 /* --------------------------------------------------------------------------
-   19. PRINT MEDIA STYLES
+   19. LIGHT MODE THEME RULES
+   -------------------------------------------------------------------------- */
+body.light-mode {
+  background-color: #F2F2F7 !important;
+  background-image:
+    radial-gradient(circle at 82% 18%, rgba(94, 92, 230, 0.25) 0%, transparent 42%),
+    radial-gradient(circle at 18% 40%, rgba(10, 132, 255, 0.22) 0%, transparent 45%),
+    radial-gradient(circle at 75% 78%, rgba(191, 90, 242, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 20% 88%, rgba(48, 209, 88, 0.18) 0%, transparent 45%),
+    linear-gradient(180deg, #E5E5EA 0%, #F2F2F7 40%, #FFFFFF 100%) !important;
+}
+
+body.light-mode.no-aurora {
+  background-image: none !important;
+  background-color: #F2F2F7 !important;
+}
+
+@media (min-width: 560px) {
+  body.light-mode .iphone-chassis {
+    border-color: #D1D1D6;
+    box-shadow: 
+      0 0 0 2px #E5E5EA,
+      0 28px 80px rgba(0, 0, 0, 0.2),
+      0 10px 25px rgba(0, 0, 0, 0.12);
+  }
+}
+
+body.light-mode .status-clock {
+  color: #000000;
+}
+
+body.light-mode .status-icon svg {
+  fill: #000000;
+}
+
+body.light-mode .battery-tip {
+  background: #000000;
+}
+
+body.light-mode .battery-level {
+  background: #000000;
+}
+
+body.light-mode .hero-name,
+body.light-mode .widget-big-stat,
+body.light-mode .sheet-title,
+body.light-mode .row-title,
+body.light-mode .contact-name,
+body.light-mode .proj-title,
+body.light-mode .company-role {
+  color: #000000;
+}
+
+body.light-mode .hero-footer,
+body.light-mode .proj-metric-row {
+  border-top-color: rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .table-row {
+  border-bottom-color: rgba(60, 60, 67, 0.12);
+  color: #000000;
+}
+
+body.light-mode .link-row:active {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+body.light-mode .sheet-navbar {
+  background: rgba(246, 246, 248, 0.95);
+  border-bottom-color: rgba(60, 60, 67, 0.15);
+}
+
+body.light-mode .sheet-content::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode .spotlight-bar {
+  background: rgba(0, 0, 0, 0.08);
+  color: rgba(60, 60, 67, 0.8);
+}
+
+body.light-mode .spotlight-bar:hover {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+body.light-mode .spotlight-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+body.light-mode .spotlight-input-row {
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .spotlight-input-row input {
+  color: #000000;
+}
+
+body.light-mode .spotlight-item:hover,
+body.light-mode .spotlight-item:active {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .spotlight-item-title {
+  color: #000000;
+}
+
+body.light-mode .action-circle-btn {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #000000;
+}
+
+body.light-mode .action-circle-btn:active {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+body.light-mode .ios-badge {
+  background: rgba(0, 0, 0, 0.08);
+  color: rgba(60, 60, 67, 0.8);
+}
+
+body.light-mode .spec-pill {
+  background: rgba(0, 0, 0, 0.06);
+  color: #000000;
+}
+
+body.light-mode .timeline-pills span {
+  background: rgba(0, 0, 0, 0.06);
+  color: #000000;
+}
+
+body.light-mode .ios-btn-secondary {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #000000;
+}
+
+body.light-mode .indicator-pill {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+body.light-mode .ios-home-indicator-zone:active .indicator-pill {
+  background: #000000;
+}
+
+/* --------------------------------------------------------------------------
+   20. PRINT MEDIA STYLES
    -------------------------------------------------------------------------- */
 @media print {
   body {
