@@ -20,7 +20,6 @@
       
       <!-- Top Navigation Links for macOS -->
       <button class="menubar-nav-btn active-nav" data-target="window-terminal">About</button>
-      <button class="menubar-nav-btn" data-target="window-projects">Projects</button>
       <button class="menubar-nav-btn" data-target="window-skills">Stack</button>
       <button class="menubar-nav-btn" data-target="window-experience">Experience</button>
       <button class="menubar-nav-btn" data-target="window-resume">Resume / CV</button>
@@ -51,7 +50,6 @@
       </button>
       <div class="gnome-nav-pills">
         <button class="gnome-nav-pill" data-target="window-terminal">About</button>
-        <button class="gnome-nav-pill" data-target="window-projects">Files</button>
         <button class="gnome-nav-pill" data-target="window-skills">Stack</button>
         <button class="gnome-nav-pill" data-target="window-experience">System Monitor</button>
         <button class="gnome-nav-pill" data-target="window-resume">Document</button>
@@ -95,13 +93,6 @@
           <span class="icon-symbol">📄</span>
         </div>
         <span class="icon-label">Brian_Lang_Resume.pdf</span>
-      </div>
-
-      <div class="desktop-icon" data-open="window-projects" title="Click to view Projects">
-        <div class="icon-graphic folder-icon">
-          <span class="folder-front">📁</span>
-        </div>
-        <span class="icon-label">Architecture Projects</span>
       </div>
 
       <div class="desktop-icon" data-open="window-skills" title="Click to view Technical Stack">
@@ -191,8 +182,8 @@
             </div>
             <div class="terminal-quick-actions">
               <button class="os-button primary nav-action-btn" data-target="window-resume">View Resume / CV</button>
-              <button class="os-button nav-action-btn" data-target="window-projects">Browse Projects</button>
               <button class="os-button nav-action-btn" data-target="window-skills">Technical Stack</button>
+              <button class="os-button nav-action-btn" data-target="window-experience">Career Timeline</button>
               <a href="mailto:brian.lang@robustcomputing.com" class="os-button highlight">Get in Touch</a>
             </div>
           </div>
@@ -326,110 +317,7 @@
       </div>
     </div>
 
-    <!-- ================= WINDOW 3: Projects (Finder / File Explorer / Nautilus) ================= -->
-    <div class="system-window" id="window-projects" style="top: 100px; left: 120px; width: 750px; z-index: 11;">
-      <div class="window-titlebar" data-drag="window-projects">
-        
-        <!-- macOS Traffic Lights (Left) -->
-        <div class="traffic-lights os-element-macos">
-          <button class="t-btn t-close" data-window="window-projects" title="Close"></button>
-          <button class="t-btn t-min" data-window="window-projects" title="Minimize"></button>
-          <button class="t-btn t-max" data-window="window-projects" title="Zoom"></button>
-        </div>
-
-        <div class="titlebar-title">
-          <span class="os-text-macos">Finder — /Projects/Architecture</span>
-          <span class="os-text-win">File Explorer — C:\Users\BrianLang\Projects</span>
-          <span class="os-text-fedora">Files (Nautilus) — ~/Projects</span>
-        </div>
-
-        <div class="window-actions os-element-macos os-element-fedora">
-          <span class="finder-view-mode">4 items</span>
-        </div>
-
-        <!-- Windows 11 Window Controls (Right) -->
-        <div class="win-window-controls os-element-win">
-          <button class="win-btn win-min" data-window="window-projects" title="Minimize">&#8211;</button>
-          <button class="win-btn win-max" data-window="window-projects" title="Maximize">&#9633;</button>
-          <button class="win-btn win-close" data-window="window-projects" title="Close">&#10005;</button>
-        </div>
-
-        <!-- Fedora GNOME Controls (Right) -->
-        <div class="gnome-window-controls os-element-fedora">
-          <button class="gnome-btn gnome-min" data-window="window-projects" title="Minimize">&#8211;</button>
-          <button class="gnome-btn gnome-max" data-window="window-projects" title="Maximize">&#9633;</button>
-          <button class="gnome-btn gnome-close" data-window="window-projects" title="Close">&#10005;</button>
-        </div>
-      </div>
-
-      <div class="window-content finder-window-content">
-        <div class="finder-sidebar">
-          <div class="sidebar-group">
-            <span class="sidebar-title"><span class="os-text-macos">Favorites</span><span class="os-text-win">Quick Access</span><span class="os-text-fedora">Places</span></span>
-            <div class="sidebar-item active">📁 Architecture</div>
-            <div class="sidebar-item nav-action-btn" data-target="window-skills">💾 Tech Stack</div>
-            <div class="sidebar-item nav-action-btn" data-target="window-experience">📈 Experience</div>
-            <div class="sidebar-item nav-action-btn" data-target="window-resume">📄 Resume.pdf</div>
-          </div>
-          <div class="sidebar-group">
-            <span class="sidebar-title">Tags</span>
-            <div class="sidebar-item"><span class="color-dot blue"></span> Distributed</div>
-            <div class="sidebar-item"><span class="color-dot green"></span> Security</div>
-            <div class="sidebar-item"><span class="color-dot orange"></span> Telemetry</div>
-          </div>
-        </div>
-
-        <div class="finder-main">
-          <div class="project-cards-grid">
-            <div class="p-card">
-              <div class="p-card-top">
-                <span class="p-icon">⚡</span>
-                <span class="p-badge blue">Distributed Engine</span>
-              </div>
-              <h3 class="p-title">HyperStream: Ingestion Fabric</h3>
-              <p class="p-desc">High-throughput distributed event streaming engine processing 250k+ msgs/sec with sub-5ms latencies.</p>
-              <div class="p-tags"><span>Go</span><span>Kafka</span><span>ClickHouse</span><span>Docker</span></div>
-              <div class="p-links"><a href="https://github.com/brianlang" target="_blank">GitHub Repo &rarr;</a></div>
-            </div>
-
-            <div class="p-card">
-              <div class="p-card-top">
-                <span class="p-icon">🛡️</span>
-                <span class="p-badge purple">Zero-Trust</span>
-              </div>
-              <h3 class="p-title">Sentinel Identity Gateway</h3>
-              <p class="p-desc">Reverse-proxy access gateway providing mTLS termination, OIDC claims enforcement, and ABAC policies.</p>
-              <div class="p-tags"><span>Rust</span><span>OAuth 2.1</span><span>Redis</span><span>K8s</span></div>
-              <div class="p-links"><a href="https://github.com/brianlang" target="_blank">Architecture Spec &rarr;</a></div>
-            </div>
-
-            <div class="p-card">
-              <div class="p-card-top">
-                <span class="p-icon">📊</span>
-                <span class="p-badge green">Observability</span>
-              </div>
-              <h3 class="p-title">CloudPulse Telemetry Hub</h3>
-              <p class="p-desc">Multi-cluster Kubernetes tracing visualizer and metrics analyzer with automatic anomaly threshold alerts.</p>
-              <div class="p-tags"><span>TypeScript</span><span>React</span><span>OpenTelemetry</span></div>
-              <div class="p-links"><a href="https://github.com/brianlang" target="_blank">View Live Demo &rarr;</a></div>
-            </div>
-
-            <div class="p-card">
-              <div class="p-card-top">
-                <span class="p-icon">⚙️</span>
-                <span class="p-badge orange">Dev Tools</span>
-              </div>
-              <h3 class="p-title">KubeForge Orchestrator CLI</h3>
-              <p class="p-desc">Generates production-hardened Kubernetes manifests, ingress specs, and Helm charts from simple declarations.</p>
-              <div class="p-tags"><span>Python</span><span>Click</span><span>YAML</span><span>PyPI</span></div>
-              <div class="p-links"><a href="https://github.com/brianlang" target="_blank">Source Code &rarr;</a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ================= WINDOW 4: Technical Stack ================= -->
+    <!-- ================= WINDOW 3: Technical Stack ================= -->
     <div class="system-window" id="window-skills" style="top: 130px; left: 180px; width: 660px; z-index: 9;">
       <div class="window-titlebar" data-drag="window-skills">
         <!-- macOS Traffic Lights (Left) -->
@@ -583,10 +471,6 @@
             <div class="start-app-icon pdf-bg">📄</div>
             <span>Resume / CV</span>
           </div>
-          <div class="start-app-item nav-action-btn" data-target="window-projects">
-            <div class="start-app-icon folder-bg">📁</div>
-            <span>Projects</span>
-          </div>
           <div class="start-app-item nav-action-btn" data-target="window-skills">
             <div class="start-app-icon sys-bg">⚙️</div>
             <span>Skills</span>
@@ -637,10 +521,6 @@
           <div class="gnome-app-icon gnome-evince-icon">📄</div>
           <span>Document Viewer</span>
         </div>
-        <div class="gnome-app-item nav-action-btn" data-target="window-projects">
-          <div class="gnome-app-icon gnome-nautilus-icon">📁</div>
-          <span>Files</span>
-        </div>
         <div class="gnome-app-item nav-action-btn" data-target="window-skills">
           <div class="gnome-app-icon gnome-settings-icon">⚙️</div>
           <span>Settings</span>
@@ -668,10 +548,6 @@
       <div class="dock-app-icon preview-dock-icon"><span>📄</span></div>
       <div class="dock-dot"></div>
     </div>
-    <div class="dock-app" data-target="window-projects" data-tooltip="Projects (Finder)">
-      <div class="dock-app-icon finder-dock-icon"><span>📁</span></div>
-      <div class="dock-dot"></div>
-    </div>
     <div class="dock-app" data-target="window-skills" data-tooltip="Technical Stack">
       <div class="dock-app-icon stack-dock-icon"><span>💾</span></div>
       <div class="dock-dot"></div>
@@ -697,10 +573,6 @@
     </div>
     <div class="dash-item" data-target="window-resume" data-tooltip="Evince (Resume)">
       <div class="dash-icon fedora-doc-icon"><span>📄</span></div>
-      <div class="dash-dot"></div>
-    </div>
-    <div class="dash-item" data-target="window-projects" data-tooltip="Nautilus (Projects)">
-      <div class="dash-icon fedora-files-icon"><span>📁</span></div>
       <div class="dash-dot"></div>
     </div>
     <div class="dash-item" data-target="window-skills" data-tooltip="Control Center (Stack)">
@@ -757,11 +629,6 @@
 
       <div class="win-taskbar-icon" data-target="window-resume" title="Resume.pdf">
         <div class="win-app-glyph">📄</div>
-        <div class="win-task-dot"></div>
-      </div>
-
-      <div class="win-taskbar-icon" data-target="window-projects" title="File Explorer (Projects)">
-        <div class="win-app-glyph">📁</div>
         <div class="win-task-dot"></div>
       </div>
 
