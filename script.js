@@ -167,7 +167,7 @@
     { title: 'Apex Cloud Systems', sub: 'Staff Technical Architect (2023 - Present)', target: 'app-experience', icon: '💼' },
     { title: 'DataSphere Analytics', sub: 'Principal Systems Architect (2020 - 2023)', target: 'app-experience', icon: '📊' },
     { title: 'Terminal Console', sub: 'Interactive CLI Profile & Commands', target: 'app-terminal', icon: '💻' },
-    { title: 'Contact Brian Lang', sub: 'brian.lang@robustcomputing.com • SF / Remote', target: 'app-contact', icon: '✉️' }
+    { title: 'Contact Brian Lang', sub: 'brian.lang@robustcomputing.com • Kansas City Area / Remote', target: 'app-contact', icon: '✉️' }
   ];
 
   function openSpotlight() {
