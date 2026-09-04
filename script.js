@@ -143,17 +143,86 @@
     });
   }
 
-  // --- 5. SPOTLIGHT SEARCH CONTROLLER ---
+  // --- 5. SPOTLIGHT SEARCH CONTROLLER (CONTACT DETAILS) ---
   const spotlightTrigger = document.getElementById('spotlight-trigger');
   const spotlightModal = document.getElementById('spotlight-modal');
   const spotlightClose = document.getElementById('spotlight-close');
   const spotlightInput = document.getElementById('spotlight-input');
   const spotlightResults = document.getElementById('spotlight-results');
 
-  const searchableItems = [
-    { title: 'Terminal Console', sub: 'Interactive CLI Profile & Commands', target: 'app-terminal', icon: '💻' },
-    { title: 'Contact Brian Lang', sub: '+1 (785) 550-3966 • brian.lang@robustcomputing.com • Kansas City Area / Remote', target: 'app-contact', icon: '✉️' },
-    { title: 'Settings & Appearance', sub: 'Dark / Light Appearance & Dynamic Aurora Customization', target: 'app-settings', icon: '⚙️' }
+  const contactSearchItems = [
+    {
+      title: 'Download Contact Card (vCard)',
+      sub: 'Save Brian Lang (.vcf) directly to Apple / Google Contacts',
+      target: 'assets/Brian_Lang.vcf',
+      icon: '🪪',
+      keywords: 'vcard contact card download vcf address book save phone number add brian lang',
+      actionType: 'download'
+    },
+    {
+      title: 'Phone Call: +1 (785) 550-3966',
+      sub: 'Direct phone line to Brian Lang',
+      target: 'tel:+17855503966',
+      icon: '📞',
+      keywords: 'phone call telephone mobile cell 785 550 3966 number voice call',
+      actionType: 'link'
+    },
+    {
+      title: 'SMS / iMessage: +1 (785) 550-3966',
+      sub: 'Send text message or iMessage to Brian',
+      target: 'sms:+17855503966',
+      icon: '💬',
+      keywords: 'sms text imessage message chat 785 550 3966 mobile',
+      actionType: 'link'
+    },
+    {
+      title: 'Email: brian.lang@robustcomputing.com',
+      sub: 'Send email message via Gmail / default mail client',
+      target: 'mailto:brian.lang@robustcomputing.com',
+      icon: '✉️',
+      keywords: 'email mail gmail message inbox brian lang robust computing robustcomputing',
+      actionType: 'link'
+    },
+    {
+      title: 'WhatsApp: @flyingwedge05',
+      sub: 'Chat directly on WhatsApp with Brian',
+      target: 'https://wa.me/flyingwedge05',
+      icon: '🟢',
+      keywords: 'whatsapp chat message green app flyingwedge05 online',
+      actionType: 'external'
+    },
+    {
+      title: 'LinkedIn: Brian Lang',
+      sub: 'linkedin.com/in/brian-lang-4b99282',
+      target: 'https://www.linkedin.com/in/brian-lang-4b99282/',
+      icon: '💼',
+      keywords: 'linkedin profile network connect career resume social',
+      actionType: 'external'
+    },
+    {
+      title: 'GitHub: flying-wedge',
+      sub: 'github.com/flying-wedge • Code Repositories & Architecture',
+      target: 'https://github.com/flying-wedge',
+      icon: '🐙',
+      keywords: 'github code repo git projects open source repository architecture flying-wedge',
+      actionType: 'external'
+    },
+    {
+      title: 'Location & Availability',
+      sub: 'Kansas City Area (CST / UTC-6) • Remote & Advisory Open',
+      target: 'app-contact',
+      icon: '📍',
+      keywords: 'location city kansas missouri cst timezone remote hybrid advisory address area',
+      actionType: 'sheet'
+    },
+    {
+      title: 'Full Contact Sheet',
+      sub: 'Open complete Contact Brian interactive sheet',
+      target: 'app-contact',
+      icon: '👤',
+      keywords: 'contact profile brian lang info details sheet view',
+      actionType: 'sheet'
+    }
   ];
 
   function openSpotlight() {
@@ -173,54 +242,81 @@
     spotlightModal.setAttribute('aria-hidden', 'true');
   }
 
+  function handleSearchItemAction(item) {
+    closeSpotlight();
+    if (item.actionType === 'download') {
+      const a = document.createElement('a');
+      a.href = item.target;
+      a.download = 'Brian_Lang.vcf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } else if (item.actionType === 'external') {
+      window.open(item.target, '_blank', 'noopener,noreferrer');
+    } else if (item.actionType === 'link') {
+      window.location.href = item.target;
+    } else if (item.actionType === 'sheet') {
+      openSheet(item.target);
+    }
+  }
+
   function renderSpotlightResults(query) {
     if (!spotlightResults) return;
     const cleanQuery = query.trim().toLowerCase();
     const filtered = cleanQuery
-      ? searchableItems.filter(item => 
-          item.title.toLowerCase().includes(cleanQuery) || 
-          item.sub.toLowerCase().includes(cleanQuery)
+      ? contactSearchItems.filter(item =>
+          item.title.toLowerCase().includes(cleanQuery) ||
+          item.sub.toLowerCase().includes(cleanQuery) ||
+          (item.keywords && item.keywords.toLowerCase().includes(cleanQuery))
         )
-      : searchableItems.slice(0, 5);
+      : contactSearchItems;
 
     if (filtered.length === 0) {
       spotlightResults.innerHTML = `
-        <div style="padding: 16px; text-align: center; color: rgba(235, 235, 245, 0.4); font-size: 13px;">
-          No matching skills or documents found
+        <div style="padding: 20px; text-align: center; color: rgba(235, 235, 245, 0.45); font-size: 13.5px;">
+          No matching contact details found
         </div>`;
       return;
     }
 
-    spotlightResults.innerHTML = filtered.map(item => `
-      <div class="spotlight-item" data-target="${item.target}" tabindex="0" role="button">
-        <span style="font-size: 20px;">${item.icon}</span>
-        <div>
+    spotlightResults.innerHTML = filtered.map((item, idx) => `
+      <div class="spotlight-item" data-index="${idx}" tabindex="0" role="button" aria-label="${item.title}">
+        <span style="font-size: 20px; width: 28px; text-align: center;">${item.icon}</span>
+        <div style="flex: 1; min-width: 0;">
           <div class="spotlight-item-title">${item.title}</div>
           <div class="spotlight-item-sub">${item.sub}</div>
         </div>
+        <span style="color: rgba(235, 235, 245, 0.4); font-size: 13px; font-weight: 600;">→</span>
       </div>
     `).join('');
 
     spotlightResults.querySelectorAll('.spotlight-item').forEach(el => {
-      el.addEventListener('click', () => {
-        const target = el.getAttribute('data-target');
-        closeSpotlight();
-        openSheet(target);
-      });
+      const idx = parseInt(el.getAttribute('data-index'), 10);
+      const item = filtered[idx];
+      el.addEventListener('click', () => handleSearchItemAction(item));
       el.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
-          const target = el.getAttribute('data-target');
-          closeSpotlight();
-          openSheet(target);
+          handleSearchItemAction(item);
         }
       });
     });
   }
 
-  if (spotlightTrigger && !spotlightTrigger.classList.contains('is-disabled')) {
+  if (spotlightTrigger) {
     spotlightTrigger.addEventListener('click', openSpotlight);
+    spotlightTrigger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openSpotlight();
+      }
+    });
   }
   if (spotlightClose) spotlightClose.addEventListener('click', closeSpotlight);
+  if (spotlightModal) {
+    spotlightModal.addEventListener('click', (e) => {
+      if (e.target === spotlightModal) closeSpotlight();
+    });
+  }
   if (spotlightInput) {
     spotlightInput.addEventListener('input', (e) => renderSpotlightResults(e.target.value));
   }
