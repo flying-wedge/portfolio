@@ -237,19 +237,8 @@
     spotlightInput.addEventListener('input', (e) => renderSpotlightResults(e.target.value));
   }
 
-  // --- 6. THEME APPEARANCE TOGGLES (LIGHT MODE, ANDROID 16 & AURORA) ---
+  // --- 6. THEME APPEARANCE TOGGLES (LIGHT MODE & AURORA) ---
   const toggleLightMode = document.getElementById('toggle-light-mode');
-  const toggleAndroidMode = document.getElementById('toggle-android-mode');
-  const appearanceSubtitle = document.getElementById('appearance-subtitle');
-
-  function updateAppearanceSubtitle() {
-    if (!appearanceSubtitle) return;
-    const isAndroid = document.body.classList.contains('android-theme');
-    appearanceSubtitle.textContent = isAndroid
-      ? 'Switch to crisp Android 16 Light Appearance'
-      : 'Switch to crisp iOS 18 Light Appearance';
-  }
-
   if (toggleLightMode) {
     const savedTheme = localStorage.getItem('portfolio-theme-appearance');
     if (savedTheme === 'light') {
@@ -264,25 +253,6 @@
       toggleLightMode.textContent = isLight ? 'On' : 'Off';
       toggleLightMode.classList.toggle('active', isLight);
       localStorage.setItem('portfolio-theme-appearance', isLight ? 'light' : 'dark');
-    });
-  }
-
-  if (toggleAndroidMode) {
-    const savedPlatform = localStorage.getItem('portfolio-platform-theme');
-    if (savedPlatform === 'android16') {
-      document.body.classList.add('android-theme');
-      toggleAndroidMode.textContent = 'On';
-      toggleAndroidMode.classList.add('active');
-      updateAppearanceSubtitle();
-    }
-
-    toggleAndroidMode.addEventListener('click', () => {
-      document.body.classList.toggle('android-theme');
-      const isAndroid = document.body.classList.contains('android-theme');
-      toggleAndroidMode.textContent = isAndroid ? 'On' : 'Off';
-      toggleAndroidMode.classList.toggle('active', isAndroid);
-      localStorage.setItem('portfolio-platform-theme', isAndroid ? 'android16' : 'ios18');
-      updateAppearanceSubtitle();
     });
   }
 
