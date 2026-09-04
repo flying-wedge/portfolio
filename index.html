@@ -7,594 +7,781 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#000000">
   <title>Brian Lang | Technical Software Architect</title>
-  <meta name="description" content="Brian Lang - Technical Software Architect iOS Desktop Experience">
+  <meta name="description" content="Brian Lang - Technical Software Architect iOS 18 Experience">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=SF+Pro+Display:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
-<body class="iphone-screen">
+<body class="ios-root">
 
-  <!-- ================= IPHONE STATUS BAR (TOP SAFE AREA) ================= -->
-  <header class="ios-status-bar">
-    <div class="status-time-area">
-      <span class="status-time" id="status-time">9:41</span>
-    </div>
+  <!-- Main Device Shell (Centered iPhone 16 chassis on Desktop, Fullscreen on Mobile) -->
+  <div class="iphone-chassis">
 
-    <!-- Apple Dynamic Island with FaceID / Camera Cutout -->
-    <div class="dynamic-island" id="dynamic-island" tabindex="0" role="button" aria-label="Dynamic Island">
-      <div class="island-normal">
-        <div class="island-badge">
-          <span class="island-dot"></span>
-          <span class="island-text">Architect Active</span>
-        </div>
-        <div class="island-lens"></div>
+    <!-- Top Safe Area Status Bar -->
+    <header class="ios-statusbar" aria-label="Status Bar">
+      <div class="status-left">
+        <span class="status-clock" id="status-clock">9:41</span>
       </div>
-      <div class="island-expanded">
-        <div class="island-info">
-          <span class="island-kicker">Distributed Systems</span>
-          <span class="island-title">Brian Lang • Available for Advisory</span>
-        </div>
-        <a href="mailto:brian.lang@robustcomputing.com" class="island-btn">Contact</a>
-      </div>
-    </div>
 
-    <div class="status-icons-area">
-      <!-- Cellular Signal Bars -->
-      <span class="status-icon signal" title="5G Full Signal">
-        <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor">
-          <rect x="0" y="8" width="3" height="3" rx="0.8"/>
-          <rect x="4.5" y="5.5" width="3" height="5.5" rx="0.8"/>
-          <rect x="9" y="3" width="3" height="8" rx="0.8"/>
-          <rect x="13.5" y="0" width="3" height="11" rx="0.8"/>
+      <!-- Dynamic Island -->
+      <div class="dynamic-island" id="dynamic-island" tabindex="0" role="button" aria-expanded="false" aria-label="Dynamic Island - Architect Status">
+        <div class="island-compact">
+          <div class="island-pill-active">
+            <span class="island-pulse"></span>
+            <span class="island-label">Architect</span>
+          </div>
+          <div class="island-sensor"></div>
+        </div>
+        <div class="island-expanded-content">
+          <div class="island-avatar">BL</div>
+          <div class="island-meta">
+            <div class="island-sub">DISTRIBUTED SYSTEMS</div>
+            <div class="island-headline">Brian Lang • Available for Advisory</div>
+          </div>
+          <a href="mailto:brian.lang@robustcomputing.com" class="island-action-btn">Contact</a>
+        </div>
+      </div>
+
+      <div class="status-right">
+        <!-- Signal Indicator -->
+        <span class="status-icon" title="5G Full Signal">
+          <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor">
+            <rect x="0" y="8.5" width="3" height="3.5" rx="0.8"/>
+            <rect x="4.8" y="6" width="3" height="6" rx="0.8"/>
+            <rect x="9.6" y="3.5" width="3" height="8.5" rx="0.8"/>
+            <rect x="14.4" y="0.5" width="3" height="11.5" rx="0.8"/>
+          </svg>
+        </span>
+        <span class="status-5g">5G</span>
+        <!-- Battery Icon -->
+        <span class="status-battery" title="Battery 100%">
+          <span class="battery-shell">
+            <span class="battery-level"></span>
+          </span>
+          <span class="battery-tip"></span>
+        </span>
+      </div>
+    </header>
+
+    <!-- SpringBoard (Homescreen) -->
+    <main class="ios-springboard" id="springboard">
+
+      <!-- Widget Row: Profile Header + Quick Metrics -->
+      <section class="widget-row" aria-label="Interactive Widgets">
+        <!-- 2x2 Large Card Widget: Architect Identity -->
+        <div class="ios-widget widget-hero" data-launch="app-terminal" tabindex="0" role="button" aria-label="View Terminal Profile">
+          <div class="widget-top-bar">
+            <div class="widget-avatar-group">
+              <div class="hero-avatar">BL</div>
+              <div>
+                <span class="hero-badge">STAFF ARCHITECT</span>
+                <h1 class="hero-name">Brian Lang</h1>
+              </div>
+            </div>
+            <span class="widget-launch-hint">Open ↗</span>
+          </div>
+          <p class="hero-summary">
+            Specializing in multi-region event platforms, zero-trust cloud fabrics, and resilient distributed backbones.
+          </p>
+          <div class="hero-footer">
+            <span class="hero-chip">📍 SF Bay Area & Remote</span>
+            <span class="hero-uptime"><span class="green-dot"></span> 99.99% Availability</span>
+          </div>
+        </div>
+
+        <!-- Two 1x1 Compact Widgets -->
+        <div class="widget-stack">
+          <!-- Small Widget 1: Throughput -->
+          <div class="ios-widget widget-small" data-launch="app-skills" tabindex="0" role="button" aria-label="View Performance Metrics">
+            <div class="widget-tag"><span class="widget-icon">⚡</span> SCALE</div>
+            <div class="widget-big-stat">250k+</div>
+            <div class="widget-stat-desc">Events / Second</div>
+            <div class="widget-stat-sub">Kafka • Go • Redis</div>
+          </div>
+
+          <!-- Small Widget 2: Uptime/Cloud -->
+          <div class="ios-widget widget-small" data-launch="app-experience" tabindex="0" role="button" aria-label="View Career Experience">
+            <div class="widget-tag"><span class="widget-icon">🛡️</span> UPTIME</div>
+            <div class="widget-big-stat">99.99%</div>
+            <div class="widget-stat-desc">Multi-Region SLA</div>
+            <div class="widget-stat-sub">AWS • GCP • K8s</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- App Grid 4-Column Layout -->
+      <section class="app-grid" aria-label="Applications">
+        <!-- App 1: Terminal Profile -->
+        <div class="app-icon-item" data-launch="app-terminal" tabindex="0" role="button" aria-label="Open Terminal App">
+          <div class="icon-squircle icon-terminal">
+            <span class="terminal-prompt-glyph">&gt;_</span>
+          </div>
+          <span class="icon-label">Terminal</span>
+        </div>
+
+        <!-- App 2: Resume / Vitae -->
+        <div class="app-icon-item" data-launch="app-resume" tabindex="0" role="button" aria-label="Open Resume / CV App">
+          <div class="icon-squircle icon-resume">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </div>
+          <span class="icon-label">Resume</span>
+        </div>
+
+        <!-- App 3: Architecture & Systems -->
+        <div class="app-icon-item" data-launch="app-projects" tabindex="0" role="button" aria-label="Open Architecture Projects App">
+          <div class="icon-squircle icon-projects">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+              <line x1="6" y1="6" x2="6.01" y2="6"></line>
+              <line x1="6" y1="18" x2="6.01" y2="18"></line>
+            </svg>
+          </div>
+          <span class="icon-label">Architecture</span>
+        </div>
+
+        <!-- App 4: Stack & Skills -->
+        <div class="app-icon-item" data-launch="app-skills" tabindex="0" role="button" aria-label="Open Tech Stack App">
+          <div class="icon-squircle icon-skills">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </div>
+          <span class="icon-label">Tech Stack</span>
+        </div>
+
+        <!-- App 5: Career Experience -->
+        <div class="app-icon-item" data-launch="app-experience" tabindex="0" role="button" aria-label="Open Experience Timeline App">
+          <div class="icon-squircle icon-experience">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+          </div>
+          <span class="icon-label">Career</span>
+        </div>
+
+        <!-- App 6: Contact & Connect -->
+        <div class="app-icon-item" data-launch="app-contact" tabindex="0" role="button" aria-label="Open Contacts App">
+          <div class="icon-squircle icon-contact">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <span class="icon-label">Contacts</span>
+        </div>
+
+        <!-- App 7: Settings & Theme -->
+        <div class="app-icon-item" data-launch="app-settings" tabindex="0" role="button" aria-label="Open Settings App">
+          <div class="icon-squircle icon-settings">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </div>
+          <span class="icon-label">Settings</span>
+        </div>
+
+        <!-- App 8: GitHub / Code -->
+        <a href="https://github.com/brianlang" target="_blank" rel="noopener noreferrer" class="app-icon-item external-link" aria-label="Open Brian's GitHub">
+          <div class="icon-squircle icon-github">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+          </div>
+          <span class="icon-label">GitHub ↗</span>
+        </a>
+      </section>
+
+      <!-- Spotlight Search Bar Trigger -->
+      <div class="spotlight-bar" id="spotlight-trigger" tabindex="0" role="button" aria-label="Open Search">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
-      </span>
-      <!-- 5G Badge -->
-      <span class="status-5g">5G</span>
-      <!-- Battery with Full Fill -->
-      <span class="status-icon battery" title="Battery 100%">
-        <svg width="24" height="11.5" viewBox="0 0 24 11.5" fill="currentColor">
-          <rect x="0.5" y="0.5" width="20.5" height="10.5" rx="3.2" fill="none" stroke="currentColor" stroke-width="1.1" opacity="0.75"/>
-          <rect x="2" y="2" width="15.5" height="7.5" rx="2" fill="#30D158"/>
-          <path d="M22.5 3.8v3.9a1.4 1.4 0 0 0 1-1.3v-1.3a1.4 1.4 0 0 0-1-1.3z" opacity="0.5"/>
-        </svg>
-      </span>
-    </div>
-  </header>
+        <span>Search Stack &amp; Projects</span>
+      </div>
 
-  <!-- ================= IPHONE HOMESCREEN (SPRINGBOARD) ================= -->
-  <main class="iphone-springboard" id="iphone-springboard">
-    
-    <!-- Top Widgets Row (Authentic 2x2 Rounded iOS Widgets) -->
-    <div class="widgets-grid">
-      
-      <!-- Widget 1: Profile & Identity (Medium iOS Widget, 2x2) -->
-      <div class="ios-widget medium-widget" data-launch="app-terminal" tabindex="0" role="button">
-        <div class="widget-header">
-          <div class="widget-avatar">BL</div>
-          <div class="widget-header-meta">
-            <span class="widget-chip">STAFF ARCHITECT</span>
-            <div class="widget-name">Brian Lang</div>
+    </main>
+
+    <!-- Bottom Dock Bar -->
+    <nav class="ios-dock-container" aria-label="Dock">
+      <div class="ios-dock">
+        <!-- Dock 1: Mail -->
+        <a href="mailto:brian.lang@robustcomputing.com" class="dock-item" aria-label="Send Email to Brian Lang">
+          <div class="dock-squircle dock-mail">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
           </div>
-        </div>
-        <p class="widget-bio">
-          Designing resilient multi-region distributed systems, fault-tolerant event streams, and cloud-native backbones.
-        </p>
-        <div class="widget-footer">
-          <span class="meta-tag">📍 San Francisco • Remote</span>
-          <span class="meta-status">● 99.99% SLA</span>
-        </div>
-      </div>
+        </a>
 
-      <!-- Widget 2: System Metrics (Small iOS Widget, 2x2) -->
-      <div class="ios-widget small-widget" data-launch="app-skills" tabindex="0" role="button">
-        <div class="small-widget-top">
-          <span class="widget-icon">⚡</span>
-          <span class="widget-badge-small">METRICS</span>
-        </div>
-        <div class="widget-metric-num">250k+</div>
-        <div class="widget-metric-label">Events / sec</div>
-        <div class="widget-metric-sub">Kafka • Go • Redis</div>
-      </div>
-
-      <!-- Widget 3: Availability & Uptime (Small iOS Widget, 2x2) -->
-      <div class="ios-widget small-widget" data-launch="app-experience" tabindex="0" role="button">
-        <div class="small-widget-top">
-          <span class="widget-icon">🛡️</span>
-          <span class="widget-badge-small">UPTIME</span>
-        </div>
-        <div class="widget-metric-num">99.99%</div>
-        <div class="widget-metric-label">Multi-Region</div>
-        <div class="widget-metric-sub">AWS • GCP • K8s</div>
-      </div>
-
-    </div>
-
-    <!-- iOS Springboard 4x4 App Grid -->
-    <div class="apps-grid">
-
-      <!-- App: Terminal / Profile -->
-      <div class="app-icon-wrapper" data-launch="app-terminal" tabindex="0" role="button">
-        <div class="app-squircle app-terminal">
-          <span class="app-glyph">&gt;_</span>
-        </div>
-        <span class="app-label">Terminal</span>
-      </div>
-
-      <!-- App: Resume / CV -->
-      <div class="app-icon-wrapper" data-launch="app-resume" tabindex="0" role="button">
-        <div class="app-squircle app-files">
-          <!-- Apple Files-style icon layout -->
-          <div class="files-folder-top"></div>
-          <span class="app-glyph">📄</span>
-        </div>
-        <span class="app-label">Resume</span>
-      </div>
-
-      <!-- App: Tech Stack / Settings -->
-      <div class="app-icon-wrapper" data-launch="app-skills" tabindex="0" role="button">
-        <div class="app-squircle app-settings">
-          <div class="gear-glyph">⚙️</div>
-        </div>
-        <span class="app-label">Settings</span>
-      </div>
-
-      <!-- App: Career Experience / Stocks-style Analytics -->
-      <div class="app-icon-wrapper" data-launch="app-experience" tabindex="0" role="button">
-        <div class="app-squircle app-stocks">
-          <div class="stocks-chart">
-            <span></span><span></span><span></span>
-          </div>
-          <span class="app-glyph">📈</span>
-        </div>
-        <span class="app-label">Experience</span>
-      </div>
-
-      <!-- App: Mail (Native iOS Blue Gradient) -->
-      <a href="mailto:brian.lang@robustcomputing.com" class="app-icon-wrapper">
-        <div class="app-squircle app-mail">
-          <span class="app-glyph">✉️</span>
-          <span class="app-badge-pill">1</span>
-        </div>
-        <span class="app-label">Mail</span>
-      </a>
-
-      <!-- App: GitHub / Developer -->
-      <a href="https://github.com/brianlang" target="_blank" rel="noopener noreferrer" class="app-icon-wrapper">
-        <div class="app-squircle app-developer">
-          <span class="app-glyph">🐙</span>
-        </div>
-        <span class="app-label">GitHub</span>
-      </a>
-
-      <!-- App: Contacts Card -->
-      <div class="app-icon-wrapper" data-launch="app-contact" tabindex="0" role="button">
-        <div class="app-squircle app-contacts">
-          <div class="contact-silhouette">BL</div>
-        </div>
-        <span class="app-label">Contacts</span>
-      </div>
-
-      <!-- App: Notes / Technical Principles -->
-      <div class="app-icon-wrapper" data-launch="app-terminal" tabindex="0" role="button">
-        <div class="app-squircle app-notes">
-          <span class="app-glyph">📝</span>
-        </div>
-        <span class="app-label">Notes</span>
-      </div>
-
-    </div>
-
-    <!-- Springboard Page Pagination Dots (iOS indicator) -->
-    <div class="page-dots-indicator" aria-hidden="true">
-      <span class="dot active"></span>
-      <span class="dot"></span>
-    </div>
-
-  </main>
-
-  <!-- ================= IPHONE FROSTED GLASS DOCK ================= -->
-  <nav class="iphone-dock" aria-label="iPhone Dock">
-    <div class="dock-icon-wrapper" data-launch="app-terminal" title="Terminal (Profile)">
-      <div class="dock-squircle app-terminal">
-        <span class="app-glyph">&gt;_</span>
-      </div>
-    </div>
-    <div class="dock-icon-wrapper" data-launch="app-resume" title="Resume / Vitae">
-      <div class="dock-squircle app-files">
-        <span class="app-glyph">📄</span>
-      </div>
-    </div>
-    <div class="dock-icon-wrapper" data-launch="app-skills" title="Tech Stack (Settings)">
-      <div class="dock-squircle app-settings">
-        <span class="app-glyph">⚙️</span>
-      </div>
-    </div>
-    <div class="dock-icon-wrapper" data-launch="app-experience" title="Career Timeline">
-      <div class="dock-squircle app-stocks">
-        <span class="app-glyph">📈</span>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ================= IPHONE FULLSCREEN APP SHEETS (CARDS) ================= -->
-  <div class="app-sheets-container">
-
-    <!-- 1. TERMINAL & PROFILE APP SHEET -->
-    <section class="app-sheet" id="app-terminal" role="dialog" aria-labelledby="term-title">
-      <div class="sheet-header">
-        <div class="sheet-pill-handle"></div>
-        <div class="sheet-nav-bar">
-          <button class="sheet-close-btn" data-close aria-label="Done">Done</button>
-          <span class="sheet-nav-title" id="term-title">Terminal Profile</span>
-          <button class="sheet-action-btn" data-launch="app-resume">Resume</button>
-        </div>
-      </div>
-      <div class="sheet-scroll-body">
-        <div class="sheet-profile-header">
-          <div class="sheet-avatar">BL</div>
-          <h2>Brian Lang</h2>
-          <span class="sheet-role">Technical Software Architect</span>
-          <span class="sheet-avail">● Available for Architecture & Advisory</span>
-        </div>
-
-        <div class="sheet-card terminal-view">
-          <div class="term-bar">
-            <span class="term-circle red"></span>
-            <span class="term-circle yellow"></span>
-            <span class="term-circle green"></span>
-            <span class="term-session">brian@iphone:~ (zsh)</span>
-          </div>
-          <div class="term-lines">
-            <p><span class="p-user">brian@workstation</span>:<span class="p-path">~</span>$ whoami --verbose</p>
-            <p class="p-out">Name: Brian Lang</p>
-            <p class="p-out">Title: Technical Software Architect</p>
-            <p class="p-out">Specialization: Distributed Systems, High-Throughput Event Fabrics, Cloud Scalability</p>
-            <p class="p-out">Contact: <a href="mailto:brian.lang@robustcomputing.com">brian.lang@robustcomputing.com</a></p>
-            <p><span class="p-user">brian@workstation</span>:<span class="p-path">~</span>$ cat /etc/architect-principles</p>
-            <p class="p-out">1. Build for multi-region failure domains & blast-radius containment.</p>
-            <p class="p-out">2. Decouple synchronous execution with event-driven Kafka stream topologies.</p>
-            <p class="p-out">3. Enforce zero-trust mTLS and automated declarative infrastructure.</p>
+        <!-- Dock 2: Terminal -->
+        <div class="dock-item" data-launch="app-terminal" tabindex="0" role="button" aria-label="Launch Terminal App">
+          <div class="dock-squircle dock-terminal">
+            <span class="dock-code-glyph">&gt;_</span>
           </div>
         </div>
 
-        <div class="sheet-actions-group">
-          <button class="sheet-primary-btn" data-launch="app-resume">View Full Resume / CV</button>
-          <a href="mailto:brian.lang@robustcomputing.com" class="sheet-secondary-btn">Send Email</a>
+        <!-- Dock 3: Resume -->
+        <div class="dock-item" data-launch="app-resume" tabindex="0" role="button" aria-label="Launch Resume App">
+          <div class="dock-squircle dock-resume">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Dock 4: Settings -->
+        <div class="dock-item" data-launch="app-settings" tabindex="0" role="button" aria-label="Launch Settings App">
+          <div class="dock-squircle dock-settings">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </div>
         </div>
       </div>
-    </section>
+    </nav>
 
-    <!-- 2. RESUME / CV APP SHEET -->
-    <section class="app-sheet" id="app-resume" role="dialog" aria-labelledby="resume-title">
-      <div class="sheet-header">
-        <div class="sheet-pill-handle"></div>
-        <div class="sheet-nav-bar">
-          <button class="sheet-close-btn" data-close aria-label="Done">Done</button>
-          <span class="sheet-nav-title" id="resume-title">Curriculum Vitae</span>
-          <button class="sheet-action-btn" onclick="window.print()">Print</button>
-        </div>
-      </div>
-      <div class="sheet-scroll-body">
-        <div class="printable-resume-card">
-          <header class="doc-header">
-            <h1>BRIAN LANG</h1>
-            <div class="doc-sub">Technical Software Architect</div>
-            <div class="doc-meta">
-              <span>Email: <a href="mailto:brian.lang@robustcomputing.com">brian.lang@robustcomputing.com</a></span>
-              <span>Web: brianlang.dev</span>
-              <span>Location: San Francisco, CA / Remote</span>
-              <span>GitHub: github.com/brianlang</span>
-            </div>
-          </header>
-          <hr class="doc-rule">
+    <!-- iOS Home Indicator Pill -->
+    <div class="ios-home-indicator-zone" id="home-indicator" role="button" aria-label="Return to SpringBoard" tabindex="0">
+      <div class="indicator-pill"></div>
+    </div>
 
-          <section class="doc-section">
-            <h3>EXECUTIVE SUMMARY</h3>
-            <p>
-              Technical Software Architect with comprehensive leadership experience architecting multi-region distributed backbones,
-              fault-tolerant event platforms, and cloud infrastructure. Proven history driving cross-team system design, slashing latency,
-              and aligning complex technical systems with business scale.
-            </p>
-          </section>
+    <!-- ================= MODAL APP SHEETS ================= -->
+    <div class="app-sheets-viewport" id="sheets-viewport">
 
-          <section class="doc-section">
-            <h3>SELECTED ARCHITECTURAL EXPERIENCE</h3>
-            <div class="exp-item">
-              <div class="exp-row">
-                <strong>Apex Cloud Systems — Staff Technical Architect</strong>
-                <span>2023 – Present</span>
-              </div>
-              <ul>
-                <li>Spearheaded distributed streaming architecture ingesting 15M+ events/day with 99.99% availability SLAs.</li>
-                <li>Designed autonomous multi-region failover and consensus pipelines across AWS and GCP.</li>
-                <li>Reduced global compute and network egress overhead by 30% through targeted architectural refactoring.</li>
-              </ul>
-            </div>
-
-            <div class="exp-item">
-              <div class="exp-row">
-                <strong>DataSphere Analytics — Principal Systems Architect</strong>
-                <span>2020 – 2023</span>
-              </div>
-              <ul>
-                <li>Built enterprise-scale telemetry and analytical workbench serving 12,000+ engineers.</li>
-                <li>Designed unified GraphQL gateway and distributed caching fabric with Redis cluster topology.</li>
-              </ul>
-            </div>
-
-            <div class="exp-item">
-              <div class="exp-row">
-                <strong>Vanguard Tech Labs — Software Engineer</strong>
-                <span>2018 – 2020</span>
-              </div>
-              <ul>
-                <li>Implemented core REST and gRPC microservices, automated CI/CD releases, and established 92% automated test coverage.</li>
-              </ul>
-            </div>
-          </section>
-
-          <section class="doc-section">
-            <h3>EDUCATION & CERTIFICATIONS</h3>
-            <div class="exp-row">
-              <strong>B.S. in Computer Science — University of California, Berkeley</strong>
-              <span>Magna Cum Laude</span>
-            </div>
-            <div>• AWS Certified Solutions Architect – Professional (SAP-C02)</div>
-            <div>• Certified Kubernetes Administrator (CKA)</div>
-          </section>
-
-          <section class="doc-section">
-            <h3>CORE CAPABILITIES</h3>
-            <p><strong>Architecture:</strong> Distributed Systems, Event-Driven Topologies, Microservices, Zero-Trust Security, Data Ingestion</p>
-            <p><strong>Stack:</strong> Go, TypeScript, Python, Rust, Kafka, Kubernetes, Docker, Terraform, Redis, PostgreSQL, AWS, GCP</p>
-          </section>
-        </div>
-
-        <div class="sheet-actions-group">
-          <a href="assets/resume-placeholder.html" download="Brian_Lang_Resume.html" class="sheet-primary-btn">
-            Download Resume (HTML/PDF)
-          </a>
-          <a href="assets/resume-placeholder.html" target="_blank" class="sheet-secondary-btn">
-            Open Standalone Page ↗
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. SETTINGS & TECH STACK APP SHEET -->
-    <section class="app-sheet" id="app-skills" role="dialog" aria-labelledby="skills-title">
-      <div class="sheet-header">
-        <div class="sheet-pill-handle"></div>
-        <div class="sheet-nav-bar">
-          <button class="sheet-close-btn" data-close aria-label="Done">Done</button>
-          <span class="sheet-nav-title" id="skills-title">Settings & Stack</span>
-          <button class="sheet-action-btn" data-launch="app-experience">Timeline</button>
-        </div>
-      </div>
-      <div class="sheet-scroll-body">
+      <!-- 1. TERMINAL PROFILE SHEET -->
+      <section class="ios-sheet" id="app-terminal" role="dialog" aria-labelledby="title-terminal" aria-modal="true">
+        <header class="sheet-navbar">
+          <button class="sheet-btn-left" data-dismiss aria-label="Close Terminal">Done</button>
+          <h2 class="sheet-title" id="title-terminal">Terminal Profile</h2>
+          <button class="sheet-btn-right" data-launch="app-resume" aria-label="Switch to Resume">Resume</button>
+        </header>
         
-        <!-- iOS TableView Group 1: Languages -->
-        <div class="table-view-group">
-          <div class="table-group-title">PROGRAMMING LANGUAGES</div>
-          <div class="table-view-cell">
-            <div class="cell-icon cyan">Go</div>
-            <div class="cell-info">
-              <span class="cell-title">Go (Golang)</span>
-              <span class="cell-desc">Concurrency, microservices, high-throughput engines</span>
+        <div class="sheet-content">
+          <div class="terminal-shell">
+            <div class="terminal-topbar">
+              <span class="term-dot red"></span>
+              <span class="term-dot yellow"></span>
+              <span class="term-dot green"></span>
+              <span class="term-path">brian@cloud-fabric:~ (zsh)</span>
             </div>
-            <span class="cell-tag primary">Primary</span>
-          </div>
-          <div class="table-view-cell">
-            <div class="cell-icon blue">TS</div>
-            <div class="cell-info">
-              <span class="cell-title">TypeScript / Node.js</span>
-              <span class="cell-desc">Fullstack distributed services & GraphQL</span>
-            </div>
-            <span class="cell-tag">Production</span>
-          </div>
-          <div class="table-view-cell">
-            <div class="cell-icon green">Py</div>
-            <div class="cell-info">
-              <span class="cell-title">Python</span>
-              <span class="cell-desc">Telemetry, automation & data pipeline scripting</span>
-            </div>
-            <span class="cell-tag">Proficient</span>
-          </div>
-          <div class="table-view-cell">
-            <div class="cell-icon orange">Rs</div>
-            <div class="cell-info">
-              <span class="cell-title">Rust</span>
-              <span class="cell-desc">Low-latency network proxies & memory safety</span>
-            </div>
-            <span class="cell-tag">Systems</span>
-          </div>
-        </div>
+            <div class="terminal-console">
+              <p class="t-line"><span class="t-prompt">brian@workstation</span>:<span class="t-dir">~</span>$ whoami --architecture</p>
+              <div class="t-response">
+                <span class="t-key">Name:</span> <span class="t-val">Brian Lang</span><br>
+                <span class="t-key">Role:</span> <span class="t-val">Technical Software Architect</span><br>
+                <span class="t-key">Domains:</span> <span class="t-val">Distributed Systems • Event-Driven Fabrics • Cloud Scaling</span><br>
+                <span class="t-key">Location:</span> <span class="t-val">San Francisco, CA / Remote</span><br>
+                <span class="t-key">Email:</span> <a href="mailto:brian.lang@robustcomputing.com" class="t-link">brian.lang@robustcomputing.com</a>
+              </div>
 
-        <!-- iOS TableView Group 2: Architecture -->
-        <div class="table-view-group">
-          <div class="table-group-title">DISTRIBUTED ARCHITECTURE</div>
-          <div class="table-view-cell">
-            <div class="cell-icon purple">🏛️</div>
-            <div class="cell-info">
-              <span class="cell-title">Distributed Systems</span>
-              <span class="cell-desc">Consensus, event-sourcing, high-availability</span>
-            </div>
-          </div>
-          <div class="table-view-cell">
-            <div class="cell-icon red">⚡</div>
-            <div class="cell-info">
-              <span class="cell-title">Apache Kafka</span>
-              <span class="cell-desc">Distributed streaming, partitioning, consumer groups</span>
-            </div>
-          </div>
-          <div class="table-view-cell">
-            <div class="cell-icon blue">💾</div>
-            <div class="cell-info">
-              <span class="cell-title">Redis & PostgreSQL</span>
-              <span class="cell-desc">Clustered caching & relational data stores</span>
-            </div>
-          </div>
-        </div>
+              <p class="t-line"><span class="t-prompt">brian@workstation</span>:<span class="t-dir">~</span>$ cat /etc/architect-principles</p>
+              <div class="t-response">
+                <p>1. <strong>Blast Radius Isolation:</strong> Design every distributed topology around cell architectures and bulkhead isolation.</p>
+                <p>2. <strong>Asynchronous Decoupling:</strong> Replace synchronous blocking calls with event logs (Kafka/Redpanda) wherever consensus allows.</p>
+                <p>3. <strong>Automated Observability:</strong> Telemetry isn't an afterthought—bake structured traces, SLAs, and p99 alerts directly into service templates.</p>
+              </div>
 
-        <!-- iOS TableView Group 3: Cloud & DevOps -->
-        <div class="table-view-group">
-          <div class="table-group-title">CLOUD & INFRASTRUCTURE</div>
-          <div class="table-view-cell">
-            <div class="cell-icon orange">☁️</div>
-            <div class="cell-info">
-              <span class="cell-title">AWS & Google Cloud (GCP)</span>
-              <span class="cell-desc">Multi-region VPCs, IAM zero-trust, serverless</span>
-            </div>
-          </div>
-          <div class="table-view-cell">
-            <div class="cell-icon blue">☸️</div>
-            <div class="cell-info">
-              <span class="cell-title">Kubernetes & Docker</span>
-              <span class="cell-desc">Orchestration, service mesh, container deployment</span>
-            </div>
-          </div>
-          <div class="table-view-cell">
-            <div class="cell-icon purple">🛠️</div>
-            <div class="cell-info">
-              <span class="cell-title">Terraform & CI/CD</span>
-              <span class="cell-desc">Declarative IaC, GitHub Actions, automated testing</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 4. EXPERIENCE APP SHEET -->
-    <section class="app-sheet" id="app-experience" role="dialog" aria-labelledby="exp-title">
-      <div class="sheet-header">
-        <div class="sheet-pill-handle"></div>
-        <div class="sheet-nav-bar">
-          <button class="sheet-close-btn" data-close aria-label="Done">Done</button>
-          <span class="sheet-nav-title" id="exp-title">Career Experience</span>
-          <button class="sheet-action-btn" data-launch="app-resume">Resume</button>
-        </div>
-      </div>
-      <div class="sheet-scroll-body">
-        <div class="timeline-feed">
-          
-          <div class="timeline-card">
-            <span class="timeline-year-chip">2023 — PRESENT</span>
-            <div class="timeline-top">
-              <div class="company-logo-box apex">APEX</div>
-              <div>
-                <h3 class="timeline-role-title">Staff Technical Architect</h3>
-                <div class="timeline-company-name">Apex Cloud Systems</div>
+              <p class="t-line"><span class="t-prompt">brian@workstation</span>:<span class="t-dir">~</span>$ sysctl system.status</p>
+              <div class="t-response">
+                <span class="t-stat green">● Active Advisory & Consulting Availability</span><br>
+                <span class="t-muted">Kernel: Cloud-Native Microservices 6.8 | SLA: 99.99%</span>
               </div>
             </div>
-            <p class="timeline-body">
-              Directed enterprise multi-region ingestion architecture scaling to 15M+ operations daily. Mentored 8 senior engineers and reduced p99 query latency by 38%.
-            </p>
-            <div class="timeline-tags">
-              <span>Go</span><span>Kafka</span><span>AWS Multi-Region</span><span>Kubernetes</span>
-            </div>
           </div>
 
-          <div class="timeline-card">
-            <span class="timeline-year-chip">2020 — 2023</span>
-            <div class="timeline-top">
-              <div class="company-logo-box data">DATA</div>
-              <div>
-                <h3 class="timeline-role-title">Principal Systems Architect</h3>
-                <div class="timeline-company-name">DataSphere Analytics</div>
+          <div class="sheet-action-cta">
+            <button class="ios-btn-primary" data-launch="app-resume">View Curriculum Vitae</button>
+            <a href="mailto:brian.lang@robustcomputing.com" class="ios-btn-secondary">Send Direct Message</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. RESUME / CV SHEET -->
+      <section class="ios-sheet" id="app-resume" role="dialog" aria-labelledby="title-resume" aria-modal="true">
+        <header class="sheet-navbar">
+          <button class="sheet-btn-left" data-dismiss aria-label="Close Resume">Done</button>
+          <h2 class="sheet-title" id="title-resume">Curriculum Vitae</h2>
+          <button class="sheet-btn-right" onclick="window.print()" aria-label="Print Resume">Print</button>
+        </header>
+
+        <div class="sheet-content">
+          <div class="cv-card">
+            <header class="cv-header">
+              <h1 class="cv-name">BRIAN LANG</h1>
+              <div class="cv-role">TECHNICAL SOFTWARE ARCHITECT</div>
+              <div class="cv-meta">
+                <span>Email: <a href="mailto:brian.lang@robustcomputing.com">brian.lang@robustcomputing.com</a></span>
+                <span>Web: brianlang.dev</span>
+                <span>GitHub: github.com/brianlang</span>
+                <span>Location: San Francisco, CA / Remote</span>
+              </div>
+            </header>
+
+            <section class="cv-section">
+              <h3 class="cv-section-title">EXECUTIVE SUMMARY</h3>
+              <p class="cv-text">
+                Accomplished Technical Software Architect with extensive background designing resilient multi-region cloud backbones,
+                scalable event-driven topologies, and microservice meshes. Proven record leading distributed systems design,
+                optimizing distributed query latencies, and ensuring 99.99% system availability SLAs across high-throughput platforms.
+              </p>
+            </section>
+
+            <section class="cv-section">
+              <h3 class="cv-section-title">CORE COMPETENCIES</h3>
+              <div class="cv-skills-grid">
+                <div><strong>Architecture:</strong> Distributed Consensus, Event-Driven Streaming, Zero-Trust mTLS, Fault Domain Isolation</div>
+                <div><strong>Languages:</strong> Go (Golang), TypeScript, Python, Rust, SQL</div>
+                <div><strong>Infrastructure:</strong> AWS, Google Cloud Platform (GCP), Kubernetes, Docker, Terraform, Helm</div>
+                <div><strong>Data & Streaming:</strong> Apache Kafka, Redis Clusters, PostgreSQL, gRPC, GraphQL, Envoy</div>
+              </div>
+            </section>
+
+            <section class="cv-section">
+              <h3 class="cv-section-title">PROFESSIONAL EXPERIENCE</h3>
+              
+              <article class="cv-job">
+                <div class="cv-job-header">
+                  <strong>Apex Cloud Systems — Staff Technical Architect</strong>
+                  <span class="cv-date">2023 – Present</span>
+                </div>
+                <ul class="cv-bullets">
+                  <li>Designed multi-region streaming backbone processing 15M+ operations daily with 99.99% uptime guarantee.</li>
+                  <li>Architected cross-cloud consensus and automated failover pipelines spanning AWS us-east-1 and GCP europe-west3.</li>
+                  <li>Reduced egress bandwidth and infrastructure costs by 30% through protocol buffer batching and cache topologies.</li>
+                </ul>
+              </article>
+
+              <article class="cv-job">
+                <div class="cv-job-header">
+                  <strong>DataSphere Analytics — Principal Systems Architect</strong>
+                  <span class="cv-date">2020 – 2023</span>
+                </div>
+                <ul class="cv-bullets">
+                  <li>Built telemetry and real-time analytical query federation engine serving 12,000+ enterprise users.</li>
+                  <li>Engineered distributed Redis memory-caching layer slashing p99 analytical queries by 45%.</li>
+                </ul>
+              </article>
+
+              <article class="cv-job">
+                <div class="cv-job-header">
+                  <strong>Vanguard Tech Labs — Senior Software Engineer</strong>
+                  <span class="cv-date">2018 – 2020</span>
+                </div>
+                <ul class="cv-bullets">
+                  <li>Engineered core microservices in Go & Python, integrated Kafka consumers, and instituted comprehensive integration suites.</li>
+                </ul>
+              </article>
+            </section>
+
+            <section class="cv-section">
+              <h3 class="cv-section-title">EDUCATION & CERTIFICATIONS</h3>
+              <div class="cv-job-header">
+                <strong>University of California, Berkeley — B.S. in Computer Science</strong>
+                <span class="cv-date">Magna Cum Laude</span>
+              </div>
+              <p class="cv-text cv-certs">
+                • AWS Certified Solutions Architect – Professional (SAP-C02)<br>
+                • Certified Kubernetes Administrator (CKA)
+              </p>
+            </section>
+          </div>
+
+          <div class="sheet-action-cta">
+            <a href="assets/resume-placeholder.html" download="Brian_Lang_Resume.html" class="ios-btn-primary">Download Resume (HTML/PDF)</a>
+            <a href="assets/resume-placeholder.html" target="_blank" class="ios-btn-secondary">Open Standalone Document ↗</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. ARCHITECTURE PROJECTS SHEET -->
+      <section class="ios-sheet" id="app-projects" role="dialog" aria-labelledby="title-projects" aria-modal="true">
+        <header class="sheet-navbar">
+          <button class="sheet-btn-left" data-dismiss aria-label="Close Architecture Projects">Done</button>
+          <h2 class="sheet-title" id="title-projects">System Architecture</h2>
+          <button class="sheet-btn-right" data-launch="app-skills" aria-label="View Stack">Stack</button>
+        </header>
+
+        <div class="sheet-content">
+          <div class="projects-list">
+            <div class="project-card">
+              <div class="proj-badge">MULTI-REGION PLATFORM</div>
+              <h3 class="proj-title">Event-Driven Global Telemetry Fabric</h3>
+              <p class="proj-desc">
+                Enterprise messaging layer orchestrating cross-region Kafka partitions, dead-letter re-routing, and guaranteed at-least-once delivery semantics for financial transaction verification.
+              </p>
+              <div class="proj-specs">
+                <span class="spec-pill">Go</span>
+                <span class="spec-pill">Apache Kafka</span>
+                <span class="spec-pill">Kubernetes</span>
+                <span class="spec-pill">AWS + GCP</span>
+              </div>
+              <div class="proj-metric-row">
+                <span class="metric-val">15M+</span> <span class="metric-lbl">Daily Events</span> • 
+                <span class="metric-val">&lt;12ms</span> <span class="metric-lbl">p95 Latency</span>
               </div>
             </div>
-            <p class="timeline-body">
-              Architected distributed analytics platforms and real-time visualization engines serving 12,000+ enterprise analysts across Fortune 500 customers.
-            </p>
-            <div class="timeline-tags">
-              <span>TypeScript</span><span>React</span><span>GraphQL</span><span>PostgreSQL</span><span>Redis</span>
-            </div>
-          </div>
 
-          <div class="timeline-card">
-            <span class="timeline-year-chip">2018 — 2020</span>
-            <div class="timeline-top">
-              <div class="company-logo-box vtl">VTL</div>
-              <div>
-                <h3 class="timeline-role-title">Software Engineer</h3>
-                <div class="timeline-company-name">Vanguard Tech Labs</div>
+            <div class="project-card">
+              <div class="proj-badge">HIGH PERFORMANCE</div>
+              <h3 class="proj-title">Distributed Cache Federation</h3>
+              <p class="proj-desc">
+                Two-tier cache synchronization layer combining in-memory local RingBuffers with a distributed Redis cluster mesh, utilizing probabilistic bloom filters to prevent cache stampedes.
+              </p>
+              <div class="proj-specs">
+                <span class="spec-pill">Redis</span>
+                <span class="spec-pill">Rust</span>
+                <span class="spec-pill">gRPC</span>
+                <span class="spec-pill">Envoy</span>
+              </div>
+              <div class="proj-metric-row">
+                <span class="metric-val">99.4%</span> <span class="metric-lbl">Cache Hit Rate</span> • 
+                <span class="metric-val">-45%</span> <span class="metric-lbl">Database Load</span>
               </div>
             </div>
-            <p class="timeline-body">
-              Implemented core REST and gRPC microservices, automated CI/CD releases, and established 92% automated code coverage benchmarks.
-            </p>
-            <div class="timeline-tags">
-              <span>Python</span><span>Django</span><span>Docker</span><span>Redis</span>
+
+            <div class="project-card">
+              <div class="proj-badge">SECURITY & INFRASTRUCTURE</div>
+              <h3 class="proj-title">Zero-Trust Declarative Infrastructure</h3>
+              <p class="proj-desc">
+                Automated Terraform and GitOps pipeline establishing SPIFFE/SPIRE cryptographic workload identities, automated mTLS rotation, and cell-based network security zoning.
+              </p>
+              <div class="proj-specs">
+                <span class="spec-pill">Terraform</span>
+                <span class="spec-pill">SPIFFE/SPIRE</span>
+                <span class="spec-pill">ArgoCD</span>
+                <span class="spec-pill">Docker</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. TECH STACK & SKILLS SHEET -->
+      <section class="ios-sheet" id="app-skills" role="dialog" aria-labelledby="title-skills" aria-modal="true">
+        <header class="sheet-navbar">
+          <button class="sheet-btn-left" data-dismiss aria-label="Close Tech Stack">Done</button>
+          <h2 class="sheet-title" id="title-skills">Tech Stack</h2>
+          <button class="sheet-btn-right" data-launch="app-projects" aria-label="View Projects">Projects</button>
+        </header>
+
+        <div class="sheet-content">
+          <div class="ios-group-container">
+            <h4 class="ios-group-heading">CORE PROGRAMMING LANGUAGES</h4>
+            <div class="ios-table-view">
+              <div class="table-row">
+                <div class="row-icon cyan">Go</div>
+                <div class="row-main">
+                  <div class="row-title">Go (Golang)</div>
+                  <div class="row-subtitle">High-throughput microservices, concurrency routines</div>
+                </div>
+                <span class="ios-badge primary">Primary</span>
+              </div>
+              <div class="table-row">
+                <div class="row-icon blue">TS</div>
+                <div class="row-main">
+                  <div class="row-title">TypeScript / Node.js</div>
+                  <div class="row-subtitle">GraphQL gateways, APIs, developer platforms</div>
+                </div>
+                <span class="ios-badge">Production</span>
+              </div>
+              <div class="table-row">
+                <div class="row-icon green">Py</div>
+                <div class="row-main">
+                  <div class="row-title">Python</div>
+                  <div class="row-subtitle">Automation pipelines, telemetry, data tooling</div>
+                </div>
+                <span class="ios-badge">Proficient</span>
+              </div>
+              <div class="table-row">
+                <div class="row-icon orange">Rs</div>
+                <div class="row-main">
+                  <div class="row-title">Rust</div>
+                  <div class="row-subtitle">Systems utilities, high-performance edge proxies</div>
+                </div>
+                <span class="ios-badge">Systems</span>
+              </div>
             </div>
           </div>
 
+          <div class="ios-group-container">
+            <h4 class="ios-group-heading">DISTRIBUTED SYSTEMS & ARCHITECTURE</h4>
+            <div class="ios-table-view">
+              <div class="table-row">
+                <div class="row-icon purple">🏛️</div>
+                <div class="row-main">
+                  <div class="row-title">Distributed Systems</div>
+                  <div class="row-subtitle">Consensus, partitioning, fault domain containment</div>
+                </div>
+              </div>
+              <div class="table-row">
+                <div class="row-icon red">⚡</div>
+                <div class="row-main">
+                  <div class="row-title">Apache Kafka & Event Fabrics</div>
+                  <div class="row-subtitle">Event streaming, log retention, consumer groups</div>
+                </div>
+              </div>
+              <div class="table-row">
+                <div class="row-icon blue">💾</div>
+                <div class="row-main">
+                  <div class="row-title">Redis & PostgreSQL</div>
+                  <div class="row-subtitle">Distributed caching, cluster replication, relational data</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ios-group-container">
+            <h4 class="ios-group-heading">CLOUD & INFRASTRUCTURE</h4>
+            <div class="ios-table-view">
+              <div class="table-row">
+                <div class="row-icon orange">☁️</div>
+                <div class="row-main">
+                  <div class="row-title">AWS & Google Cloud (GCP)</div>
+                  <div class="row-subtitle">Multi-region VPCs, IAM zero-trust, Cloud Native</div>
+                </div>
+              </div>
+              <div class="table-row">
+                <div class="row-icon blue">☸️</div>
+                <div class="row-main">
+                  <div class="row-title">Kubernetes & Containers</div>
+                  <div class="row-subtitle">Cluster scheduling, Envoy service mesh, Docker</div>
+                </div>
+              </div>
+              <div class="table-row">
+                <div class="row-icon purple">🛠️</div>
+                <div class="row-main">
+                  <div class="row-title">Terraform & CI/CD</div>
+                  <div class="row-subtitle">Declarative IaC, GitHub Actions, automated tests</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. CAREER EXPERIENCE SHEET -->
+      <section class="ios-sheet" id="app-experience" role="dialog" aria-labelledby="title-experience" aria-modal="true">
+        <header class="sheet-navbar">
+          <button class="sheet-btn-left" data-dismiss aria-label="Close Career Timeline">Done</button>
+          <h2 class="sheet-title" id="title-experience">Career Timeline</h2>
+          <button class="sheet-btn-right" data-launch="app-resume" aria-label="Open Resume">Resume</button>
+        </header>
+
+        <div class="sheet-content">
+          <div class="timeline-container">
+            <div class="timeline-entry">
+              <div class="timeline-year">2023 — PRESENT</div>
+              <div class="timeline-card">
+                <div class="timeline-company-row">
+                  <div class="company-badge apex">APEX</div>
+                  <div>
+                    <h3 class="company-role">Staff Technical Architect</h3>
+                    <div class="company-name">Apex Cloud Systems</div>
+                  </div>
+                </div>
+                <p class="timeline-text">
+                  Directing multi-region streaming and distributed cloud platform ingesting 15M+ daily transactions. Reduced global network overhead by 30% and mentored 8 senior engineers.
+                </p>
+                <div class="timeline-pills">
+                  <span>Go</span><span>Kafka</span><span>AWS</span><span>K8s</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-entry">
+              <div class="timeline-year">2020 — 2023</div>
+              <div class="timeline-card">
+                <div class="timeline-company-row">
+                  <div class="company-badge data">DATA</div>
+                  <div>
+                    <h3 class="company-role">Principal Systems Architect</h3>
+                    <div class="company-name">DataSphere Analytics</div>
+                  </div>
+                </div>
+                <p class="timeline-text">
+                  Spearheaded telemetry gateway serving 12,000+ enterprise analysts. Optimized Redis caching fabric and established 99.99% multi-region uptime benchmark.
+                </p>
+                <div class="timeline-pills">
+                  <span>TypeScript</span><span>Redis</span><span>PostgreSQL</span><span>GraphQL</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-entry">
+              <div class="timeline-year">2018 — 2020</div>
+              <div class="timeline-card">
+                <div class="timeline-company-row">
+                  <div class="company-badge vtl">VTL</div>
+                  <div>
+                    <h3 class="company-role">Senior Software Engineer</h3>
+                    <div class="company-name">Vanguard Tech Labs</div>
+                  </div>
+                </div>
+                <p class="timeline-text">
+                  Implemented foundational gRPC microservices, automated deployment pipelines, and established 92% automated integration testing coverage.
+                </p>
+                <div class="timeline-pills">
+                  <span>Python</span><span>Go</span><span>Docker</span><span>CI/CD</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. CONTACT SHEET -->
+      <section class="ios-sheet" id="app-contact" role="dialog" aria-labelledby="title-contact" aria-modal="true">
+        <header class="sheet-navbar">
+          <button class="sheet-btn-left" data-dismiss aria-label="Close Contact">Done</button>
+          <h2 class="sheet-title" id="title-contact">Contact Brian</h2>
+          <button class="sheet-btn-right" data-launch="app-terminal" aria-label="Open Terminal">Terminal</button>
+        </header>
+
+        <div class="sheet-content">
+          <div class="contact-header-card">
+            <div class="contact-large-avatar">BL</div>
+            <h3 class="contact-name">Brian Lang</h3>
+            <div class="contact-title-pill">Technical Software Architect</div>
+
+            <div class="contact-quick-actions">
+              <a href="mailto:brian.lang@robustcomputing.com" class="action-circle-btn">
+                <span class="action-icon">✉️</span>
+                <span class="action-text">mail</span>
+              </a>
+              <button class="action-circle-btn" id="copy-email-action">
+                <span class="action-icon">📋</span>
+                <span class="action-text" id="copy-text-status">copy</span>
+              </button>
+              <a href="https://github.com/brianlang" target="_blank" rel="noopener noreferrer" class="action-circle-btn">
+                <span class="action-icon">🐙</span>
+                <span class="action-text">github</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="ios-group-container">
+            <h4 class="ios-group-heading">COMMUNICATION & ADVISORY</h4>
+            <div class="ios-table-view">
+              <a href="mailto:brian.lang@robustcomputing.com" class="table-row link-row">
+                <div class="row-icon blue">📧</div>
+                <div class="row-main">
+                  <div class="row-title">Email</div>
+                  <div class="row-subtitle">brian.lang@robustcomputing.com</div>
+                </div>
+                <span class="row-arrow">↗</span>
+              </a>
+              <div class="table-row">
+                <div class="row-icon green">📍</div>
+                <div class="row-main">
+                  <div class="row-title">Primary Region</div>
+                  <div class="row-subtitle">San Francisco, CA (PST / UTC-8) • Remote</div>
+                </div>
+              </div>
+              <div class="table-row">
+                <div class="row-icon purple">💼</div>
+                <div class="row-main">
+                  <div class="row-title">Advisory Focus</div>
+                  <div class="row-subtitle">Architecture Audits, Stream Topology, Scale Consulting</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. SETTINGS SHEET -->
+      <section class="ios-sheet" id="app-settings" role="dialog" aria-labelledby="title-settings" aria-modal="true">
+        <header class="sheet-navbar">
+          <button class="sheet-btn-left" data-dismiss aria-label="Close Settings">Done</button>
+          <h2 class="sheet-title" id="title-settings">Settings</h2>
+          <button class="sheet-btn-right" data-launch="app-terminal" aria-label="Open Terminal">Terminal</button>
+        </header>
+
+        <div class="sheet-content">
+          <div class="ios-group-container">
+            <h4 class="ios-group-heading">THEME & APPEARANCE</h4>
+            <div class="ios-table-view">
+              <div class="table-row">
+                <div class="row-icon purple">🌙</div>
+                <div class="row-main">
+                  <div class="row-title">OLED Pure Black</div>
+                  <div class="row-subtitle">Optimized for high-contrast mobile displays</div>
+                </div>
+                <span class="ios-badge active">Enabled</span>
+              </div>
+              <div class="table-row">
+                <div class="row-icon blue">🎨</div>
+                <div class="row-main">
+                  <div class="row-title">Aurora Ambient Glow</div>
+                  <div class="row-subtitle">Authentic iOS 18 dynamic depth wallpaper</div>
+                </div>
+                <button class="ios-pill-toggle active" id="toggle-aurora">On</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="ios-group-container">
+            <h4 class="ios-group-heading">ABOUT THIS PORTFOLIO</h4>
+            <div class="ios-table-view">
+              <div class="table-row">
+                <div class="row-icon green">📱</div>
+                <div class="row-main">
+                  <div class="row-title">System Version</div>
+                  <div class="row-subtitle">iOS 18 Dark Mode Edition</div>
+                </div>
+                <span class="row-info">v2.0</span>
+              </div>
+              <div class="table-row">
+                <div class="row-icon cyan">⚡</div>
+                <div class="row-main">
+                  <div class="row-title">Architecture</div>
+                  <div class="row-subtitle">Zero-dependency vanilla HTML5/CSS3/ES6+</div>
+                </div>
+                <span class="row-info">Native</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Spotlight Search Overlay Modal -->
+    <div class="spotlight-overlay" id="spotlight-modal" role="dialog" aria-label="Spotlight Search" aria-hidden="true">
+      <div class="spotlight-card">
+        <div class="spotlight-input-row">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="spotlight-input" placeholder="Search skills, Kafka, Go, Resume..." autocomplete="off" spellcheck="false">
+          <button class="spotlight-cancel" id="spotlight-close">Cancel</button>
+        </div>
+        <div class="spotlight-results" id="spotlight-results">
+          <!-- Populated dynamically by script.js -->
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- 5. CONTACTS APP SHEET -->
-    <section class="app-sheet" id="app-contact" role="dialog" aria-labelledby="contact-title">
-      <div class="sheet-header">
-        <div class="sheet-pill-handle"></div>
-        <div class="sheet-nav-bar">
-          <button class="sheet-close-btn" data-close aria-label="Done">Done</button>
-          <span class="sheet-nav-title" id="contact-title">Contact Brian</span>
-          <button class="sheet-action-btn" data-launch="app-terminal">Profile</button>
-        </div>
-      </div>
-      <div class="sheet-scroll-body">
-        <div class="contact-profile-card">
-          <div class="contact-big-avatar">BL</div>
-          <h2>Brian Lang</h2>
-          <p class="contact-title-sub">Technical Software Architect</p>
-          
-          <div class="contact-action-bubbles">
-            <a href="mailto:brian.lang@robustcomputing.com" class="bubble-btn">
-              <div class="bubble-circle">✉️</div>
-              <span>mail</span>
-            </a>
-            <button class="bubble-btn" id="copy-email-btn">
-              <div class="bubble-circle">📋</div>
-              <span id="copy-label">copy</span>
-            </button>
-            <a href="https://github.com/brianlang" target="_blank" rel="noopener noreferrer" class="bubble-btn">
-              <div class="bubble-circle">🐙</div>
-              <span>github</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="table-view-group">
-          <div class="table-view-cell">
-            <div class="cell-info">
-              <span class="cell-kicker">email</span>
-              <a href="mailto:brian.lang@robustcomputing.com" class="cell-val-link">brian.lang@robustcomputing.com</a>
-            </div>
-          </div>
-          <div class="table-view-cell">
-            <div class="cell-info">
-              <span class="cell-kicker">website</span>
-              <span class="cell-val">brianlang.dev</span>
-            </div>
-          </div>
-          <div class="table-view-cell">
-            <div class="cell-info">
-              <span class="cell-kicker">location</span>
-              <span class="cell-val">San Francisco, CA • Distributed</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </div> <!-- /app-sheets-container -->
-
-  <!-- ================= IPHONE HOME INDICATOR BAR ================= -->
-  <footer class="ios-home-bar-area" id="ios-home-bar" title="Swipe up to go Home">
-    <div class="ios-home-indicator"></div>
-  </footer>
+  </div>
 
   <script src="script.js"></script>
 </body>

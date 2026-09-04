@@ -1,20 +1,22 @@
 /* ==========================================================================
-   Brian Lang - Technical Software Architect Portfolio
-   Authentic Apple iPhone iOS 18 Dark Mode SpringBoard
-   Responsive for mobile browsers and desktop framing
+   Brian Lang - Technical Software Architect
+   Apple iOS 18 Dark Mode Theme System
+   Responsive Mobile Browser & Centered iPhone 16 Chassis for Desktop
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. iOS DESIGN TOKENS
+   1. iOS 18 DESIGN TOKENS & SYSTEM COLORS
    -------------------------------------------------------------------------- */
 :root {
-  /* Authentic iOS Dark System Colors */
+  /* True Pure Dark & Glass */
   --ios-bg: #000000;
-  --ios-glass-card: rgba(28, 28, 30, 0.72);
-  --ios-glass-dock: rgba(30, 30, 34, 0.65);
-  --ios-glass-sheet: rgba(22, 22, 26, 0.95);
-  --ios-glass-border: rgba(255, 255, 255, 0.14);
-  
+  --ios-card-glass: rgba(28, 28, 30, 0.72);
+  --ios-card-border: rgba(255, 255, 255, 0.12);
+  --ios-sheet-bg: rgba(20, 20, 24, 0.94);
+  --ios-sheet-border: rgba(255, 255, 255, 0.14);
+  --ios-dock-bg: rgba(30, 30, 34, 0.65);
+  --ios-dock-border: rgba(255, 255, 255, 0.15);
+
   /* System Greys */
   --system-gray-1: #8E8E93;
   --system-gray-2: #636366;
@@ -25,6 +27,7 @@
 
   /* iOS Accents */
   --ios-blue: #0A84FF;
+  --ios-blue-hover: #0071E3;
   --ios-green: #30D158;
   --ios-indigo: #5E5CE6;
   --ios-orange: #FF9F0A;
@@ -36,28 +39,32 @@
 
   /* Typography */
   --text-primary: #FFFFFF;
-  --text-secondary: rgba(235, 235, 245, 0.64);
-  --text-tertiary: rgba(235, 235, 245, 0.38);
-  --text-quaternary: rgba(235, 235, 245, 0.18);
-  
+  --text-secondary: rgba(235, 235, 245, 0.68);
+  --text-tertiary: rgba(235, 235, 245, 0.42);
+  --text-quaternary: rgba(235, 235, 245, 0.2);
+
   /* Radii */
+  --radius-app: 22.5%;
   --radius-widget: 24px;
-  --radius-app: 22.5%; /* Continuous squircle */
-  --radius-dock: 36px;
-  --radius-sheet: 38px;
+  --radius-sheet: 36px;
+  --radius-dock: 38px;
   --radius-pill: 9999px;
 
-  /* Shadows */
-  --shadow-dock: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 1px rgba(255, 255, 255, 0.2);
-  --shadow-app: 0 6px 16px rgba(0, 0, 0, 0.45);
-  --shadow-widget: 0 10px 28px rgba(0, 0, 0, 0.38);
-
+  /* Fonts */
   --font-ios: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", sans-serif;
-  --font-mono: "SF Mono", "Fira Code", Menlo, monospace;
+  --font-mono: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+
+  /* Stacking Context */
+  --z-springboard: 10;
+  --z-dock: 50;
+  --z-statusbar: 100;
+  --z-spotlight: 1500;
+  --z-sheets-viewport: 2000;
+  --z-desktop-chassis: 10000;
 }
 
 /* --------------------------------------------------------------------------
-   2. GLOBAL RESET & AUTHENTIC iOS 18 DARK WALLPAPER
+   2. GLOBAL RESET & BASE
    -------------------------------------------------------------------------- */
 * {
   box-sizing: border-box;
@@ -70,8 +77,7 @@
 html, body {
   width: 100%;
   height: 100%;
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
+  min-height: 100dvh;
   background-color: #000000;
   color: var(--text-primary);
   font-family: var(--font-ios);
@@ -79,41 +85,76 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* High-Fidelity Apple iOS 18 Deep Aurora Dark Wallpaper */
-body.iphone-screen {
-  background: 
-    radial-gradient(circle at 80% 18%, rgba(94, 92, 230, 0.45) 0%, transparent 45%),
-    radial-gradient(circle at 15% 42%, rgba(10, 132, 255, 0.4) 0%, transparent 45%),
-    radial-gradient(circle at 75% 75%, rgba(191, 90, 242, 0.35) 0%, transparent 50%),
-    radial-gradient(circle at 20% 88%, rgba(48, 209, 88, 0.25) 0%, transparent 45%),
-    linear-gradient(180deg, #050711 0%, #080c16 35%, #05060b 100%);
+/* Authentic iOS 18 Aurora Dark Wallpaper */
+body.ios-root {
+  background-color: #05060b;
+  background-image:
+    radial-gradient(circle at 82% 18%, rgba(94, 92, 230, 0.42) 0%, transparent 42%),
+    radial-gradient(circle at 18% 40%, rgba(10, 132, 255, 0.38) 0%, transparent 45%),
+    radial-gradient(circle at 75% 78%, rgba(191, 90, 242, 0.32) 0%, transparent 50%),
+    radial-gradient(circle at 20% 88%, rgba(48, 209, 88, 0.22) 0%, transparent 45%),
+    linear-gradient(180deg, #050711 0%, #080c18 40%, #04050a 100%);
   background-attachment: fixed;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+body.no-aurora {
+  background-image: none !important;
+  background-color: #000000 !important;
 }
 
 /* --------------------------------------------------------------------------
-   3. IPHONE STATUS BAR & DYNAMIC ISLAND
+   3. RESPONSIVE IPHONE CHASSIS (Mobile vs Desktop)
    -------------------------------------------------------------------------- */
-.ios-status-bar {
+.iphone-chassis {
+  position: relative;
   width: 100%;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   max-width: 480px;
   margin: 0 auto;
+}
+
+/* Desktop hardware frame emulation for screens >= 560px */
+@media (min-width: 560px) {
+  .iphone-chassis {
+    width: 404px;
+    height: 844px;
+    max-height: 94vh;
+    border-radius: 54px;
+    border: 10px solid #1f2129;
+    box-shadow: 
+      0 0 0 2px #3c3f4a,
+      0 28px 80px rgba(0, 0, 0, 0.85),
+      0 10px 25px rgba(0, 0, 0, 0.7);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. TOP STATUS BAR & DYNAMIC ISLAND
+   -------------------------------------------------------------------------- */
+.ios-statusbar {
+  width: 100%;
   height: 48px;
   padding: 0 20px;
   padding-top: env(safe-area-inset-top, 6px);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 1000;
+  z-index: var(--z-statusbar);
   position: relative;
+  flex-shrink: 0;
 }
 
-.status-time-area {
+.status-left {
   flex: 1;
 }
 
-.status-time {
+.status-clock {
   font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.2px;
@@ -125,10 +166,10 @@ body.iphone-screen {
   position: relative;
   background: #000000;
   height: 30px;
-  min-width: 122px;
+  min-width: 124px;
   border-radius: var(--radius-pill);
-  border: 0.5px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.85);
+  border: 0.5px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -138,7 +179,11 @@ body.iphone-screen {
   outline: none;
 }
 
-.island-normal {
+.dynamic-island:hover {
+  transform: scale(1.02);
+}
+
+.island-compact {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -146,7 +191,7 @@ body.iphone-screen {
   gap: 8px;
 }
 
-.island-badge {
+.island-pill-active {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -155,76 +200,88 @@ body.iphone-screen {
   font-weight: 600;
 }
 
-.island-dot {
+.island-pulse {
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background-color: var(--ios-green);
   box-shadow: 0 0 6px var(--ios-green);
-  animation: islandBlink 2.2s infinite ease-in-out;
+  animation: pulseBlink 2s infinite ease-in-out;
 }
 
-@keyframes islandBlink {
+@keyframes pulseBlink {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.45; transform: scale(0.85); }
+  50% { opacity: 0.4; transform: scale(0.85); }
 }
 
-.island-text {
-  letter-spacing: -0.1px;
-}
-
-.island-lens {
+.island-sensor {
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background: #0d0f17;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.5);
 }
 
-.island-expanded {
+.island-expanded-content {
   display: none;
   width: 100%;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
 }
 
 .dynamic-island.expanded {
-  min-width: 310px;
-  height: 52px;
+  min-width: 320px;
+  height: 54px;
   padding: 0 16px;
-  border-radius: 26px;
+  border-radius: 27px;
 }
 
-.dynamic-island.expanded .island-normal { display: none; }
-.dynamic-island.expanded .island-expanded { display: flex; }
+.dynamic-island.expanded .island-compact { display: none; }
+.dynamic-island.expanded .island-expanded-content { display: flex; }
 
-.island-kicker {
-  font-size: 9.5px;
-  text-transform: uppercase;
+.island-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--ios-blue), var(--ios-indigo));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
   font-weight: 700;
-  color: var(--ios-teal);
-  letter-spacing: 0.5px;
-  display: block;
 }
 
-.island-title {
+.island-meta {
+  flex: 1;
+  text-align: left;
+}
+
+.island-sub {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--ios-teal);
+}
+
+.island-headline {
   font-size: 12px;
   font-weight: 600;
   color: #FFFFFF;
 }
 
-.island-btn {
+.island-action-btn {
   background: var(--ios-blue);
   color: #FFFFFF;
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 600;
   padding: 5px 12px;
   border-radius: var(--radius-pill);
   text-decoration: none;
 }
 
-.status-icons-area {
+.status-right {
   flex: 1;
   display: flex;
   align-items: center;
@@ -238,471 +295,527 @@ body.iphone-screen {
   letter-spacing: -0.2px;
 }
 
-.status-icon {
+.status-battery {
   display: inline-flex;
   align-items: center;
 }
 
-/* --------------------------------------------------------------------------
-   4. IPHONE HOMESCREEN (SPRINGBOARD)
-   -------------------------------------------------------------------------- */
-.iphone-springboard {
-  flex: 1;
-  width: 100%;
-  max-width: 480px;
-  margin: 0 auto;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 12px 18px 120px;
+.battery-shell {
+  width: 22px;
+  height: 11px;
+  border-radius: 3.5px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  padding: 1px;
   display: flex;
-  flex-direction: column;
-  gap: 22px;
+  align-items: center;
 }
 
-.iphone-springboard::-webkit-scrollbar {
+.battery-level {
+  width: 100%;
+  height: 100%;
+  border-radius: 1.5px;
+  background-color: var(--ios-green);
+}
+
+.battery-tip {
+  width: 2px;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 0 1px 1px 0;
+  margin-left: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   5. SPRINGBOARD (HOMESCREEN)
+   -------------------------------------------------------------------------- */
+.ios-springboard {
+  flex: 1;
+  width: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px 16px 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: var(--z-springboard);
+}
+
+.ios-springboard::-webkit-scrollbar {
   display: none;
 }
 
 /* --------------------------------------------------------------------------
-   5. iOS WIDGETS SYSTEM
+   6. WIDGETS SYSTEM
    -------------------------------------------------------------------------- */
-.widgets-grid {
+.widget-row {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 14px;
 }
 
+@media (min-width: 360px) {
+  .widget-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 .ios-widget {
-  background: var(--ios-glass-card);
-  backdrop-filter: blur(35px) saturate(190%);
-  -webkit-backdrop-filter: blur(35px) saturate(190%);
-  border: 1px solid var(--ios-glass-border);
+  background: var(--ios-card-glass);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid var(--ios-card-border);
   border-radius: var(--radius-widget);
   padding: 16px;
-  box-shadow: var(--shadow-widget);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   cursor: pointer;
-  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease;
-  outline: none;
+  transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.2s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .ios-widget:active {
-  transform: scale(0.96);
-  background: rgba(38, 38, 42, 0.85);
+  transform: scale(0.97);
 }
 
-/* Medium Widget spans 2 columns (Wide) */
-.medium-widget {
-  grid-column: span 2;
+/* Large Hero Widget */
+.widget-hero {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 18px;
 }
 
-.widget-header {
+.widget-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.widget-avatar-group {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.widget-avatar {
-  width: 46px;
-  height: 46px;
+.hero-avatar {
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--ios-blue), var(--ios-indigo));
-  color: #FFFFFF;
-  font-size: 17px;
-  font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(10, 132, 255, 0.4);
-  flex-shrink: 0;
+  font-size: 18px;
+  font-weight: 800;
+  box-shadow: 0 4px 14px rgba(10, 132, 255, 0.4);
 }
 
-.widget-chip {
+.hero-badge {
   font-size: 9.5px;
   font-weight: 700;
-  letter-spacing: 0.6px;
   color: var(--ios-teal);
-  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  display: block;
 }
 
-.widget-name {
+.hero-name {
   font-size: 19px;
-  font-weight: 800;
-  letter-spacing: -0.3px;
+  font-weight: 700;
   color: #FFFFFF;
-  line-height: 1.15;
+  letter-spacing: -0.3px;
 }
 
-.widget-bio {
-  font-size: 13px;
+.widget-launch-hint {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ios-blue);
+}
+
+.hero-summary {
+  font-size: 13.5px;
   line-height: 1.45;
   color: var(--text-secondary);
 }
 
-.widget-footer {
+.hero-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 8px;
-  border-top: 0.5px solid rgba(255, 255, 255, 0.08);
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   font-size: 11.5px;
+  font-weight: 500;
 }
 
-.meta-tag {
-  color: var(--text-secondary);
-}
-
-.meta-status {
-  color: var(--ios-green);
-  font-weight: 600;
-}
-
-/* Small 2x2 Widgets */
-.small-widget {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 140px;
-}
-
-.small-widget-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.widget-icon {
-  font-size: 18px;
-}
-
-.widget-badge-small {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+.hero-chip {
   color: var(--text-tertiary);
 }
 
-.widget-metric-num {
-  font-size: 26px;
+.hero-uptime {
+  color: var(--ios-green);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.green-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--ios-green);
+}
+
+/* Stacked Small Widgets */
+.widget-stack {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.widget-small {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 112px;
+  padding: 13px 14px;
+}
+
+.widget-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.widget-big-stat {
+  font-size: 24px;
   font-weight: 800;
-  letter-spacing: -0.8px;
   color: #FFFFFF;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  margin-top: 2px;
 }
 
-.widget-metric-label {
-  font-size: 12.5px;
+.widget-stat-desc {
+  font-size: 11.5px;
   font-weight: 600;
-  color: var(--text-primary);
-  margin-top: -2px;
-}
-
-.widget-metric-sub {
-  font-size: 11px;
   color: var(--text-secondary);
 }
 
+.widget-stat-sub {
+  font-size: 10px;
+  color: var(--text-tertiary);
+  margin-top: 2px;
+}
+
 /* --------------------------------------------------------------------------
-   6. SPRINGBOARD 4x4 APP GRID
+   7. 4-COLUMN APP ICONS GRID
    -------------------------------------------------------------------------- */
-.apps-grid {
+.app-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 22px 14px;
+  gap: 18px 10px;
   padding: 4px 6px;
 }
 
-.app-icon-wrapper {
+.app-icon-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  text-decoration: none;
   cursor: pointer;
   outline: none;
-  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.app-icon-wrapper:active {
-  transform: scale(0.86);
+.app-icon-item:active {
+  transform: scale(0.88);
 }
 
-/* Authentic iOS Squircle (Continuous Corner) */
-.app-squircle {
-  width: 62px;
-  height: 62px;
+.icon-squircle {
+  width: 60px;
+  height: 60px;
   border-radius: var(--radius-app);
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
   position: relative;
-  box-shadow: var(--shadow-app);
-  transition: box-shadow 0.15s ease;
-}
-
-.app-glyph {
-  font-size: 27px;
-  line-height: 1;
-}
-
-/* App-specific authentic iOS styling */
-.app-terminal {
-  background: linear-gradient(135deg, #22252c, #0a0b0e);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-}
-.app-terminal .app-glyph {
-  color: var(--ios-green);
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 22px;
-}
-
-/* Apple Files App Style */
-.app-files {
-  background: linear-gradient(135deg, #1C85FF, #0056C6);
   color: #FFFFFF;
 }
 
-/* Apple Settings App Style */
-.app-settings {
-  background: linear-gradient(135deg, #8E8E93, #48484A);
-  color: #FFFFFF;
-}
-.gear-glyph {
-  font-size: 32px;
-  animation: gearSpin 20s linear infinite paused;
-}
-.app-icon-wrapper:hover .gear-glyph {
-  animation-play-state: running;
-}
-@keyframes gearSpin { 100% { transform: rotate(360deg); } }
-
-/* Apple Stocks / Analytics Style */
-.app-stocks {
-  background: linear-gradient(135deg, #1C1C1E, #000000);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #FFFFFF;
-}
-
-/* Mail App */
-.app-mail {
-  background: linear-gradient(135deg, #0A84FF, #0040DD);
-  color: #FFFFFF;
-}
-
-.app-badge-pill {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  background: var(--ios-red);
-  color: #FFFFFF;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: var(--radius-pill);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-}
-
-/* Developer App */
-.app-developer {
-  background: linear-gradient(135deg, #2D313A, #121317);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #FFFFFF;
-}
-
-/* Contacts App */
-.app-contacts {
-  background: linear-gradient(135deg, #85858A, #55555A);
-  color: #FFFFFF;
-}
-.contact-silhouette {
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-}
-
-/* Notes App */
-.app-notes {
-  background: linear-gradient(135deg, #FFD60A, #E09E00);
-  color: #FFFFFF;
-}
-
-.app-label {
-  font-size: 11px;
+.icon-label {
+  font-size: 11.5px;
   font-weight: 500;
   color: #FFFFFF;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
-  letter-spacing: -0.15px;
+  letter-spacing: -0.1px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
   text-align: center;
-  max-width: 74px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
-/* Pagination Dots */
-.page-dots-indicator {
+/* App Icon Themes (Authentic Gradients) */
+.icon-terminal {
+  background: linear-gradient(135deg, #252830 0%, #121318 100%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+.terminal-prompt-glyph {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ios-green);
+}
+
+.icon-resume {
+  background: linear-gradient(135deg, #0A84FF 0%, #0056B3 100%);
+}
+
+.icon-projects {
+  background: linear-gradient(135deg, #5E5CE6 0%, #3634A3 100%);
+}
+
+.icon-skills {
+  background: linear-gradient(135deg, #FF9F0A 0%, #C97200 100%);
+}
+
+.icon-experience {
+  background: linear-gradient(135deg, #30D158 0%, #1E7E34 100%);
+}
+
+.icon-contact {
+  background: linear-gradient(135deg, #64D2FF 0%, #0077A8 100%);
+}
+
+.icon-settings {
+  background: linear-gradient(135deg, #8E8E93 0%, #48484A 100%);
+}
+
+.icon-github {
+  background: linear-gradient(135deg, #333333 0%, #181818 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* --------------------------------------------------------------------------
+   8. SPOTLIGHT SEARCH BAR TRIGGER
+   -------------------------------------------------------------------------- */
+.spotlight-bar {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px 0;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  width: fit-content;
+  margin: 4px auto 0;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
 }
 
-.page-dots-indicator .dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.25);
+.spotlight-bar:hover {
+  background: rgba(255, 255, 255, 0.18);
 }
-.page-dots-indicator .dot.active {
-  background: #FFFFFF;
+
+.spotlight-bar:active {
+  transform: scale(0.96);
+}
+
+.search-icon {
+  opacity: 0.8;
 }
 
 /* --------------------------------------------------------------------------
-   7. IPHONE FROSTED GLASS DOCK
+   9. BOTTOM DOCK
    -------------------------------------------------------------------------- */
-.iphone-dock {
-  position: fixed;
+.ios-dock-container {
+  position: absolute;
   bottom: 22px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 32px);
-  max-width: 440px;
-  height: 84px;
-  background: var(--ios-glass-dock);
-  backdrop-filter: blur(40px) saturate(210%);
-  -webkit-backdrop-filter: blur(40px) saturate(210%);
-  border: 1px solid var(--ios-glass-border);
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  padding: 0 16px;
+  z-index: var(--z-dock);
+  pointer-events: none;
+}
+
+.ios-dock {
+  background: var(--ios-dock-bg);
+  backdrop-filter: blur(50px) saturate(220%);
+  -webkit-backdrop-filter: blur(50px) saturate(220%);
+  border: 1px solid var(--ios-dock-border);
   border-radius: var(--radius-dock);
-  box-shadow: var(--shadow-dock);
+  padding: 10px 14px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  padding: 0 16px;
-  z-index: 500;
+  gap: 16px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 1px rgba(255, 255, 255, 0.2);
+  pointer-events: auto;
 }
 
-.dock-icon-wrapper {
+.dock-item {
   cursor: pointer;
-  transition: transform 0.12s ease;
+  transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
   outline: none;
+  text-decoration: none;
 }
 
-.dock-icon-wrapper:active {
-  transform: scale(0.85);
+.dock-item:active {
+  transform: scale(0.86);
 }
 
 .dock-squircle {
-  width: 58px;
-  height: 58px;
+  width: 56px;
+  height: 56px;
   border-radius: var(--radius-app);
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #FFFFFF;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
+.dock-mail { background: linear-gradient(135deg, #0A84FF, #0056B3); }
+.dock-terminal { background: linear-gradient(135deg, #252830, #121318); border: 1px solid rgba(255, 255, 255, 0.16); }
+.dock-code-glyph { font-family: var(--font-mono); font-size: 20px; font-weight: 700; color: var(--ios-green); }
+.dock-resume { background: linear-gradient(135deg, #30D158, #1E7E34); }
+.dock-settings { background: linear-gradient(135deg, #8E8E93, #48484A); }
+
 /* --------------------------------------------------------------------------
-   8. IPHONE FULLSCREEN APP SHEETS
+   10. HOME INDICATOR PILL
    -------------------------------------------------------------------------- */
-.app-sheets-container {
+.ios-home-indicator-zone {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2500;
+}
+
+.indicator-pill {
+  width: 140px;
+  height: 5px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.7);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.ios-home-indicator-zone:active .indicator-pill {
+  transform: scaleX(0.85);
+  background: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   11. SELF-CONTAINED MODAL APP SHEETS (ZERO HEADER OVERLAYS)
+   -------------------------------------------------------------------------- */
+.app-sheets-viewport {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   pointer-events: none;
-  z-index: 1200;
+  z-index: var(--z-sheets-viewport);
 }
 
-.app-sheet {
+/* Desktop container constraints */
+@media (min-width: 560px) {
+  .app-sheets-viewport {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 44px;
+    overflow: hidden;
+  }
+}
+
+.ios-sheet {
   position: absolute;
-  top: calc(52px + env(safe-area-inset-top, 0px));
+  /* Leaves clean clearance below device status bar and notch */
+  top: calc(48px + env(safe-area-inset-top, 0px));
   left: 0;
   right: 0;
   bottom: 0;
   max-width: 480px;
   margin: 0 auto;
-  background: var(--ios-glass-sheet);
+  background: var(--ios-sheet-bg);
   backdrop-filter: blur(50px) saturate(200%);
   -webkit-backdrop-filter: blur(50px) saturate(200%);
   border-radius: var(--radius-sheet) var(--radius-sheet) 0 0;
-  border: 1px solid var(--ios-glass-border);
+  border: 1px solid var(--ios-sheet-border);
   border-bottom: none;
-  box-shadow: 0 -16px 50px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.85);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   transform: translateY(105%);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
 }
 
-.app-sheet.open {
+.ios-sheet.active {
   transform: translateY(0);
   pointer-events: auto;
 }
 
-.sheet-header {
+/* Sheet Dedicated Header Navigation Bar */
+.sheet-navbar {
   position: relative;
-  background: rgba(28, 28, 32, 0.85);
+  background: rgba(28, 28, 32, 0.95);
   border-bottom: 0.5px solid rgba(84, 84, 88, 0.4);
-  padding: 8px 16px 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.sheet-pill-handle {
-  width: 36px;
-  height: 4.5px;
-  border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.3);
-  margin-bottom: 8px;
-}
-
-.sheet-nav-bar {
-  width: 100%;
+  padding: 12px 18px 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-shrink: 0;
+  z-index: 10;
 }
 
-.sheet-close-btn {
+.sheet-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-align: center;
+  flex: 1;
+}
+
+.sheet-btn-left,
+.sheet-btn-right {
   background: transparent;
   border: none;
   color: var(--ios-blue);
-  font-size: 17px;
+  font-size: 16.5px;
   font-weight: 600;
   cursor: pointer;
   padding: 4px 6px;
+  transition: opacity 0.15s ease;
+  min-width: 50px;
 }
 
-.sheet-nav-title {
-  font-size: 16.5px;
-  font-weight: 700;
-  color: #FFFFFF;
+.sheet-btn-left { text-align: left; }
+.sheet-btn-right { text-align: right; }
+
+.sheet-btn-left:active,
+.sheet-btn-right:active {
+  opacity: 0.5;
 }
 
-.sheet-action-btn {
-  background: transparent;
-  border: none;
-  color: var(--ios-blue);
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  padding: 4px 6px;
-}
-
-.sheet-close-btn:active,
-.sheet-action-btn:active {
-  opacity: 0.6;
-}
-
-.sheet-scroll-body {
+/* Sheet Scroll Body Content */
+.sheet-content {
   flex: 1;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -712,139 +825,342 @@ body.iphone-screen {
   gap: 20px;
 }
 
-.sheet-scroll-body::-webkit-scrollbar {
+.sheet-content::-webkit-scrollbar {
   width: 4px;
 }
-.sheet-scroll-body::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+.sheet-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 4px;
 }
 
-/* Profile Sheet Styles */
-.sheet-profile-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 4px;
-  padding: 6px 0;
-}
-
-.sheet-avatar {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--ios-blue), var(--ios-indigo));
-  color: #FFFFFF;
-  font-size: 26px;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 24px rgba(10, 132, 255, 0.45);
-  margin-bottom: 10px;
-}
-
-.sheet-profile-header h2 {
-  font-size: 22px;
-  font-weight: 800;
-}
-
-.sheet-role {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--ios-blue);
-}
-
-.sheet-avail {
-  font-size: 12px;
-  color: var(--ios-green);
-  font-weight: 500;
-  margin-top: 4px;
-}
-
-/* Terminal View */
-.sheet-card.terminal-view {
-  background: #0d0f15;
+/* --------------------------------------------------------------------------
+   12. TERMINAL SHELL VIEW
+   -------------------------------------------------------------------------- */
+.terminal-shell {
+  background: #0c0e14;
   border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-.term-bar {
-  background: #181a22;
-  padding: 8px 14px;
+.terminal-topbar {
+  background: #161922;
+  padding: 10px 14px;
   display: flex;
   align-items: center;
   gap: 6px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.term-circle {
+.term-dot {
   width: 9px;
   height: 9px;
   border-radius: 50%;
 }
-.term-circle.red { background: #FF5F56; }
-.term-circle.yellow { background: #FFBD2E; }
-.term-circle.green { background: #27C93F; }
+.term-dot.red { background: #FF5F56; }
+.term-dot.yellow { background: #FFBD2E; }
+.term-dot.green { background: #27C93F; }
 
-.term-session {
-  font-size: 11px;
-  font-family: var(--font-mono);
-  color: var(--text-tertiary);
+.term-path {
   margin-left: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-tertiary);
 }
 
-.term-lines {
+.terminal-console {
   padding: 16px;
   font-family: var(--font-mono);
   font-size: 12.5px;
   line-height: 1.6;
-  user-select: text;
 }
 
-.p-user { color: var(--ios-green); font-weight: 600; }
-.p-path { color: var(--ios-blue); }
-.p-out { color: var(--text-secondary); }
-.p-out a { color: var(--ios-teal); text-decoration: none; }
+.t-line {
+  margin-top: 10px;
+  color: #FFFFFF;
+}
+.t-line:first-child { margin-top: 0; }
+.t-prompt { color: var(--ios-teal); }
+.t-dir { color: var(--ios-blue); }
 
-/* TableView Cells (Settings style) */
-.table-view-group {
+.t-response {
+  color: #D1D5DB;
+  padding-left: 10px;
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
+  margin-top: 6px;
+  margin-bottom: 12px;
+}
+
+.t-key { color: var(--ios-orange); font-weight: 600; }
+.t-val { color: #FFFFFF; }
+.t-link { color: var(--ios-blue); text-decoration: none; }
+.t-link:hover { text-decoration: underline; }
+.t-stat.green { color: var(--ios-green); font-weight: 600; }
+.t-muted { color: var(--text-tertiary); }
+
+/* Common Primary/Secondary Sheet CTAs */
+.sheet-action-cta {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-.table-group-title {
-  font-size: 12px;
+.ios-btn-primary {
+  background: var(--ios-blue);
+  color: #FFFFFF;
+  border: none;
+  font-size: 15.5px;
   font-weight: 600;
-  letter-spacing: 0.4px;
-  color: var(--text-tertiary);
-  margin: 0 0 8px 14px;
+  padding: 14px;
+  border-radius: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(10, 132, 255, 0.35);
+  transition: transform 0.12s ease, opacity 0.15s ease;
 }
 
-.table-view-cell {
-  background: rgba(36, 36, 42, 0.85);
-  padding: 13px 16px;
+.ios-btn-primary:active {
+  transform: scale(0.97);
+  opacity: 0.9;
+}
+
+.ios-btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 13px;
+  border-radius: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.12s ease;
+}
+
+.ios-btn-secondary:active {
+  transform: scale(0.97);
+}
+
+/* --------------------------------------------------------------------------
+   13. PRINTABLE RESUME CARD
+   -------------------------------------------------------------------------- */
+.cv-card {
+  background: #FFFFFF;
+  color: #111111;
+  border-radius: 16px;
+  padding: 26px 22px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  font-family: var(--font-ios);
+}
+
+.cv-header {
+  border-bottom: 2px solid #111111;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.cv-name {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.cv-role {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0056B3;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+.cv-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  font-size: 11px;
+  color: #444444;
+  margin-top: 8px;
+}
+
+.cv-meta a {
+  color: #0056B3;
+  text-decoration: none;
+}
+
+.cv-section {
+  margin-bottom: 18px;
+}
+
+.cv-section-title {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  color: #111111;
+  border-bottom: 1px solid #CCCCCC;
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+}
+
+.cv-text {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #222222;
+}
+
+.cv-skills-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #222222;
+}
+
+.cv-job {
+  margin-bottom: 12px;
+}
+
+.cv-job-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12.5px;
+  margin-bottom: 4px;
+}
+
+.cv-date {
+  font-weight: 600;
+  color: #555555;
+  font-size: 11.5px;
+}
+
+.cv-bullets {
+  padding-left: 18px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #222222;
+}
+
+.cv-certs {
+  margin-top: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   14. ARCHITECTURE PROJECTS & CASE STUDIES
+   -------------------------------------------------------------------------- */
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.project-card {
+  background: var(--ios-card-glass);
+  border: 1px solid var(--ios-card-border);
+  border-radius: 20px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.proj-badge {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--ios-teal);
+  letter-spacing: 0.6px;
+}
+
+.proj-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.proj-desc {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.proj-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.spec-pill {
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  color: var(--text-primary);
+}
+
+.proj-metric-row {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.metric-val {
+  font-weight: 700;
+  color: var(--ios-green);
+}
+.metric-lbl {
+  color: var(--text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   15. iOS GROUPED TABLEVIEW & LISTS
+   -------------------------------------------------------------------------- */
+.ios-group-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ios-group-heading {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  letter-spacing: 0.5px;
+  padding-left: 12px;
+}
+
+.ios-table-view {
+  background: var(--ios-card-glass);
+  border: 1px solid var(--ios-card-border);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.table-row {
   display: flex;
   align-items: center;
   gap: 14px;
-  border-bottom: 0.5px solid rgba(84, 84, 88, 0.35);
-  user-select: text;
+  padding: 13px 16px;
+  border-bottom: 0.5px solid rgba(84, 84, 88, 0.25);
+  text-decoration: none;
+  color: #FFFFFF;
 }
-
-.table-view-group .table-view-cell:first-of-type {
-  border-top-left-radius: 18px;
-  border-top-right-radius: 18px;
-}
-
-.table-view-group .table-view-cell:last-of-type {
-  border-bottom-left-radius: 18px;
-  border-bottom-right-radius: 18px;
+.table-row:last-child {
   border-bottom: none;
 }
 
-.cell-icon {
+.link-row {
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.link-row:active {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.row-icon {
   width: 32px;
   height: 32px;
   border-radius: 8px;
@@ -856,411 +1172,358 @@ body.iphone-screen {
   color: #FFFFFF;
   flex-shrink: 0;
 }
-.cell-icon.cyan { background: var(--ios-teal); color: #000; }
-.cell-icon.blue { background: var(--ios-blue); }
-.cell-icon.green { background: var(--ios-green); }
-.cell-icon.orange { background: var(--ios-orange); }
-.cell-icon.purple { background: var(--ios-purple); }
-.cell-icon.red { background: var(--ios-red); }
 
-.cell-info {
+.row-icon.cyan { background: var(--ios-teal); color: #000000; }
+.row-icon.blue { background: var(--ios-blue); }
+.row-icon.green { background: var(--ios-green); }
+.row-icon.orange { background: var(--ios-orange); }
+.row-icon.purple { background: var(--ios-purple); }
+.row-icon.red { background: var(--ios-red); }
+
+.row-main {
   flex: 1;
-  display: flex;
-  flex-direction: column;
 }
 
-.cell-title {
+.row-title {
   font-size: 15px;
   font-weight: 600;
   color: #FFFFFF;
 }
 
-.cell-desc {
+.row-subtitle {
   font-size: 12px;
   color: var(--text-secondary);
   margin-top: 1px;
 }
 
-.cell-tag {
+.ios-badge {
   font-size: 11px;
   font-weight: 600;
   padding: 3px 8px;
   border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.12);
   color: var(--text-secondary);
 }
 
-.cell-tag.primary {
+.ios-badge.primary {
   background: rgba(10, 132, 255, 0.25);
-  color: var(--ios-teal);
-}
-
-.cell-kicker {
-  font-size: 11px;
-  text-transform: uppercase;
-  color: var(--text-tertiary);
-  font-weight: 600;
-}
-
-.cell-val {
-  font-size: 14.5px;
-  color: #FFFFFF;
-  margin-top: 2px;
-}
-
-.cell-val-link {
-  font-size: 14.5px;
   color: var(--ios-blue);
-  text-decoration: none;
-  margin-top: 2px;
 }
 
-/* Printable Resume Card */
-.printable-resume-card {
-  background: #FFFFFF;
-  color: #111111;
-  border-radius: 18px;
-  padding: 24px 20px;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
-  user-select: text;
+.ios-badge.active {
+  background: rgba(48, 209, 88, 0.25);
+  color: var(--ios-green);
 }
 
-.doc-header h1 {
-  font-size: 24px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-}
-
-.doc-sub {
-  font-size: 12.5px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #0066CC;
-  letter-spacing: 0.6px;
-  margin-top: 2px;
-}
-
-.doc-meta {
-  font-size: 11.5px;
-  color: #555555;
-  margin-top: 8px;
-  line-height: 1.5;
-}
-
-.doc-meta a { color: #0066CC; text-decoration: none; }
-
-.doc-rule {
+.ios-pill-toggle {
+  background: var(--ios-green);
+  color: #000000;
   border: none;
-  height: 1.5px;
-  background: #E5E5EA;
-  margin: 14px 0;
-}
-
-.doc-section {
-  margin-bottom: 18px;
-}
-
-.doc-section h3 {
-  font-size: 11.5px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  color: #0066CC;
-  border-bottom: 1px solid #E5E5EA;
-  padding-bottom: 3px;
-  margin-bottom: 8px;
-}
-
-.doc-section p {
-  font-size: 12.5px;
-  line-height: 1.5;
-  color: #333333;
-}
-
-.exp-item { margin-bottom: 12px; }
-
-.exp-row {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  font-size: 12.5px;
-  margin-bottom: 4px;
-}
-
-.exp-item ul {
-  padding-left: 18px;
   font-size: 12px;
-  line-height: 1.5;
-  color: #444444;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
 }
 
-/* Timeline Cards */
-.timeline-feed {
+.row-arrow {
+  color: var(--text-tertiary);
+  font-size: 14px;
+}
+
+.row-info {
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+
+/* --------------------------------------------------------------------------
+   16. TIMELINE & EXPERIENCE FEED
+   -------------------------------------------------------------------------- */
+.timeline-container {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 20px;
+}
+
+.timeline-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.timeline-year {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: var(--ios-blue);
+  padding-left: 6px;
 }
 
 .timeline-card {
-  background: rgba(36, 36, 42, 0.85);
-  border-radius: 20px;
-  padding: 18px;
-  border: 1px solid var(--ios-glass-border);
+  background: var(--ios-card-glass);
+  border: 1px solid var(--ios-card-border);
+  border-radius: 18px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.timeline-year-chip {
-  font-size: 10.5px;
-  font-weight: 700;
-  color: var(--ios-teal);
-  letter-spacing: 0.5px;
-}
-
-.timeline-top {
+.timeline-company-row {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin: 6px 0 10px;
 }
 
-.company-logo-box {
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  background: #1e2029;
-  color: #FFFFFF;
-  font-size: 10px;
-  font-weight: 800;
+.company-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 12px;
+  font-weight: 800;
+  color: #FFFFFF;
 }
 
-.timeline-role-title {
+.company-badge.apex { background: linear-gradient(135deg, #0A84FF, #5E5CE6); }
+.company-badge.data { background: linear-gradient(135deg, #FF9F0A, #FF375F); }
+.company-badge.vtl  { background: linear-gradient(135deg, #30D158, #0077A8); }
+
+.company-role {
   font-size: 16px;
   font-weight: 700;
   color: #FFFFFF;
 }
 
-.timeline-company-name {
+.company-name {
   font-size: 12.5px;
   color: var(--text-secondary);
 }
 
-.timeline-body {
+.timeline-text {
   font-size: 13px;
-  line-height: 1.45;
+  line-height: 1.5;
   color: var(--text-secondary);
-  user-select: text;
-  margin-bottom: 10px;
 }
 
-.timeline-tags {
+.timeline-pills {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
 }
-
-.timeline-tags span {
-  font-size: 11px;
-  font-weight: 500;
+.timeline-pills span {
+  font-size: 10.5px;
+  font-weight: 600;
   background: rgba(255, 255, 255, 0.08);
   padding: 3px 8px;
-  border-radius: 6px;
-  color: var(--text-secondary);
+  border-radius: var(--radius-pill);
 }
 
-/* Contact Sheet Card */
-.contact-profile-card {
-  text-align: center;
+/* --------------------------------------------------------------------------
+   17. CONTACT CARD
+   -------------------------------------------------------------------------- */
+.contact-header-card {
+  background: var(--ios-card-glass);
+  border: 1px solid var(--ios-card-border);
+  border-radius: 24px;
+  padding: 24px 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px 0 12px;
+  text-align: center;
 }
 
-.contact-big-avatar {
+.contact-large-avatar {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--ios-blue), var(--ios-purple));
-  color: #FFFFFF;
-  font-size: 28px;
-  font-weight: 800;
+  background: linear-gradient(135deg, var(--ios-blue), var(--ios-indigo));
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 24px rgba(10, 132, 255, 0.4);
+  font-size: 30px;
+  font-weight: 800;
+  color: #FFFFFF;
+  box-shadow: 0 8px 24px rgba(10, 132, 255, 0.45);
   margin-bottom: 12px;
 }
 
-.contact-profile-card h2 { font-size: 22px; font-weight: 800; }
-.contact-title-sub { font-size: 13px; color: var(--ios-blue); margin-top: 2px; }
-
-.contact-action-bubbles {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  margin-top: 18px;
+.contact-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFFFFF;
 }
 
-.bubble-btn {
-  background: transparent;
-  border: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.bubble-circle {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  transition: transform 0.15s ease, background 0.15s ease;
-}
-
-.bubble-btn:active .bubble-circle {
-  transform: scale(0.88);
-  background: rgba(255, 255, 255, 0.22);
-}
-
-.bubble-btn span {
-  font-size: 11px;
-  font-weight: 500;
+.contact-title-pill {
+  font-size: 13px;
+  font-weight: 600;
   color: var(--ios-blue);
-  text-transform: capitalize;
+  margin-top: 4px;
 }
 
-/* Buttons */
-.sheet-actions-group {
+.contact-quick-actions {
+  display: flex;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.action-circle-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  width: 62px;
+  height: 62px;
+  border-radius: 16px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 8px;
-}
-
-.sheet-primary-btn {
-  background: var(--ios-blue);
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
   color: #FFFFFF;
-  border: none;
-  font-size: 15px;
-  font-weight: 600;
-  padding: 14px;
-  border-radius: 16px;
-  text-align: center;
   text-decoration: none;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(10, 132, 255, 0.35);
-  transition: transform 0.12s ease;
+  transition: transform 0.12s ease, background 0.15s ease;
 }
 
-.sheet-primary-btn:active { transform: scale(0.97); }
+.action-circle-btn:active {
+  transform: scale(0.92);
+  background: rgba(255, 255, 255, 0.18);
+}
 
-.sheet-secondary-btn {
-  background: rgba(255, 255, 255, 0.1);
-  color: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  font-size: 15px;
+.action-icon {
+  font-size: 20px;
+}
+
+.action-text {
+  font-size: 11px;
   font-weight: 600;
-  padding: 13px;
-  border-radius: 16px;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  transition: transform 0.12s ease;
+  color: var(--ios-blue);
 }
-
-.sheet-secondary-btn:active { transform: scale(0.97); }
 
 /* --------------------------------------------------------------------------
-   9. IPHONE HOME INDICATOR
+   18. SPOTLIGHT SEARCH OVERLAY
    -------------------------------------------------------------------------- */
-.ios-home-bar-area {
+.spotlight-overlay {
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
   right: 0;
-  height: 22px;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  z-index: var(--z-spotlight);
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 60px 16px 20px;
+}
+
+.spotlight-overlay.active {
+  display: flex;
+}
+
+.spotlight-card {
+  width: 100%;
+  max-width: 440px;
+  background: rgba(28, 28, 32, 0.95);
+  border: 1px solid var(--ios-card-border);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+}
+
+.spotlight-input-row {
   display: flex;
   align-items: center;
-  justify-content: center;
-  z-index: 900;
+  gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.spotlight-input-row input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  color: #FFFFFF;
+  outline: none;
+  font-family: var(--font-ios);
+}
+
+.spotlight-input-row input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.spotlight-cancel {
+  background: transparent;
+  border: none;
+  color: var(--ios-blue);
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
 }
 
-.ios-home-indicator {
-  width: 140px;
-  height: 5px;
-  border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.7);
-  transition: transform 0.15s ease, background 0.15s ease;
+.spotlight-results {
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 8px 0;
 }
 
-.ios-home-bar-area:active .ios-home-indicator {
-  transform: scaleX(0.88);
-  background: #FFFFFF;
+.spotlight-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.spotlight-item:hover,
+.spotlight-item:active {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.spotlight-item-title {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.spotlight-item-sub {
+  font-size: 11.5px;
+  color: var(--text-secondary);
 }
 
 /* --------------------------------------------------------------------------
-   10. DESKTOP & TABLET FRAMING (IPHONE PRO CHASSIS)
+   19. PRINT MEDIA STYLES
    -------------------------------------------------------------------------- */
-@media (min-width: 540px) {
-  body.iphone-screen {
-    align-items: center;
-    justify-content: center;
-    padding: 24px 0;
-  }
-
-  /* Renders an actual iPhone hardware frame on desktop */
-  body.iphone-screen::before {
-    content: '';
-    position: absolute;
-    width: 428px;
-    height: 890px;
-    border-radius: 54px;
-    border: 12px solid #1c1d22;
-    box-shadow: 
-      0 0 0 2px #3a3d46,
-      0 30px 80px rgba(0, 0, 0, 0.8),
-      0 10px 30px rgba(0, 0, 0, 0.6);
-    pointer-events: none;
-    z-index: 10000;
-  }
-
-  .ios-status-bar,
-  .iphone-springboard,
-  .app-sheet {
-    max-width: 404px;
-  }
-
-  .iphone-dock {
-    max-width: 368px;
-    bottom: 42px;
-  }
-
-  .ios-home-bar-area {
-    max-width: 404px;
-    margin: 0 auto;
-    bottom: 24px;
-  }
-
-  .ios-status-bar {
-    padding-top: 14px;
-  }
-}
-
-/* Print Styles */
 @media print {
-  body { background: #FFFFFF !important; color: #000 !important; }
-  .ios-status-bar, .iphone-dock, .ios-home-bar-area, .sheet-header, .sheet-actions-group, .apps-grid, .widgets-grid { display: none !important; }
-  #app-resume { display: block !important; transform: none !important; position: static !important; }
-  .printable-resume-card { box-shadow: none !important; padding: 0 !important; }
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+  .ios-statusbar,
+  .ios-dock-container,
+  .ios-home-indicator-zone,
+  .ios-springboard,
+  .sheet-navbar,
+  .sheet-action-cta,
+  .spotlight-overlay {
+    display: none !important;
+  }
+  .app-sheets-viewport,
+  #app-resume {
+    position: static !important;
+    display: block !important;
+    transform: none !important;
+    background: transparent !important;
+  }
+  .cv-card {
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
 }
