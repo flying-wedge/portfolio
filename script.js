@@ -1,177 +1,150 @@
 /**
  * Brian Lang - Technical Software Architect Portfolio
- * Pure Apple iOS 18 Controller
- * Handles view transitions, Dynamic Island interaction, dock navigation, and live system clocks.
+ * Apple iOS 18 SpringBoard & Sheets Controller
  */
 
 (function () {
   'use strict';
 
-  // --- 1. VIEW NAVIGATION CONTROLLER ---
-  const views = document.querySelectorAll('.ios-view');
-  const dockButtons = document.querySelectorAll('.ios-dock-btn');
+  // --- 1. APP SHEETS CONTROLLER (Slide-up sheets for apps & widgets) ---
+  const sheets = document.querySelectorAll('.app-sheet');
+  const homeBar = document.getElementById('ios-home-bar');
 
-  function navigateTo(targetViewId) {
-    const target = document.getElementById(targetViewId);
+  function openSheet(sheetId) {
+    const target = document.getElementById(sheetId);
     if (!target) return;
 
-    // Transition views
-    views.forEach(v => {
-      v.classList.remove('active');
-    });
-    target.classList.add('active');
-
-    // Update Dock active indicator
-    dockButtons.forEach(btn => {
-      if (btn.getAttribute('data-navigate') === targetViewId) {
-        btn.classList.add('active');
-      } else {
-        btn.classList.remove('active');
-      }
+    // Close any other open sheet first
+    sheets.forEach(s => {
+      if (s !== target) s.classList.remove('open');
     });
 
-    // Auto-scroll new view to top
-    const scrollContainer = target.querySelector('.ios-scrollable-content');
-    if (scrollContainer) {
-      scrollContainer.scrollTop = 0;
+    target.classList.add('open');
+
+    // Scroll sheet to top
+    const scrollBody = target.querySelector('.sheet-scroll-body');
+    if (scrollBody) {
+      scrollBody.scrollTop = 0;
     }
   }
 
-  window.navigateTo = navigateTo;
-
-  // Click bindings for navigation elements
-  document.querySelectorAll('[data-navigate]').forEach(el => {
-    el.addEventListener('click', (e) => {
-      e.preventDefault();
-      const target = el.getAttribute('data-navigate');
-      if (target) navigateTo(target);
-    });
-  });
-
-  // Back button bindings (return to homescreen)
-  document.querySelectorAll('[data-back]').forEach(el => {
-    el.addEventListener('click', (e) => {
-      e.preventDefault();
-      navigateTo('view-homescreen');
-    });
-  });
-
-  // Hero Widget click opens About View
-  const heroWidget = document.getElementById('hero-widget');
-  if (heroWidget) {
-    heroWidget.addEventListener('click', () => {
-      navigateTo('view-about');
-    });
+  function closeAllSheets() {
+    sheets.forEach(s => s.classList.remove('open'));
   }
 
-  // Home Indicator Bar click returns to Homescreen
-  const homeBar = document.getElementById('ios-home-bar');
+  // Bind click on any launcher (Widgets, App Icons, Dock Apps)
+  document.querySelectorAll('[data-launch]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = el.getAttribute('data-launch');
+      if (targetId) {
+        openSheet(targetId);
+      }
+    });
+
+    // Support keyboard activation (Enter / Space)
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const targetId = el.getAttribute('data-launch');
+        if (targetId) {
+          openSheet(targetId);
+        }
+      }
+    });
+  });
+
+  // Bind click on "Done" / close buttons
+  document.querySelectorAll('[data-close]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeAllSheets();
+    });
+  });
+
+  // Home bar click / tap: Dismiss all sheets back to SpringBoard
   if (homeBar) {
     homeBar.addEventListener('click', () => {
-      navigateTo('view-homescreen');
+      closeAllSheets();
     });
   }
+
+  // ESC key returns to Home screen
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeAllSheets();
+    }
+  });
 
   // --- 2. DYNAMIC ISLAND CONTROLLER ---
   const dynamicIsland = document.getElementById('dynamic-island');
+  let islandTimer = null;
+
   if (dynamicIsland) {
-    dynamicIsland.addEventListener('click', (e) => {
-      // Avoid collapsing if clicked directly on connect link
-      if (e.target.closest('.island-action-pill')) return;
-      
+    function toggleIsland() {
       dynamicIsland.classList.toggle('expanded');
-      
+      if (islandTimer) clearTimeout(islandTimer);
+
       if (dynamicIsland.classList.contains('expanded')) {
-        setTimeout(() => {
-          if (dynamicIsland.classList.contains('expanded')) {
-            dynamicIsland.classList.remove('expanded');
-          }
+        islandTimer = setTimeout(() => {
+          dynamicIsland.classList.remove('expanded');
         }, 5000);
       }
+    }
+
+    dynamicIsland.addEventListener('click', (e) => {
+      // Don't toggle if clicking the contact action button inside expanded island
+      if (e.target.closest('.island-btn')) return;
+      toggleIsland();
     });
-  }
 
-  // --- 3. SHARE SHEET API / CLIPBOARD FALLBACK ---
-  const shareBtn = document.getElementById('btn-share-portfolio');
-  if (shareBtn) {
-    shareBtn.addEventListener('click', async () => {
-      const shareData = {
-        title: 'Brian Lang | Technical Software Architect',
-        text: 'Check out Brian Lang - Technical Software Architect Portfolio (Distributed Systems, Cloud & High-Availability).',
-        url: window.location.href
-      };
-
-      if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
-        try {
-          await navigator.share(shareData);
-        } catch (err) {
-          // Share was cancelled or failed silently
-        }
-      } else {
-        // Fallback: Copy URL to clipboard
-        try {
-          await navigator.clipboard.writeText(window.location.href);
-          alert('Portfolio link copied to clipboard!');
-        } catch (err) {
-          alert('Brian Lang - Technical Software Architect: brianlang.dev');
-        }
+    dynamicIsland.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleIsland();
       }
     });
   }
 
-  // Copy Email Button
-  const copyBtn = document.getElementById('btn-copy-email');
-  const copyStatus = document.getElementById('copy-status');
+  // --- 3. COPY EMAIL CLIPBOARD HANDLER ---
+  const copyBtn = document.getElementById('copy-email-btn');
+  const copyLabel = document.getElementById('copy-label');
   if (copyBtn) {
     copyBtn.addEventListener('click', async () => {
+      const email = 'brian.lang@robustcomputing.com';
       try {
-        await navigator.clipboard.writeText('brian.lang@robustcomputing.com');
-        if (copyStatus) {
-          copyStatus.textContent = 'Copied!';
-          setTimeout(() => { copyStatus.textContent = 'Copy'; }, 2000);
+        await navigator.clipboard.writeText(email);
+        if (copyLabel) {
+          copyLabel.textContent = 'copied!';
+          setTimeout(() => {
+            copyLabel.textContent = 'copy';
+          }, 2000);
         }
       } catch (err) {
-        if (copyStatus) copyStatus.textContent = 'Copied!';
+        // Fallback prompt
+        window.prompt('Copy email to clipboard:', email);
       }
     });
   }
 
-  // --- 4. LIVE iOS SYSTEM CLOCKS ---
-  function updateClocks() {
+  // --- 4. LIVE iOS STATUS BAR CLOCK ---
+  function updateClock() {
+    const statusTime = document.getElementById('status-time');
+    if (!statusTime) return;
+
     const now = new Date();
-
-    // Status Bar Clock (e.g. 9:41)
-    const statusClock = document.getElementById('status-clock');
-    if (statusClock) {
-      statusClock.textContent = now.toLocaleTimeString('en-US', {
-        hour: 'numeric',
-        minute: '2-digit',
-        hour12: false
-      });
-    }
-
-    // Homescreen Big Clock
-    const bigClock = document.getElementById('home-bigclock');
-    if (bigClock) {
-      bigClock.textContent = now.toLocaleTimeString('en-US', {
-        hour: 'numeric',
-        minute: '2-digit',
-        hour12: false
-      });
-    }
-
-    // Homescreen Weekday & Date (e.g. Thursday, September 3)
-    const weekdayEl = document.getElementById('home-weekday');
-    if (weekdayEl) {
-      weekdayEl.textContent = now.toLocaleDateString('en-US', {
-        weekday: 'long',
-        month: 'long',
-        day: 'numeric'
-      });
-    }
+    let hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    // Format in 12-hour style without am/pm for authentic iOS top bar
+    hours = hours % 12 || 12;
+    statusTime.textContent = `${hours}:${minutes}`;
   }
 
-  updateClocks();
-  setInterval(updateClocks, 1000);
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  // Expose methods for console/debugging
+  window.openSheet = openSheet;
+  window.closeAllSheets = closeAllSheets;
 
 })();
