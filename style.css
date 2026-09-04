@@ -735,7 +735,7 @@ body.no-aurora {
 
 .dock-phone { background: linear-gradient(135deg, #34C759, #28A745); }
 .dock-mail { background: linear-gradient(180deg, #38ACFF 0%, #0877E9 50%, #0665D0 100%); }
-.dock-gmail { background: linear-gradient(180deg, #2C2C2E 0%, #1C1C1E 100%); border: 1px solid rgba(255, 255, 255, 0.15); }
+.dock-gmail { background: #000000 !important; border: 1px solid rgba(255, 255, 255, 0.16) !important; }
 .dock-terminal { background: linear-gradient(135deg, #252830, #121318); border: 1px solid rgba(255, 255, 255, 0.16); }
 .dock-code-glyph { font-family: var(--font-mono); font-size: 20px; font-weight: 700; color: var(--ios-green); }
 .dock-resume { background: linear-gradient(135deg, #30D158, #1E7E34); }
