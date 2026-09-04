@@ -192,6 +192,14 @@
       actionType: 'external'
     },
     {
+      title: 'Telegram: @flyingwedge72',
+      sub: 'Chat directly on Telegram (t.me/flyingwedge72)',
+      target: 'https://t.me/flyingwedge72',
+      icon: '✈️',
+      keywords: 'telegram chat message flyingwedge72 t.me app direct aviation plane blue',
+      actionType: 'external'
+    },
+    {
       title: 'LinkedIn: Brian Lang',
       sub: 'linkedin.com/in/brian-lang-4b99282',
       target: 'https://www.linkedin.com/in/brian-lang-4b99282/',

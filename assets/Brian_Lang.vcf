@@ -8,6 +8,12 @@ EMAIL;type=INTERNET;type=WORK;type=pref:brian.lang@robustcomputing.com
 TEL;type=CELL;type=VOICE;type=pref:+1 785-550-3966
 item1.URL;type=pref:https://wa.me/flyingwedge05
 item1.X-ABLabel:WhatsApp
+item2.URL:https://t.me/flyingwedge72
+item2.X-ABLabel:Telegram
+item3.URL:https://www.linkedin.com/in/brian-lang-4b99282/
+item3.X-ABLabel:LinkedIn
 X-SOCIALPROFILE;type=whatsapp:https://wa.me/flyingwedge05
-NOTE:Technical Software Architect specializing in large scale system transformations and enterprise integrations. WhatsApp: @flyingwedge05
+X-SOCIALPROFILE;type=telegram:https://t.me/flyingwedge72
+X-SOCIALPROFILE;type=linkedin:https://www.linkedin.com/in/brian-lang-4b99282/
+NOTE:Technical Software Architect specializing in large scale system transformations and enterprise integrations. WhatsApp: @flyingwedge05 | Telegram: @flyingwedge72
 END:VCARD

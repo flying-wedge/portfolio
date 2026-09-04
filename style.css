@@ -1233,6 +1233,7 @@ body.no-aurora {
 .row-icon.purple { background: var(--ios-purple); }
 .row-icon.red { background: var(--ios-red); }
 .row-icon.whatsapp { background: #25D366; }
+.row-icon.telegram { background: #229ED9; }
 .row-icon.linkedin { background: #0A66C2; }
 
 .row-main {
