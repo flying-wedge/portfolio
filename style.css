@@ -627,6 +627,11 @@ body.no-aurora {
   background: linear-gradient(135deg, #8E8E93 0%, #48484A 100%);
 }
 
+.icon-vcard {
+  background: linear-gradient(135deg, #AF52DE 0%, #5E5CE6 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
 .icon-github {
   background: linear-gradient(135deg, #333333 0%, #181818 100%);
   border: 1px solid rgba(255, 255, 255, 0.12);
