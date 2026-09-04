@@ -140,9 +140,12 @@
         <!-- App 6: Contact & Connect -->
         <div class="app-icon-item" data-launch="app-contact" tabindex="0" role="button" aria-label="Open Contacts App">
           <div class="icon-squircle icon-contact">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
+            <svg width="34" height="34" viewBox="0 0 32 32" fill="none">
+              <!-- Address book tab tabs on right -->
+              <path d="M25 9H27M25 15H27M25 21H27" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
+              <!-- Main White ID Silhouette Card -->
+              <circle cx="14" cy="11.5" r="4.2" fill="#FFFFFF"/>
+              <path d="M6 24C6 19.5 9.5 17.5 14 17.5C18.5 17.5 22 19.5 22 24" fill="#FFFFFF"/>
             </svg>
           </div>
           <span class="icon-label">Contacts</span>
@@ -184,12 +187,24 @@
     <!-- Bottom Dock Bar -->
     <nav class="ios-dock-container" aria-label="Dock">
       <div class="ios-dock">
+        <!-- Dock 0: Phone -->
+        <a href="tel:+17855503966" class="dock-item" aria-label="Call Brian Lang (+1 785-550-3966)">
+          <div class="dock-squircle dock-phone">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.21 2.2z"/>
+            </svg>
+          </div>
+        </a>
+
         <!-- Dock 1: Mail -->
         <a href="mailto:brian.lang@robustcomputing.com" class="dock-item" aria-label="Send Email to Brian Lang">
           <div class="dock-squircle dock-mail">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-              <polyline points="22,6 12,13 2,6"></polyline>
+            <svg width="34" height="34" viewBox="0 0 32 32" fill="none">
+              <!-- iOS Mail Closed Envelope Body -->
+              <rect x="3" y="6" width="26" height="20" rx="3.5" fill="#FFFFFF"/>
+              <!-- Flap Fold and Side Seam Details in Subtle iOS Mail Blue -->
+              <path d="M3.5 7.5L16 17.5L28.5 7.5" stroke="#0877E9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 25L12 15M28 25L20 15" stroke="#0877E9" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/>
             </svg>
           </div>
         </a>
