@@ -1274,43 +1274,514 @@ html, body {
 .gnome-mail-icon { background: #1C71D8; color: #fff; }
 
 /* --------------------------------------------------------------------------
-   9. MOBILE RESPONSIVENESS
+   9. iOS MOBILE INTERFACE & RESPONSIVE DESIGN
    -------------------------------------------------------------------------- */
+
+/* Hidden on desktop viewport (>840px) */
+.ios-status-bar,
+.ios-mobile-screen,
+.ios-bottom-dock,
+.ios-home-indicator {
+  display: none;
+}
+
 @media (max-width: 840px) {
-  html, body {
-    overflow-y: auto;
-    height: auto;
+  /* Hide desktop-only navigation shells and icons */
+  .macos-menubar,
+  .gnome-topbar,
+  .win-taskbar,
+  .macos-dock,
+  .gnome-dash-dock,
+  .desktop-icons-area {
+    display: none !important;
   }
+
+  html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: fixed;
+    background: var(--wallpaper);
+    background-size: cover;
+    background-position: center;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* 1. iOS Status Bar with Dynamic Island */
+  .ios-status-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    padding: 0 20px;
+    padding-top: env(safe-area-inset-top, 6px);
+    z-index: 100000;
+    pointer-events: none;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  }
+
+  [data-theme="light"] .ios-status-bar {
+    color: #000000;
+  }
+
+  .ios-status-time {
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    min-width: 48px;
+  }
+
+  .ios-dynamic-island {
+    width: 120px;
+    height: 30px;
+    background: #000000;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .island-camera {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #0d0d1a;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .ios-status-icons {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 48px;
+    justify-content: flex-end;
+  }
+
+  .ios-icon {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* 2. iOS Mobile Canvas & Homescreen */
   .desktop-screen {
-    position: relative !important;
-    top: 36px !important;
-    height: auto !important;
-    padding: 20px 14px 120px !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    padding: 56px 16px 110px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+
+  .ios-mobile-screen {
     display: flex;
     flex-direction: column;
     gap: 24px;
-  }
-  .desktop-icons-area {
-    position: static !important;
-    flex-direction: row !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-  }
-  .system-window {
-    position: static !important;
-    width: 100% !important;
-    max-height: none !important;
-  }
-  .finder-window-content {
-    flex-direction: column;
-    height: auto;
-  }
-  .finder-sidebar {
     width: 100%;
-    border-right: none;
-    border-bottom: 1px solid var(--card-border);
+    max-width: 460px;
+    margin: 0 auto;
+    animation: iosFadeIn 0.3s ease-out;
   }
-  .win-taskbar-center { position: static; transform: none; }
-  .win-weather-widget, .gnome-center { display: none; }
-  .win-start-menu, .gnome-overview { width: 92%; left: 4%; }
+
+  @keyframes iosFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* iOS Glassmorphic Hero Widget Card */
+  .ios-widget-card {
+    background: rgba(30, 32, 42, 0.65);
+    backdrop-filter: blur(35px) saturate(190%);
+    -webkit-backdrop-filter: blur(35px) saturate(190%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 26px;
+    padding: 20px;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    transition: transform 0.16s ease, background 0.2s ease;
+  }
+
+  .ios-widget-card:active {
+    transform: scale(0.97);
+  }
+
+  [data-theme="light"] .ios-widget-card {
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
+  }
+
+  .ios-widget-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+
+  .ios-widget-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0A84FF, #5E5CE6);
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 16px rgba(10, 132, 255, 0.4);
+    flex-shrink: 0;
+  }
+
+  .ios-widget-title-area {
+    flex: 1;
+  }
+
+  .ios-widget-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .ios-widget-role {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent-blue);
+    margin-top: 2px;
+  }
+
+  .ios-widget-badge {
+    font-size: 10px;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.12);
+    padding: 3px 8px;
+    border-radius: 12px;
+    color: var(--text-secondary);
+  }
+
+  .ios-widget-desc {
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+  }
+
+  .ios-widget-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 11.5px;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 10px;
+  }
+
+  [data-theme="light"] .ios-widget-meta {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  /* iOS App Grid (Rounded Squircles 60x60) */
+  .ios-app-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px 10px;
+    padding: 4px 8px;
+  }
+
+  .ios-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .ios-app:active {
+    transform: scale(0.88);
+  }
+
+  .ios-app-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 14px; /* iOS squircle profile */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+    position: relative;
+    transition: box-shadow 0.15s ease;
+  }
+
+  .terminal-ios {
+    background: linear-gradient(135deg, #1f232a, #0b0c10);
+    color: #30D158;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .resume-ios {
+    background: linear-gradient(135deg, #FF453A, #D70015);
+    color: #FFFFFF;
+  }
+
+  .stack-ios {
+    background: linear-gradient(135deg, #64D2FF, #0A84FF);
+    color: #FFFFFF;
+  }
+
+  .exp-ios {
+    background: linear-gradient(135deg, #30D158, #248A3D);
+    color: #FFFFFF;
+  }
+
+  .theme-ios {
+    background: linear-gradient(135deg, #BF5AF2, #5E5CE6);
+    color: #FFFFFF;
+  }
+
+  .os-ios {
+    background: linear-gradient(135deg, #FF9F0A, #FF375F);
+    color: #FFFFFF;
+  }
+
+  .mail-ios {
+    background: linear-gradient(135deg, #0A84FF, #0040DD);
+    color: #FFFFFF;
+  }
+
+  .phone-ios {
+    background: linear-gradient(135deg, #30D158, #34C759);
+    color: #FFFFFF;
+  }
+
+  .ios-app-label {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: #FFFFFF;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
+    text-align: center;
+    letter-spacing: -0.1px;
+  }
+
+  [data-theme="light"] .ios-app-label {
+    color: #1a1a1a;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  }
+
+  /* 3. iOS Floating Bottom Dock */
+  .ios-bottom-dock {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 22px;
+    left: 16px;
+    right: 16px;
+    height: 76px;
+    max-width: 440px;
+    margin: 0 auto;
+    background: rgba(36, 38, 48, 0.68);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 34px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+    padding: 0 14px;
+    z-index: 99999;
+  }
+
+  [data-theme="light"] .ios-bottom-dock {
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+  }
+
+  .ios-dock-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.12s ease;
+  }
+
+  .ios-dock-icon:active {
+    transform: scale(0.86);
+  }
+
+  .ios-dock-glyph {
+    width: 52px;
+    height: 52px;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  }
+
+  .terminal-glyph { background: linear-gradient(135deg, #1f232a, #0b0c10); color: #30D158; font-family: var(--font-mono); font-weight: 700; border: 1px solid rgba(255, 255, 255, 0.1); }
+  .resume-glyph { background: linear-gradient(135deg, #FF453A, #D70015); color: #FFFFFF; }
+  .stack-glyph { background: linear-gradient(135deg, #64D2FF, #0A84FF); color: #FFFFFF; }
+  .exp-glyph { background: linear-gradient(135deg, #30D158, #248A3D); color: #FFFFFF; }
+  .mail-glyph { background: linear-gradient(135deg, #0A84FF, #0040DD); color: #FFFFFF; }
+
+  /* 4. iOS Home Indicator Bar */
+  .ios-home-indicator {
+    display: block;
+    position: fixed;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 138px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    z-index: 100001;
+    pointer-events: auto;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+
+  .ios-home-indicator:active {
+    transform: translateX(-50%) scale(0.95);
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  [data-theme="light"] .ios-home-indicator {
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  /* 5. iOS Bottom Sheet Modal Windows (Smooth App Experience) */
+  .system-window {
+    position: fixed !important;
+    top: 52px !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    border-radius: 28px 28px 0 0 !important;
+    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.55) !important;
+    display: none;
+    flex-direction: column !important;
+    z-index: 99990 !important;
+    border: 1px solid var(--window-border) !important;
+    border-bottom: none !important;
+    overflow: hidden;
+    transform: translateY(100%);
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  }
+
+  /* Sheet grab handle at top of modal */
+  .system-window::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 38px;
+    height: 5px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    z-index: 10;
+  }
+
+  [data-theme="light"] .system-window::before {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .system-window.active:not(.minimized):not(.hidden) {
+    display: flex !important;
+    transform: translateY(0) !important;
+  }
+
+  /* Ensure close buttons and controls are clean, accessible, and tap-friendly on iOS mobile sheets */
+  .window-titlebar {
+    padding-top: 14px;
+    height: 50px;
+    cursor: default;
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Force traffic lights / close button visible on mobile sheet regardless of OS */
+  .system-window .traffic-lights {
+    display: flex !important;
+    width: auto;
+    gap: 8px;
+  }
+  .system-window .traffic-lights .t-btn {
+    width: 14px;
+    height: 14px;
+  }
+
+  .window-content {
+    max-height: none !important;
+    flex: 1;
+    overflow-y: auto !important;
+    padding-bottom: 90px !important; /* Space above floating dock */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Terminal profile card responsive wrap on mobile */
+  .terminal-profile-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .contact-grid {
+    text-align: left;
+    width: 100%;
+  }
+
+  .terminal-quick-actions {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .skills-card-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .paper-sheet {
+    padding: 20px 16px !important;
+  }
+
+  /* Hide desktop Start menu & Fedora overview on mobile */
+  .win-start-menu,
+  .gnome-overview {
+    display: none !important;
+  }
 }
+

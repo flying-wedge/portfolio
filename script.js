@@ -335,7 +335,7 @@
   const taskViewBtn = document.getElementById('win-taskview-btn');
   if (taskViewBtn) {
     taskViewBtn.addEventListener('click', () => {
-      ['window-terminal', 'window-resume', 'window-projects', 'window-skills', 'window-experience'].forEach((id, idx) => {
+      ['window-terminal', 'window-resume', 'window-skills', 'window-experience'].forEach((id, idx) => {
         const w = document.getElementById(id);
         if (w) {
           w.classList.remove('minimized');
@@ -404,7 +404,75 @@
     appleBtn.addEventListener('click', () => openWindow('window-terminal'));
   }
 
-  // --- 8. LIVE CLOCK ENGINE ---
+  // --- 8. iOS MOBILE INTERACTION SUITE ---
+  
+  // (A) iOS Apps & Bottom Dock click bindings
+  document.querySelectorAll('.ios-app[data-open], .ios-dock-icon[data-open], .ios-widget-card[data-open]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = el.getAttribute('data-open');
+      if (target) openWindow(target);
+    });
+  });
+
+  // (B) iOS Theme & OS App switcher buttons
+  const iosThemeBtn = document.getElementById('ios-theme-app-btn');
+  if (iosThemeBtn) {
+    iosThemeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      toggleTheme();
+    });
+  }
+
+  const iosOsBtn = document.getElementById('ios-os-app-btn');
+  if (iosOsBtn) {
+    iosOsBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      cycleOS();
+    });
+  }
+
+  // (C) iOS Home Indicator (Tap to return home / close active sheet)
+  const homeIndicator = document.getElementById('ios-home-indicator');
+  if (homeIndicator) {
+    homeIndicator.addEventListener('click', () => {
+      document.querySelectorAll('.system-window').forEach(w => {
+        w.classList.remove('active');
+        w.classList.add('hidden');
+        w.style.display = 'none';
+      });
+      updateActiveIndicators();
+    });
+  }
+
+  // (D) iOS Dynamic Island Interactive Expand/Contract
+  const dynamicIsland = document.getElementById('ios-island');
+  if (dynamicIsland) {
+    dynamicIsland.addEventListener('click', () => {
+      const isExpanded = dynamicIsland.getAttribute('data-expanded') === 'true';
+      if (!isExpanded) {
+        dynamicIsland.style.width = '240px';
+        dynamicIsland.style.justifyContent = 'space-between';
+        dynamicIsland.innerHTML = '<span style="font-size:11px; color:#30D158; padding-left:10px; font-weight:600;">⚡ Distributed Arch</span><div class="island-camera"></div>';
+        dynamicIsland.setAttribute('data-expanded', 'true');
+        setTimeout(() => {
+          if (dynamicIsland.getAttribute('data-expanded') === 'true') {
+            dynamicIsland.style.width = '120px';
+            dynamicIsland.style.justifyContent = 'flex-end';
+            dynamicIsland.innerHTML = '<div class="island-camera"></div>';
+            dynamicIsland.removeAttribute('data-expanded');
+          }
+        }, 3200);
+      } else {
+        dynamicIsland.style.width = '120px';
+        dynamicIsland.style.justifyContent = 'flex-end';
+        dynamicIsland.innerHTML = '<div class="island-camera"></div>';
+        dynamicIsland.removeAttribute('data-expanded');
+      }
+    });
+  }
+
+  // --- 9. LIVE CLOCK ENGINE ---
   function updateClocks() {
     const now = new Date();
     
@@ -420,6 +488,12 @@
       };
       clock.textContent = now.toLocaleString('en-US', options).replace(/,/g, '');
     });
+
+    // iOS Status Bar Clock (e.g. "9:41" or current time)
+    const iosClock = document.getElementById('ios-clock');
+    if (iosClock) {
+      iosClock.textContent = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: false });
+    }
 
     // Windows 11 Tray Clock & Date
     const winTimeEl = document.querySelector('.live-time-clock');
@@ -438,6 +512,10 @@
   // Initialize
   setOS(localStorage.getItem(OS_STORAGE_KEY) || 'macos');
   setTheme(localStorage.getItem(THEME_STORAGE_KEY) || 'dark');
-  openWindow('window-terminal');
+  
+  // On desktop, auto-open the terminal window; on mobile, start at clean iOS homescreen
+  if (window.innerWidth > 840) {
+    openWindow('window-terminal');
+  }
 
 })();
