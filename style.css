@@ -554,6 +554,21 @@ body.no-aurora {
   transform: scale(0.88);
 }
 
+.app-icon-item.is-disabled,
+.dock-item.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+  filter: grayscale(85%);
+}
+
+.ios-btn-primary.is-disabled,
+.sheet-btn-right.is-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .icon-squircle {
   width: 60px;
   height: 60px;
@@ -644,6 +659,13 @@ body.no-aurora {
 
 .spotlight-bar:active {
   transform: scale(0.96);
+}
+
+.spotlight-bar.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+  filter: grayscale(85%);
 }
 
 .search-icon {

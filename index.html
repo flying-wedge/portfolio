@@ -99,8 +99,8 @@
           <span class="icon-label">Terminal</span>
         </div>
 
-        <!-- App 2: Resume / Vitae -->
-        <div class="app-icon-item" data-launch="app-resume" tabindex="0" role="button" aria-label="Open Resume / CV App">
+        <!-- App 2: Resume / Vitae (Disabled) -->
+        <div class="app-icon-item is-disabled" aria-disabled="true" role="button" aria-label="Resume / CV App (Disabled)">
           <div class="icon-squircle icon-resume">
             <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -114,8 +114,8 @@
         </div>
 
 
-        <!-- App 4: Stack & Skills -->
-        <div class="app-icon-item" data-launch="app-skills" tabindex="0" role="button" aria-label="Open Tech Stack App">
+        <!-- App 4: Stack & Skills (Disabled) -->
+        <div class="app-icon-item is-disabled" aria-disabled="true" role="button" aria-label="Tech Stack App (Disabled)">
           <div class="icon-squircle icon-skills">
             <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
@@ -126,8 +126,8 @@
           <span class="icon-label">Tech Stack</span>
         </div>
 
-        <!-- App 5: Career Experience -->
-        <div class="app-icon-item" data-launch="app-experience" tabindex="0" role="button" aria-label="Open Experience Timeline App">
+        <!-- App 5: Career Experience (Disabled) -->
+        <div class="app-icon-item is-disabled" aria-disabled="true" role="button" aria-label="Experience Timeline App (Disabled)">
           <div class="icon-squircle icon-experience">
             <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
@@ -170,8 +170,8 @@
         </a>
       </section>
 
-      <!-- Spotlight Search Bar Trigger -->
-      <div class="spotlight-bar" id="spotlight-trigger" tabindex="0" role="button" aria-label="Open Search">
+      <!-- Spotlight Search Bar Trigger (Disabled) -->
+      <div class="spotlight-bar is-disabled" id="spotlight-trigger" role="button" aria-disabled="true" aria-label="Search Stack and Experience (Disabled)">
         <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -201,8 +201,8 @@
           </div>
         </div>
 
-        <!-- Dock 3: Resume -->
-        <div class="dock-item" data-launch="app-resume" tabindex="0" role="button" aria-label="Launch Resume App">
+        <!-- Dock 3: Resume (Disabled) -->
+        <div class="dock-item is-disabled" aria-disabled="true" role="button" aria-label="Resume App (Disabled)">
           <div class="dock-squircle dock-resume">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -238,7 +238,6 @@
         <header class="sheet-navbar">
           <button class="sheet-btn-left" data-dismiss aria-label="Close Terminal">Done</button>
           <h2 class="sheet-title" id="title-terminal">Terminal Profile</h2>
-          <button class="sheet-btn-right" data-launch="app-resume" aria-label="Switch to Resume">Resume</button>
         </header>
         
         <div class="sheet-content">
@@ -262,8 +261,7 @@
           </div>
 
           <div class="sheet-action-cta">
-            <button class="ios-btn-primary" data-launch="app-resume">View Curriculum Vitae</button>
-            <a href="mailto:brian.lang@robustcomputing.com" class="ios-btn-secondary">Send Direct Message</a>
+            <a href="mailto:brian.lang@robustcomputing.com" class="ios-btn-primary">Send Direct Message</a>
           </div>
         </div>
       </section>
@@ -473,7 +471,6 @@
         <header class="sheet-navbar">
           <button class="sheet-btn-left" data-dismiss aria-label="Close Career Timeline">Done</button>
           <h2 class="sheet-title" id="title-experience">Career Timeline</h2>
-          <button class="sheet-btn-right" data-launch="app-resume" aria-label="Open Resume">Resume</button>
         </header>
 
         <div class="sheet-content">

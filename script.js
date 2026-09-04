@@ -158,16 +158,9 @@
   const spotlightResults = document.getElementById('spotlight-results');
 
   const searchableItems = [
-    { title: 'Resume / Curriculum Vitae', sub: 'PDF, Work Experience, Education', target: 'app-resume', icon: '📄' },
-    { title: 'Large Scale Transformations & Integrations', sub: 'Enterprise System Modernization, Architecture & Strategy', target: 'app-resume', icon: '🔄' },
-    { title: 'Apache Kafka & Event Fabrics', sub: 'Streaming, Partitioning, Consumer Groups', target: 'app-skills', icon: '⚡' },
-    { title: 'Go (Golang)', sub: 'Concurrency, Microservices, Network Engines', target: 'app-skills', icon: '🔷' },
-    { title: 'Kubernetes & Docker', sub: 'Multi-Region Orchestration, Helm, Envoy', target: 'app-skills', icon: '☸️' },
-    { title: 'AWS & Google Cloud (GCP)', sub: 'VPC Peering, IAM Zero-Trust, Serverless', target: 'app-skills', icon: '☁️' },
-    { title: 'Apex Cloud Systems', sub: 'Staff Technical Architect (2023 - Present)', target: 'app-experience', icon: '💼' },
-    { title: 'DataSphere Analytics', sub: 'Principal Systems Architect (2020 - 2023)', target: 'app-experience', icon: '📊' },
     { title: 'Terminal Console', sub: 'Interactive CLI Profile & Commands', target: 'app-terminal', icon: '💻' },
-    { title: 'Contact Brian Lang', sub: '+1 (785) 550-3966 • brian.lang@robustcomputing.com • Kansas City Area / Remote', target: 'app-contact', icon: '✉️' }
+    { title: 'Contact Brian Lang', sub: '+1 (785) 550-3966 • brian.lang@robustcomputing.com • Kansas City Area / Remote', target: 'app-contact', icon: '✉️' },
+    { title: 'Settings & Appearance', sub: 'Dark / Light Appearance & Dynamic Aurora Customization', target: 'app-settings', icon: '⚙️' }
   ];
 
   function openSpotlight() {
@@ -231,7 +224,9 @@
     });
   }
 
-  if (spotlightTrigger) spotlightTrigger.addEventListener('click', openSpotlight);
+  if (spotlightTrigger && !spotlightTrigger.classList.contains('is-disabled')) {
+    spotlightTrigger.addEventListener('click', openSpotlight);
+  }
   if (spotlightClose) spotlightClose.addEventListener('click', closeSpotlight);
   if (spotlightInput) {
     spotlightInput.addEventListener('input', (e) => renderSpotlightResults(e.target.value));
