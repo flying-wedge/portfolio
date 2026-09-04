@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <radialGradient id="fl-bg" cx="50%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#edf5fc" />
+      <stop offset="50%" stop-color="#dbe8f7" />
+      <stop offset="100%" stop-color="#c3d8f2" />
+    </radialGradient>
+    <linearGradient id="fl-facet1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#78aeed" />
+      <stop offset="100%" stop-color="#3584e4" />
+    </linearGradient>
+    <linearGradient id="fl-facet2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#99c1f1" />
+      <stop offset="100%" stop-color="#4287dd" />
+    </linearGradient>
+    <filter id="fl-shadow">
+      <feDropShadow dx="0" dy="12" stdDeviation="24" flood-color="#1c4e8a" flood-opacity="0.15" />
+    </filter>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#fl-bg)" />
+  
+  <g transform="translate(960, 540)" filter="url(#fl-shadow)">
+    <polygon points="-340,160 -180,-280 80,-160 -80,240" fill="url(#fl-facet1)" opacity="0.88" />
+    <polygon points="-180,-280 240,-220 320,100 80,-160" fill="url(#fl-facet2)" opacity="0.95" />
+    <polygon points="80,-160 320,100 160,260 -80,240" fill="url(#fl-facet1)" opacity="0.78" />
+  </g>
+</svg>

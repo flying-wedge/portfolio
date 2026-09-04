@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en" data-os="macos" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brian Lang | Technical Software Architect</title>
+  <meta name="description" content="Brian Lang - Technical Software Architect Portfolio (macOS, Windows 11 & Fedora GNOME)">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cantarell:wght@400;600;700&family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="desktop-body">
+
+  <!-- ================= TOP PANEL 1: macOS Menu Bar ================= -->
+  <header class="macos-menubar os-element-macos">
+    <div class="menubar-left">
+      <div class="apple-menu-trigger" id="apple-menu-btn" title="About Brian Lang"></div>
+      <span class="menubar-app-title">Profile</span>
+      
+      <!-- Top Navigation Links for macOS -->
+      <button class="menubar-nav-btn active-nav" data-target="window-terminal">About</button>
+      <button class="menubar-nav-btn" data-target="window-projects">Projects</button>
+      <button class="menubar-nav-btn" data-target="window-skills">Stack</button>
+      <button class="menubar-nav-btn" data-target="window-experience">Experience</button>
+      <button class="menubar-nav-btn" data-target="window-resume">Resume / CV</button>
+    </div>
+
+    <div class="menubar-right">
+      <!-- OS Switcher Pill (macOS) -->
+      <button class="menubar-pill-btn os-switcher-btn" id="os-cycle-btn-macos" title="Switch Operating System (macOS → Windows 11 → Fedora GNOME)">
+        <span class="os-icon">🪟</span>
+        <span class="os-label">Windows 11</span>
+      </button>
+
+      <!-- Theme Switcher Pill -->
+      <button class="menubar-pill-btn theme-switcher-btn" id="theme-toggle-macos" title="Toggle Light / Dark Mode">
+        <span class="theme-icon">🌙</span>
+        <span class="theme-label">Dark</span>
+      </button>
+
+      <span class="menubar-time live-clock">Thu Sep 3 6:18 PM</span>
+    </div>
+  </header>
+
+  <!-- ================= TOP PANEL 2: Fedora GNOME Top Bar ================= -->
+  <header class="gnome-topbar os-element-fedora">
+    <div class="gnome-left">
+      <button class="gnome-activities-btn" id="fedora-activities-trigger" title="GNOME Activities Overview">
+        <span>Activities</span>
+      </button>
+      <div class="gnome-nav-pills">
+        <button class="gnome-nav-pill" data-target="window-terminal">About</button>
+        <button class="gnome-nav-pill" data-target="window-projects">Files</button>
+        <button class="gnome-nav-pill" data-target="window-skills">Stack</button>
+        <button class="gnome-nav-pill" data-target="window-experience">System Monitor</button>
+        <button class="gnome-nav-pill" data-target="window-resume">Document</button>
+      </div>
+    </div>
+
+    <!-- Fedora GNOME Center Date & Time -->
+    <div class="gnome-center">
+      <button class="gnome-clock-btn live-clock" title="Calendar & Notifications">Sep 3 6:18 PM</button>
+    </div>
+
+    <div class="gnome-right">
+      <!-- OS Switcher Pill (Fedora) -->
+      <button class="gnome-pill-btn" id="os-cycle-btn-fedora" title="Switch Operating System (Fedora → macOS → Windows 11)">
+        <span></span> macOS
+      </button>
+
+      <!-- Theme Switcher (Fedora) -->
+      <button class="gnome-pill-btn" id="theme-toggle-fedora" title="Toggle Dark / Light Mode">
+        <span class="theme-icon">🌙</span>
+      </button>
+
+      <!-- GNOME Quick Settings Pill Group -->
+      <div class="gnome-quick-settings-pill" title="Network, Volume, Power">
+        <span class="gnome-icon">📶</span>
+        <span class="gnome-icon">🔊</span>
+        <span class="gnome-icon">🔋</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= DESKTOP CANVAS ================= -->
+  <div class="desktop-screen" id="desktop-screen">
+
+    <!-- Desktop Icons (macOS & Windows 11 only, GNOME defaults to clean desktop) -->
+    <div class="desktop-icons-area os-element-macos os-element-win">
+      
+      <div class="desktop-icon" data-open="window-resume" title="Click to view Resume/Vitae">
+        <div class="icon-graphic resume-icon-file">
+          <span class="icon-ext">PDF</span>
+          <span class="icon-symbol">📄</span>
+        </div>
+        <span class="icon-label">Brian_Lang_Resume.pdf</span>
+      </div>
+
+      <div class="desktop-icon" data-open="window-projects" title="Click to view Projects">
+        <div class="icon-graphic folder-icon">
+          <span class="folder-front">📁</span>
+        </div>
+        <span class="icon-label">Architecture Projects</span>
+      </div>
+
+      <div class="desktop-icon" data-open="window-skills" title="Click to view Technical Stack">
+        <div class="icon-graphic harddrive-icon">
+          <span>💾</span>
+        </div>
+        <span class="icon-label"><span class="os-text-macos">Macintosh HD</span><span class="os-text-win">This PC — C:\</span></span>
+      </div>
+
+      <div class="desktop-icon" data-open="window-experience" title="Click to view Career History">
+        <div class="icon-graphic app-icon activity-icon">
+          <span>📈</span>
+        </div>
+        <span class="icon-label">Career Timeline</span>
+      </div>
+
+      <div class="desktop-icon" data-open="window-terminal" title="Click to view Bio/Profile">
+        <div class="icon-graphic app-icon terminal-app-icon">
+          <span class="os-text-macos">&gt;_</span>
+          <span class="os-text-win">PS</span>
+        </div>
+        <span class="icon-label"><span class="os-text-macos">Terminal</span><span class="os-text-win">PowerShell</span></span>
+      </div>
+
+    </div>
+
+    <!-- ================= WINDOW 1: Terminal / Bio ================= -->
+    <div class="system-window active" id="window-terminal" style="top: 50px; left: 80px; width: 680px; z-index: 10;">
+      <div class="window-titlebar" data-drag="window-terminal">
+        
+        <!-- macOS Traffic Lights (Left) -->
+        <div class="traffic-lights os-element-macos">
+          <button class="t-btn t-close" data-window="window-terminal" title="Close"></button>
+          <button class="t-btn t-min" data-window="window-terminal" title="Minimize"></button>
+          <button class="t-btn t-max" data-window="window-terminal" title="Zoom"></button>
+        </div>
+
+        <div class="titlebar-title">
+          <span class="os-text-macos">brian@workstation: ~ (zsh) — 80×24</span>
+          <span class="os-text-win">Windows PowerShell — Brian Lang Profile</span>
+          <span class="os-text-fedora">brian@fedora: ~ — GNOME Terminal (bash)</span>
+        </div>
+
+        <!-- Windows 11 Window Controls (Right) -->
+        <div class="win-window-controls os-element-win">
+          <button class="win-btn win-min" data-window="window-terminal" title="Minimize">&#8211;</button>
+          <button class="win-btn win-max" data-window="window-terminal" title="Maximize">&#9633;</button>
+          <button class="win-btn win-close" data-window="window-terminal" title="Close">&#10005;</button>
+        </div>
+
+        <!-- Fedora GNOME Window Controls (Right) -->
+        <div class="gnome-window-controls os-element-fedora">
+          <button class="gnome-btn gnome-min" data-window="window-terminal" title="Minimize">&#8211;</button>
+          <button class="gnome-btn gnome-max" data-window="window-terminal" title="Maximize">&#9633;</button>
+          <button class="gnome-btn gnome-close" data-window="window-terminal" title="Close">&#10005;</button>
+        </div>
+      </div>
+
+      <div class="window-content terminal-window-content">
+        <div class="terminal-banner">
+          <span class="os-text-macos">Last login: Today on ttys001. Ready for commands.</span>
+          <span class="os-text-win">Windows PowerShell [Version 10.0.22631.3007] &copy; Microsoft Corporation.</span>
+          <span class="os-text-fedora">Fedora Linux 40 (Workstation Edition) — Linux 6.8.9-300.fc40.x86_64</span>
+        </div>
+        <div class="cmd-line">
+          <span class="os-text-macos"><span class="prompt-host">brian@macbook-pro</span>:<span class="prompt-dir">~</span>$ whoami --verbose</span>
+          <span class="os-text-win"><span class="prompt-ps">PS C:\Users\BrianLang&gt;</span> Get-EngineerProfile -Verbose</span>
+          <span class="os-text-fedora"><span class="prompt-fedora-user">[brian@fedora ~]$</span> cat /etc/architect-profile</span>
+        </div>
+        
+        <div class="terminal-profile-card">
+          <div class="terminal-avatar">
+            <div class="avatar-circle">BL</div>
+          </div>
+          <div class="terminal-info">
+            <div class="terminal-name-row">
+              <h2>Brian Lang</h2>
+              <span class="arch-badge">Technical Software Architect</span>
+            </div>
+            <p class="role-summary">
+              Designing resilient multi-region distributed systems, cloud-native platforms, and high-throughput data topologies.
+            </p>
+            <div class="contact-grid">
+              <div><span class="meta-label">Email:</span> <a href="mailto:brian.lang@robustcomputing.com">brian.lang@robustcomputing.com</a></div>
+              <div><span class="meta-label">Location:</span> San Francisco Bay Area / Distributed</div>
+              <div><span class="meta-label">Specialization:</span> Distributed Architecture • Event Streaming • High-Availability Systems</div>
+            </div>
+            <div class="terminal-quick-actions">
+              <button class="os-button primary nav-action-btn" data-target="window-resume">View Resume / CV</button>
+              <button class="os-button nav-action-btn" data-target="window-projects">Browse Projects</button>
+              <button class="os-button nav-action-btn" data-target="window-skills">Technical Stack</button>
+              <a href="mailto:brian.lang@robustcomputing.com" class="os-button highlight">Get in Touch</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================= WINDOW 2: Resume / Vitae ================= -->
+    <div class="system-window" id="window-resume" style="top: 70px; left: 160px; width: 780px; z-index: 12;">
+      <div class="window-titlebar" data-drag="window-resume">
+        
+        <!-- macOS Traffic Lights (Left) -->
+        <div class="traffic-lights os-element-macos">
+          <button class="t-btn t-close" data-window="window-resume" title="Close"></button>
+          <button class="t-btn t-min" data-window="window-resume" title="Minimize"></button>
+          <button class="t-btn t-max" data-window="window-resume" title="Zoom"></button>
+        </div>
+
+        <div class="titlebar-title">
+          <span class="os-text-macos">Preview — Brian_Lang_Resume.pdf</span>
+          <span class="os-text-win">Adobe Acrobat / Edge — Brian_Lang_Resume.pdf</span>
+          <span class="os-text-fedora">Evince (Document Viewer) — Brian_Lang_Resume.pdf</span>
+        </div>
+
+        <div class="window-actions os-element-macos os-element-fedora">
+          <button class="titlebar-tool" onclick="window.print()" title="Print / Export to PDF">🖨️ Print</button>
+          <a href="assets/resume-placeholder.html" target="_blank" class="titlebar-tool" title="Open in new tab">↗ New Tab</a>
+        </div>
+
+        <!-- Windows 11 Window Controls (Right) -->
+        <div class="win-window-controls os-element-win">
+          <button class="titlebar-tool win-tool-print" onclick="window.print()" title="Print">🖨️</button>
+          <button class="win-btn win-min" data-window="window-resume" title="Minimize">&#8211;</button>
+          <button class="win-btn win-max" data-window="window-resume" title="Maximize">&#9633;</button>
+          <button class="win-btn win-close" data-window="window-resume" title="Close">&#10005;</button>
+        </div>
+
+        <!-- Fedora GNOME Controls (Right) -->
+        <div class="gnome-window-controls os-element-fedora">
+          <button class="gnome-btn gnome-min" data-window="window-resume" title="Minimize">&#8211;</button>
+          <button class="gnome-btn gnome-max" data-window="window-resume" title="Maximize">&#9633;</button>
+          <button class="gnome-btn gnome-close" data-window="window-resume" title="Close">&#10005;</button>
+        </div>
+      </div>
+
+      <div class="window-content resume-window-content">
+        <div class="resume-top-toolbar">
+          <div class="doc-badge">
+            <span class="doc-icon">📄</span>
+            <div>
+              <strong>Brian_Lang_Resume_2026.pdf</strong>
+              <div class="doc-meta">Curriculum Vitae • PDF Document • Updated Sep 2026</div>
+            </div>
+          </div>
+          <a href="assets/resume-placeholder.html" download="Brian_Lang_Resume.html" class="os-button primary download-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Download PDF / CV
+          </a>
+        </div>
+
+        <div class="paper-sheet">
+          <header class="paper-header">
+            <div>
+              <h1 class="paper-name">BRIAN LANG</h1>
+              <div class="paper-subtitle">Technical Software Architect</div>
+            </div>
+            <div class="paper-contact">
+              <div>Email: brian.lang@robustcomputing.com</div>
+              <div>Web: brianlang.dev</div>
+              <div>Location: San Francisco, CA / Remote</div>
+              <div>GitHub: github.com/brianlang</div>
+            </div>
+          </header>
+
+          <hr class="paper-divider">
+
+          <section class="paper-section">
+            <h3 class="paper-heading">EXECUTIVE SUMMARY</h3>
+            <p>
+              Technical Software Architect with comprehensive leadership experience architecting multi-region distributed backbones,
+              fault-tolerant event platforms, and cloud infrastructure. Proven history driving cross-team system design, slashing latency,
+              and aligning complex technical systems with business scale.
+            </p>
+          </section>
+
+          <section class="paper-section">
+            <h3 class="paper-heading">SELECTED ARCHITECTURAL EXPERIENCE</h3>
+            
+            <div class="paper-experience-block">
+              <div class="paper-exp-head">
+                <strong>Apex Cloud Systems — Staff Technical Architect</strong>
+                <span>2023 – Present</span>
+              </div>
+              <ul>
+                <li>Spearheaded distributed streaming architecture ingesting 15M+ events/day with 99.99% availability SLAs.</li>
+                <li>Designed autonomous multi-region failover and consensus pipelines across AWS and GCP.</li>
+                <li>Reduced global compute and network egress overhead by 30% through targeted architectural refactoring.</li>
+              </ul>
+            </div>
+
+            <div class="paper-experience-block">
+              <div class="paper-exp-head">
+                <strong>DataSphere Analytics — Principal Systems Architect</strong>
+                <span>2020 – 2023</span>
+              </div>
+              <ul>
+                <li>Built enterprise-scale telemetry and analytical workbench serving 12,000+ engineers.</li>
+                <li>Designed unified GraphQL gateway and distributed caching fabric with Redis cluster topology.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="paper-section">
+            <h3 class="paper-heading">EDUCATION & CERTIFICATIONS</h3>
+            <div class="paper-exp-head">
+              <strong>B.S. in Computer Science — University of California, Berkeley</strong>
+              <span>Magna Cum Laude</span>
+            </div>
+            <div>• AWS Certified Solutions Architect – Professional (SAP-C02)</div>
+            <div>• Certified Kubernetes Administrator (CKA)</div>
+          </section>
+
+          <section class="paper-section">
+            <h3 class="paper-heading">CORE CAPABILITIES</h3>
+            <p><strong>Architecture:</strong> Distributed Systems, Event-Driven Topologies, Microservices, Zero-Trust Security, Data Ingestion</p>
+            <p><strong>Stack:</strong> Go, TypeScript, Python, Rust, Kafka, Kubernetes, Docker, Terraform, Redis, PostgreSQL, AWS, GCP</p>
+          </section>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================= WINDOW 3: Projects (Finder / File Explorer / Nautilus) ================= -->
+    <div class="system-window" id="window-projects" style="top: 100px; left: 120px; width: 750px; z-index: 11;">
+      <div class="window-titlebar" data-drag="window-projects">
+        
+        <!-- macOS Traffic Lights (Left) -->
+        <div class="traffic-lights os-element-macos">
+          <button class="t-btn t-close" data-window="window-projects" title="Close"></button>
+          <button class="t-btn t-min" data-window="window-projects" title="Minimize"></button>
+          <button class="t-btn t-max" data-window="window-projects" title="Zoom"></button>
+        </div>
+
+        <div class="titlebar-title">
+          <span class="os-text-macos">Finder — /Projects/Architecture</span>
+          <span class="os-text-win">File Explorer — C:\Users\BrianLang\Projects</span>
+          <span class="os-text-fedora">Files (Nautilus) — ~/Projects</span>
+        </div>
+
+        <div class="window-actions os-element-macos os-element-fedora">
+          <span class="finder-view-mode">4 items</span>
+        </div>
+
+        <!-- Windows 11 Window Controls (Right) -->
+        <div class="win-window-controls os-element-win">
+          <button class="win-btn win-min" data-window="window-projects" title="Minimize">&#8211;</button>
+          <button class="win-btn win-max" data-window="window-projects" title="Maximize">&#9633;</button>
+          <button class="win-btn win-close" data-window="window-projects" title="Close">&#10005;</button>
+        </div>
+
+        <!-- Fedora GNOME Controls (Right) -->
+        <div class="gnome-window-controls os-element-fedora">
+          <button class="gnome-btn gnome-min" data-window="window-projects" title="Minimize">&#8211;</button>
+          <button class="gnome-btn gnome-max" data-window="window-projects" title="Maximize">&#9633;</button>
+          <button class="gnome-btn gnome-close" data-window="window-projects" title="Close">&#10005;</button>
+        </div>
+      </div>
+
+      <div class="window-content finder-window-content">
+        <div class="finder-sidebar">
+          <div class="sidebar-group">
+            <span class="sidebar-title"><span class="os-text-macos">Favorites</span><span class="os-text-win">Quick Access</span><span class="os-text-fedora">Places</span></span>
+            <div class="sidebar-item active">📁 Architecture</div>
+            <div class="sidebar-item nav-action-btn" data-target="window-skills">💾 Tech Stack</div>
+            <div class="sidebar-item nav-action-btn" data-target="window-experience">📈 Experience</div>
+            <div class="sidebar-item nav-action-btn" data-target="window-resume">📄 Resume.pdf</div>
+          </div>
+          <div class="sidebar-group">
+            <span class="sidebar-title">Tags</span>
+            <div class="sidebar-item"><span class="color-dot blue"></span> Distributed</div>
+            <div class="sidebar-item"><span class="color-dot green"></span> Security</div>
+            <div class="sidebar-item"><span class="color-dot orange"></span> Telemetry</div>
+          </div>
+        </div>
+
+        <div class="finder-main">
+          <div class="project-cards-grid">
+            <div class="p-card">
+              <div class="p-card-top">
+                <span class="p-icon">⚡</span>
+                <span class="p-badge blue">Distributed Engine</span>
+              </div>
+              <h3 class="p-title">HyperStream: Ingestion Fabric</h3>
+              <p class="p-desc">High-throughput distributed event streaming engine processing 250k+ msgs/sec with sub-5ms latencies.</p>
+              <div class="p-tags"><span>Go</span><span>Kafka</span><span>ClickHouse</span><span>Docker</span></div>
+              <div class="p-links"><a href="https://github.com/brianlang" target="_blank">GitHub Repo &rarr;</a></div>
+            </div>
+
+            <div class="p-card">
+              <div class="p-card-top">
+                <span class="p-icon">🛡️</span>
+                <span class="p-badge purple">Zero-Trust</span>
+              </div>
+              <h3 class="p-title">Sentinel Identity Gateway</h3>
+              <p class="p-desc">Reverse-proxy access gateway providing mTLS termination, OIDC claims enforcement, and ABAC policies.</p>
+              <div class="p-tags"><span>Rust</span><span>OAuth 2.1</span><span>Redis</span><span>K8s</span></div>
+              <div class="p-links"><a href="https://github.com/brianlang" target="_blank">Architecture Spec &rarr;</a></div>
+            </div>
+
+            <div class="p-card">
+              <div class="p-card-top">
+                <span class="p-icon">📊</span>
+                <span class="p-badge green">Observability</span>
+              </div>
+              <h3 class="p-title">CloudPulse Telemetry Hub</h3>
+              <p class="p-desc">Multi-cluster Kubernetes tracing visualizer and metrics analyzer with automatic anomaly threshold alerts.</p>
+              <div class="p-tags"><span>TypeScript</span><span>React</span><span>OpenTelemetry</span></div>
+              <div class="p-links"><a href="https://github.com/brianlang" target="_blank">View Live Demo &rarr;</a></div>
+            </div>
+
+            <div class="p-card">
+              <div class="p-card-top">
+                <span class="p-icon">⚙️</span>
+                <span class="p-badge orange">Dev Tools</span>
+              </div>
+              <h3 class="p-title">KubeForge Orchestrator CLI</h3>
+              <p class="p-desc">Generates production-hardened Kubernetes manifests, ingress specs, and Helm charts from simple declarations.</p>
+              <div class="p-tags"><span>Python</span><span>Click</span><span>YAML</span><span>PyPI</span></div>
+              <div class="p-links"><a href="https://github.com/brianlang" target="_blank">Source Code &rarr;</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= WINDOW 4: Technical Stack ================= -->
+    <div class="system-window" id="window-skills" style="top: 130px; left: 180px; width: 660px; z-index: 9;">
+      <div class="window-titlebar" data-drag="window-skills">
+        <!-- macOS Traffic Lights (Left) -->
+        <div class="traffic-lights os-element-macos">
+          <button class="t-btn t-close" data-window="window-skills" title="Close"></button>
+          <button class="t-btn t-min" data-window="window-skills" title="Minimize"></button>
+          <button class="t-btn t-max" data-window="window-skills" title="Zoom"></button>
+        </div>
+
+        <div class="titlebar-title">
+          <span class="os-text-macos">System Information — Technical Competencies</span>
+          <span class="os-text-win">Settings &gt; System &gt; Architecture & Tech Stack</span>
+          <span class="os-text-fedora">GNOME Control Center — Technical Capabilities</span>
+        </div>
+
+        <!-- Windows 11 Window Controls (Right) -->
+        <div class="win-window-controls os-element-win">
+          <button class="win-btn win-min" data-window="window-skills" title="Minimize">&#8211;</button>
+          <button class="win-btn win-max" data-window="window-skills" title="Maximize">&#9633;</button>
+          <button class="win-btn win-close" data-window="window-skills" title="Close">&#10005;</button>
+        </div>
+
+        <!-- Fedora GNOME Controls (Right) -->
+        <div class="gnome-window-controls os-element-fedora">
+          <button class="gnome-btn gnome-min" data-window="window-skills" title="Minimize">&#8211;</button>
+          <button class="gnome-btn gnome-max" data-window="window-skills" title="Maximize">&#9633;</button>
+          <button class="gnome-btn gnome-close" data-window="window-skills" title="Close">&#10005;</button>
+        </div>
+      </div>
+
+      <div class="window-content skills-window-content">
+        <div class="stack-grid">
+          <div class="stack-card">
+            <h4><span class="cat-icon">💻</span> Languages</h4>
+            <div class="pill-group">
+              <span>Go (Golang)</span><span>TypeScript</span><span>Python</span><span>Rust</span><span>SQL</span><span>Bash / Zsh / PowerShell</span>
+            </div>
+          </div>
+          <div class="stack-card">
+            <h4><span class="cat-icon">🏛️</span> Architecture & Data</h4>
+            <div class="pill-group">
+              <span>Distributed Systems</span><span>Event-Driven</span><span>Microservices</span><span>Kafka</span><span>Redis</span><span>PostgreSQL</span>
+            </div>
+          </div>
+          <div class="stack-card">
+            <h4><span class="cat-icon">☁️</span> Cloud & Platforms</h4>
+            <div class="pill-group">
+              <span>AWS</span><span>Google Cloud (GCP)</span><span>Docker</span><span>Kubernetes</span><span>Terraform</span><span>CI/CD Pipelines</span>
+            </div>
+          </div>
+          <div class="stack-card">
+            <h4><span class="cat-icon">🎨</span> Frontend & Interfaces</h4>
+            <div class="pill-group">
+              <span>React & Next.js</span><span>WebSockets</span><span>Design Systems</span><span>Accessibility (a11y)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= WINDOW 5: Experience Timeline ================= -->
+    <div class="system-window" id="window-experience" style="top: 150px; left: 210px; width: 680px; z-index: 8;">
+      <div class="window-titlebar" data-drag="window-experience">
+        <!-- macOS Traffic Lights (Left) -->
+        <div class="traffic-lights os-element-macos">
+          <button class="t-btn t-close" data-window="window-experience" title="Close"></button>
+          <button class="t-btn t-min" data-window="window-experience" title="Minimize"></button>
+          <button class="t-btn t-max" data-window="window-experience" title="Zoom"></button>
+        </div>
+
+        <div class="titlebar-title">
+          <span class="os-text-macos">Activity Monitor — Career History</span>
+          <span class="os-text-win">Task Manager — Career History & Impact</span>
+          <span class="os-text-fedora">GNOME System Monitor — Career Progression</span>
+        </div>
+
+        <!-- Windows 11 Window Controls (Right) -->
+        <div class="win-window-controls os-element-win">
+          <button class="win-btn win-min" data-window="window-experience" title="Minimize">&#8211;</button>
+          <button class="win-btn win-max" data-window="window-experience" title="Maximize">&#9633;</button>
+          <button class="win-btn win-close" data-window="window-experience" title="Close">&#10005;</button>
+        </div>
+
+        <!-- Fedora GNOME Controls (Right) -->
+        <div class="gnome-window-controls os-element-fedora">
+          <button class="gnome-btn gnome-min" data-window="window-experience" title="Minimize">&#8211;</button>
+          <button class="gnome-btn gnome-max" data-window="window-experience" title="Maximize">&#9633;</button>
+          <button class="gnome-btn gnome-close" data-window="window-experience" title="Close">&#10005;</button>
+        </div>
+      </div>
+
+      <div class="window-content experience-window-content">
+        <div class="desktop-timeline">
+          <div class="timeline-row">
+            <div class="timeline-dot"></div>
+            <div class="timeline-details">
+              <div class="t-head">
+                <span class="t-role">Staff Technical Architect</span>
+                <span class="t-co">Apex Cloud Systems</span>
+                <span class="t-years">2023 — Present</span>
+              </div>
+              <p class="t-text">Directed multi-region ingestion architecture scaling to 15M+ operations daily. Mentored 8 senior engineers and reduced p99 query latency by 38%.</p>
+              <div class="t-chips"><span>Go</span><span>Kafka</span><span>AWS</span><span>Terraform</span></div>
+            </div>
+          </div>
+
+          <div class="timeline-row">
+            <div class="timeline-dot"></div>
+            <div class="timeline-details">
+              <div class="t-head">
+                <span class="t-role">Principal Systems Architect</span>
+                <span class="t-co">DataSphere Analytics</span>
+                <span class="t-years">2020 — 2023</span>
+              </div>
+              <p class="t-text">Architected distributed analytics platforms and real-time visualization systems utilized by 12,000+ enterprise analysts.</p>
+              <div class="t-chips"><span>TypeScript</span><span>React</span><span>GraphQL</span><span>PostgreSQL</span></div>
+            </div>
+          </div>
+
+          <div class="timeline-row">
+            <div class="timeline-dot"></div>
+            <div class="timeline-details">
+              <div class="t-head">
+                <span class="t-role">Software Engineer</span>
+                <span class="t-co">Vanguard Tech Labs</span>
+                <span class="t-years">2018 — 2020</span>
+              </div>
+              <p class="t-text">Implemented core REST and gRPC services, automated CI/CD releases, and established 92% automated code coverage benchmarks.</p>
+              <div class="t-chips"><span>Python</span><span>Django</span><span>Docker</span><span>Redis</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= WINDOWS 11 START MENU ================= -->
+    <div class="win-start-menu os-element-win" id="win-start-menu">
+      <div class="win-start-search">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Type here to search apps, skills, files..." readonly class="nav-action-btn" data-target="window-terminal">
+      </div>
+
+      <div class="win-start-pinned">
+        <div class="start-section-title">Pinned</div>
+        <div class="start-apps-grid">
+          <div class="start-app-item nav-action-btn" data-target="window-terminal">
+            <div class="start-app-icon ps-bg">PS</div>
+            <span>PowerShell</span>
+          </div>
+          <div class="start-app-item nav-action-btn" data-target="window-resume">
+            <div class="start-app-icon pdf-bg">📄</div>
+            <span>Resume / CV</span>
+          </div>
+          <div class="start-app-item nav-action-btn" data-target="window-projects">
+            <div class="start-app-icon folder-bg">📁</div>
+            <span>Projects</span>
+          </div>
+          <div class="start-app-item nav-action-btn" data-target="window-skills">
+            <div class="start-app-icon sys-bg">⚙️</div>
+            <span>Skills</span>
+          </div>
+          <div class="start-app-item nav-action-btn" data-target="window-experience">
+            <div class="start-app-icon act-bg">📈</div>
+            <span>Timeline</span>
+          </div>
+          <a href="mailto:brian.lang@robustcomputing.com" class="start-app-item">
+            <div class="start-app-icon mail-bg">✉️</div>
+            <span>Outlook</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="win-start-footer">
+        <div class="user-profile-badge">
+          <div class="win-user-avatar">BL</div>
+          <div class="win-user-info">
+            <strong>Brian Lang</strong>
+            <span>Technical Architect</span>
+          </div>
+        </div>
+        <div class="win-footer-actions">
+          <button class="win-theme-pill" id="theme-toggle-win" title="Toggle Light / Dark Mode">
+            <span class="theme-icon">🌙</span>
+            <span class="theme-label">Dark</span>
+          </button>
+          <button class="win-os-pill" id="os-cycle-btn-win" title="Switch Operating System">
+            <span class="os-cycle-icon">🔵</span> Fedora
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= FEDORA GNOME OVERVIEW LAUNCHER ================= -->
+    <div class="gnome-overview os-element-fedora" id="fedora-overview">
+      <div class="gnome-search-box">
+        <span class="gnome-search-icon">🔍</span>
+        <input type="text" placeholder="Type to search..." readonly class="nav-action-btn" data-target="window-terminal">
+      </div>
+      <div class="gnome-app-grid">
+        <div class="gnome-app-item nav-action-btn" data-target="window-terminal">
+          <div class="gnome-app-icon gnome-terminal-icon">&gt;_</div>
+          <span>Terminal</span>
+        </div>
+        <div class="gnome-app-item nav-action-btn" data-target="window-resume">
+          <div class="gnome-app-icon gnome-evince-icon">📄</div>
+          <span>Document Viewer</span>
+        </div>
+        <div class="gnome-app-item nav-action-btn" data-target="window-projects">
+          <div class="gnome-app-icon gnome-nautilus-icon">📁</div>
+          <span>Files</span>
+        </div>
+        <div class="gnome-app-item nav-action-btn" data-target="window-skills">
+          <div class="gnome-app-icon gnome-settings-icon">⚙️</div>
+          <span>Settings</span>
+        </div>
+        <div class="gnome-app-item nav-action-btn" data-target="window-experience">
+          <div class="gnome-app-icon gnome-monitor-icon">📈</div>
+          <span>System Monitor</span>
+        </div>
+        <a href="mailto:brian.lang@robustcomputing.com" class="gnome-app-item">
+          <div class="gnome-app-icon gnome-mail-icon">✉️</div>
+          <span>Geary Mail</span>
+        </a>
+      </div>
+    </div>
+
+  </div> <!-- /desktop-screen -->
+
+  <!-- ================= macOS DOCK (os-element-macos) ================= -->
+  <nav class="macos-dock os-element-macos" aria-label="macOS Dock">
+    <div class="dock-app" data-target="window-terminal" data-tooltip="Terminal (About Me)">
+      <div class="dock-app-icon dark-dock-icon"><span>&gt;_</span></div>
+      <div class="dock-dot"></div>
+    </div>
+    <div class="dock-app" data-target="window-resume" data-tooltip="Resume / CV (Preview)">
+      <div class="dock-app-icon preview-dock-icon"><span>📄</span></div>
+      <div class="dock-dot"></div>
+    </div>
+    <div class="dock-app" data-target="window-projects" data-tooltip="Projects (Finder)">
+      <div class="dock-app-icon finder-dock-icon"><span>📁</span></div>
+      <div class="dock-dot"></div>
+    </div>
+    <div class="dock-app" data-target="window-skills" data-tooltip="Technical Stack">
+      <div class="dock-app-icon stack-dock-icon"><span>💾</span></div>
+      <div class="dock-dot"></div>
+    </div>
+    <div class="dock-app" data-target="window-experience" data-tooltip="Experience Monitor">
+      <div class="dock-app-icon activity-dock-icon"><span>📈</span></div>
+      <div class="dock-dot"></div>
+    </div>
+    <div class="dock-divider"></div>
+    <div class="dock-app" id="dock-theme-btn" data-tooltip="Switch Theme (Dark/Light)">
+      <div class="dock-app-icon settings-dock-icon"><span class="theme-icon">🌙</span></div>
+    </div>
+    <a href="mailto:brian.lang@robustcomputing.com" class="dock-app" data-tooltip="Email Brian Lang">
+      <div class="dock-app-icon mail-dock-icon"><span>✉️</span></div>
+    </a>
+  </nav>
+
+  <!-- ================= FEDORA GNOME DASH DOCK (os-element-fedora) ================= -->
+  <nav class="gnome-dash-dock os-element-fedora" aria-label="Fedora GNOME Dash">
+    <div class="dash-item" data-target="window-terminal" data-tooltip="GNOME Terminal">
+      <div class="dash-icon fedora-term-icon"><span>&gt;_</span></div>
+      <div class="dash-dot"></div>
+    </div>
+    <div class="dash-item" data-target="window-resume" data-tooltip="Evince (Resume)">
+      <div class="dash-icon fedora-doc-icon"><span>📄</span></div>
+      <div class="dash-dot"></div>
+    </div>
+    <div class="dash-item" data-target="window-projects" data-tooltip="Nautilus (Projects)">
+      <div class="dash-icon fedora-files-icon"><span>📁</span></div>
+      <div class="dash-dot"></div>
+    </div>
+    <div class="dash-item" data-target="window-skills" data-tooltip="Control Center (Stack)">
+      <div class="dash-icon fedora-settings-icon"><span>⚙️</span></div>
+      <div class="dash-dot"></div>
+    </div>
+    <div class="dash-item" data-target="window-experience" data-tooltip="System Monitor">
+      <div class="dash-icon fedora-monitor-icon"><span>📈</span></div>
+      <div class="dash-dot"></div>
+    </div>
+    <div class="dash-separator"></div>
+    <div class="dash-item" id="dash-theme-btn" data-tooltip="Toggle Dark / Light Theme">
+      <div class="dash-icon fedora-theme-icon"><span class="theme-icon">🌙</span></div>
+    </div>
+    <a href="mailto:brian.lang@robustcomputing.com" class="dash-item" data-tooltip="Mail Client">
+      <div class="dash-icon fedora-mail-icon"><span>✉️</span></div>
+    </a>
+  </nav>
+
+  <!-- ================= WINDOWS 11 TASKBAR (os-element-win) ================= -->
+  <footer class="win-taskbar os-element-win" aria-label="Windows 11 Taskbar">
+    
+    <!-- Weather Widget (Left) -->
+    <div class="win-taskbar-left">
+      <div class="win-weather-widget" title="Current Weather & Conditions">
+        <span class="weather-icon">⛅</span>
+        <div class="weather-meta">
+          <span class="weather-temp">68°F</span>
+          <span class="weather-cond">Sunny</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Centered Taskbar App Icons -->
+    <div class="win-taskbar-center">
+      <!-- Start Button -->
+      <button class="win-taskbar-icon win-start-btn" id="win-start-trigger" title="Start">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.951-1.801"/>
+        </svg>
+      </button>
+
+      <!-- Task View -->
+      <div class="win-taskbar-icon" title="Task View" id="win-taskview-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M4 4h7v7H4V4zm9 0h7v7h-7V4zm-9 9h7v7H4v-7zm9 0h7v7h-7v-7z"/>
+        </svg>
+      </div>
+
+      <div class="win-taskbar-icon" data-target="window-terminal" title="PowerShell (About)">
+        <div class="win-app-glyph ps-glyph">PS</div>
+        <div class="win-task-dot"></div>
+      </div>
+
+      <div class="win-taskbar-icon" data-target="window-resume" title="Resume.pdf">
+        <div class="win-app-glyph">📄</div>
+        <div class="win-task-dot"></div>
+      </div>
+
+      <div class="win-taskbar-icon" data-target="window-projects" title="File Explorer (Projects)">
+        <div class="win-app-glyph">📁</div>
+        <div class="win-task-dot"></div>
+      </div>
+
+      <div class="win-taskbar-icon" data-target="window-skills" title="Settings (Stack)">
+        <div class="win-app-glyph">⚙️</div>
+        <div class="win-task-dot"></div>
+      </div>
+
+      <div class="win-taskbar-icon" data-target="window-experience" title="Task Manager (Career)">
+        <div class="win-app-glyph">📈</div>
+        <div class="win-task-dot"></div>
+      </div>
+    </div>
+
+    <!-- System Tray (Right) -->
+    <div class="win-taskbar-right">
+      <!-- OS Switcher Button for Win 11 -->
+      <button class="win-tray-btn" id="os-cycle-btn-win-tray" title="Switch Operating System">
+        <span class="tray-pill">🔵 Fedora</span>
+      </button>
+
+      <!-- Theme Switcher Button for Win 11 -->
+      <button class="win-tray-btn" id="theme-toggle-win-tray" title="Toggle Dark/Light Mode">
+        <span class="theme-icon">🌙</span>
+      </button>
+
+      <!-- Quick Settings Group -->
+      <div class="win-tray-group" title="Internet, Sound, Battery">
+        <span class="tray-icon">📶</span>
+        <span class="tray-icon">🔊</span>
+        <span class="tray-icon">🔋</span>
+      </div>
+
+      <!-- Date & Time Group -->
+      <div class="win-time-group" title="Notifications & Calendar">
+        <div class="win-time-clock live-time-clock">6:18 PM</div>
+        <div class="win-time-date live-date">9/3/2026</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

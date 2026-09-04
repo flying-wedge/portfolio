@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <radialGradient id="f-bg" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#182333" />
+      <stop offset="50%" stop-color="#0f1724" />
+      <stop offset="100%" stop-color="#080c14" />
+    </radialGradient>
+    <linearGradient id="f-facet1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3584e4" />
+      <stop offset="100%" stop-color="#1c4e8a" />
+    </linearGradient>
+    <linearGradient id="f-facet2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1c71d8" />
+      <stop offset="100%" stop-color="#0e2a4f" />
+    </linearGradient>
+    <linearGradient id="f-facet3" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#62a0ea" />
+      <stop offset="100%" stop-color="#2266b0" />
+    </linearGradient>
+    <filter id="f-shadow">
+      <feDropShadow dx="0" dy="18" stdDeviation="36" flood-color="#000" flood-opacity="0.6" />
+    </filter>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#f-bg)" />
+  
+  <!-- Fedora Faceted Modern Architectural Geometry -->
+  <g transform="translate(960, 540)" filter="url(#f-shadow)">
+    <polygon points="-340,160 -180,-280 80,-160 -80,240" fill="url(#f-facet1)" opacity="0.9" />
+    <polygon points="-180,-280 240,-220 320,100 80,-160" fill="url(#f-facet2)" opacity="0.95" />
+    <polygon points="80,-160 320,100 160,260 -80,240" fill="url(#f-facet3)" opacity="0.85" />
+    <polygon points="-80,240 160,260 20,320 -180,260" fill="url(#f-facet1)" opacity="0.7" />
+  </g>
+</svg>

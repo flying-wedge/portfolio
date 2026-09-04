@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <radialGradient id="w-bg" cx="50%" cy="45%" r="70%">
+      <stop offset="0%" stop-color="#111c30" />
+      <stop offset="55%" stop-color="#0a101d" />
+      <stop offset="100%" stop-color="#05080e" />
+    </radialGradient>
+    <linearGradient id="petal1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0078d4" />
+      <stop offset="100%" stop-color="#002050" />
+    </linearGradient>
+    <linearGradient id="petal2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#60cdff" />
+      <stop offset="60%" stop-color="#005fb8" />
+      <stop offset="100%" stop-color="#001838" />
+    </linearGradient>
+    <linearGradient id="petal3" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#2886de" />
+      <stop offset="100%" stop-color="#0f2e54" />
+    </linearGradient>
+    <filter id="bloom-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="32" flood-color="#000" flood-opacity="0.75" />
+    </filter>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#w-bg)" />
+  
+  <!-- Windows 11 Center Bloom Ribbon -->
+  <g transform="translate(960, 520) scale(1.1)" filter="url(#bloom-shadow)">
+    <path d="M-280,140 C-360,-40 -180,-260 0,-240 C140,-220 280,-100 240,60 C200,180 40,240 -80,220 C-180,200 -240,200 -280,140 Z" fill="url(#petal1)" opacity="0.9" />
+    <path d="M-180,-120 C-100,-280 160,-240 220,-80 C260,60 120,220 -20,200 C-140,180 -240,-20 -180,-120 Z" fill="url(#petal2)" opacity="0.85" />
+    <path d="M-120,40 C-180,-80 -40,-180 80,-140 C180,-100 180,60 100,140 C20,200 -80,140 -120,40 Z" fill="url(#petal3)" opacity="0.95" />
+    <path d="M-60,-80 C20,-160 140,-120 120,-20 C100,80 -20,100 -60,20 C-90,-40 -80,-60 -60,-80 Z" fill="url(#petal2)" />
+  </g>
+</svg>

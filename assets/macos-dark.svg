@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <radialGradient id="m-base" cx="50%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#181a38" />
+      <stop offset="45%" stop-color="#0e1022" />
+      <stop offset="80%" stop-color="#080914" />
+      <stop offset="100%" stop-color="#04050a" />
+    </radialGradient>
+    <linearGradient id="m-wave1" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0055ff" stop-opacity="0.35" />
+      <stop offset="50%" stop-color="#6a11cb" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#2575fc" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="m-wave2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff007f" stop-opacity="0.2" />
+      <stop offset="60%" stop-color="#7928ca" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#00d2ff" stop-opacity="0" />
+    </linearGradient>
+    <filter id="blur-heavy">
+      <feGaussianBlur stdDeviation="90" />
+    </filter>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#m-base)" />
+  <path d="M-200,800 Q400,200 1100,500 T2100,200 L2100,1200 L-200,1200 Z" fill="url(#m-wave1)" filter="url(#blur-heavy)" />
+  <path d="M-100,300 Q600,800 1300,300 T2100,700 L2100,1200 L-100,1200 Z" fill="url(#m-wave2)" filter="url(#blur-heavy)" />
+</svg>

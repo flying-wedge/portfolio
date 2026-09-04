@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <radialGradient id="wl-bg" cx="50%" cy="45%" r="70%">
+      <stop offset="0%" stop-color="#ebf3fc" />
+      <stop offset="55%" stop-color="#d8e7f8" />
+      <stop offset="100%" stop-color="#c5daf3" />
+    </radialGradient>
+    <linearGradient id="wl-petal1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4da3ff" />
+      <stop offset="100%" stop-color="#0067c0" />
+    </linearGradient>
+    <linearGradient id="wl-petal2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#70bfff" />
+      <stop offset="100%" stop-color="#1177d7" />
+    </linearGradient>
+    <filter id="wl-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="28" flood-color="#004488" flood-opacity="0.2" />
+    </filter>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#wl-bg)" />
+  
+  <g transform="translate(960, 520) scale(1.1)" filter="url(#wl-shadow)">
+    <path d="M-280,140 C-360,-40 -180,-260 0,-240 C140,-220 280,-100 240,60 C200,180 40,240 -80,220 C-180,200 -240,200 -280,140 Z" fill="url(#wl-petal1)" opacity="0.88" />
+    <path d="M-180,-120 C-100,-280 160,-240 220,-80 C260,60 120,220 -20,200 C-140,180 -240,-20 -180,-120 Z" fill="url(#wl-petal2)" opacity="0.82" />
+    <path d="M-120,40 C-180,-80 -40,-180 80,-140 C180,-100 180,60 100,140 C20,200 -80,140 -120,40 Z" fill="url(#wl-petal1)" />
+  </g>
+</svg>

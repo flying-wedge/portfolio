@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" data-os="macos" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brian Lang - Resume / Curriculum Vitae</title>
+  <style>
+    /* Theme variables matching main portfolio */
+    :root, [data-theme="dark"] {
+      --bg: #15171c;
+      --paper-bg: #1c1f26;
+      --text: #F5F5F7;
+      --muted: #A1A1A6;
+      --border: rgba(255, 255, 255, 0.12);
+      --accent: #0A84FF;
+      --bar-bg: rgba(26, 28, 35, 0.85);
+      --btn-bg: rgba(255, 255, 255, 0.08);
+      --btn-border: rgba(255, 255, 255, 0.15);
+      --shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+    }
+    [data-theme="light"] {
+      --bg: #F0F2F5;
+      --paper-bg: #FFFFFF;
+      --text: #1D1D1F;
+      --muted: #6E6E73;
+      --border: #E5E5EA;
+      --accent: #0071E3;
+      --bar-bg: rgba(255, 255, 255, 0.85);
+      --btn-bg: rgba(0, 0, 0, 0.05);
+      --btn-border: rgba(0, 0, 0, 0.12);
+      --shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+    }
+
+    /* OS Specific Fonts & Accents */
+    [data-os="macos"] {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+      --accent: #0A84FF;
+    }
+    [data-os="windows"] {
+      font-family: "Segoe UI Variable", "Segoe UI", sans-serif;
+      --accent: #0078D4;
+    }
+    [data-os="fedora"] {
+      font-family: "Cantarell", -apple-system, sans-serif;
+      --accent: #3584E4;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.2s ease, color 0.2s ease; }
+    
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* Fixed Top Control Bar with OS & Theme Switchers */
+    .top-control-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bar-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .bar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .back-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    .doc-pill {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: var(--btn-bg);
+      border: 1px solid var(--btn-border);
+      color: var(--muted);
+    }
+
+    .bar-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .control-btn {
+      background: var(--btn-bg);
+      border: 1px solid var(--btn-border);
+      color: var(--text);
+      padding: 5px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .control-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+    [data-theme="light"] .control-btn:hover {
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    .control-btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* Resume Document Layout */
+    .document-container {
+      max-width: 820px;
+      margin: 36px auto;
+      padding: 44px 48px;
+      background: var(--paper-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      font-size: 13.5px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    .title {
+      font-size: 14px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .contact-info {
+      font-size: 12.5px;
+      color: var(--muted);
+      text-align: right;
+      line-height: 1.5;
+    }
+
+    h2 {
+      font-size: 12.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
+      margin-top: 22px;
+      margin-bottom: 12px;
+    }
+
+    .job { margin-bottom: 16px; }
+    .job-head { display: flex; justify-content: space-between; font-weight: 600; font-size: 13.5px; }
+    .job-head span { color: var(--muted); font-weight: normal; font-size: 12.5px; }
+    ul { margin: 6px 0; padding-left: 20px; font-size: 13px; color: var(--text); }
+    li { margin-bottom: 4px; }
+    .skills-line { font-size: 13px; margin-bottom: 6px; }
+
+    @media print {
+      .top-control-bar { display: none; }
+      body { margin: 0; padding: 0; background: #FFF; color: #000; }
+      .document-container { margin: 0; padding: 0; border: none; box-shadow: none; max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Top Control Bar with OS & Theme Switchers -->
+  <div class="top-control-bar">
+    <div class="bar-left">
+      <a href="../index.html" class="back-link">&larr; Return to Desktop</a>
+      <span class="doc-pill">Brian_Lang_Resume.pdf</span>
+    </div>
+
+    <div class="bar-right">
+      <!-- OS Switcher Pill -->
+      <button class="control-btn" id="resume-os-btn" title="Cycle Operating System Theme (macOS → Windows 11 → Fedora GNOME)">
+        <span id="os-icon"></span>
+        <span id="os-label">macOS</span>
+      </button>
+
+      <!-- Theme Switcher Pill -->
+      <button class="control-btn" id="resume-theme-btn" title="Toggle Light / Dark Mode">
+        <span id="theme-icon">🌙</span>
+        <span id="theme-label">Dark</span>
+      </button>
+
+      <!-- Print Button -->
+      <button class="control-btn primary" onclick="window.print()">
+        🖨️ Print / Save PDF
+      </button>
+    </div>
+  </div>
+
+  <main class="document-container">
+    <div class="header">
+      <div>
+        <h1>BRIAN LANG</h1>
+        <div class="title">Technical Software Architect</div>
+      </div>
+      <div class="contact-info">
+        <div>Email: brian.lang@robustcomputing.com</div>
+        <div>Web: brianlang.dev</div>
+        <div>Location: San Francisco, CA / Remote</div>
+        <div>GitHub: github.com/brianlang</div>
+      </div>
+    </div>
+
+    <h2>Executive Summary</h2>
+    <p>
+      Technical Software Architect with comprehensive leadership experience architecting multi-region distributed backbones,
+      fault-tolerant event platforms, and cloud infrastructure. Proven history driving cross-team system design, slashing latency,
+      and aligning complex technical systems with business scale.
+    </p>
+
+    <h2>Selected Architectural Experience</h2>
+    <div class="job">
+      <div class="job-head">
+        <div>Apex Cloud Systems — Staff Technical Architect</div>
+        <span>2023 – Present</span>
+      </div>
+      <ul>
+        <li>Spearheaded distributed streaming architecture ingesting 15M+ events/day with 99.99% availability SLAs.</li>
+        <li>Designed autonomous multi-region failover and consensus pipelines across AWS and GCP.</li>
+        <li>Reduced global compute and network egress overhead by 30% through targeted architectural refactoring.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div>DataSphere Analytics — Principal Systems Architect</div>
+        <span>2020 – 2023</span>
+      </div>
+      <ul>
+        <li>Built enterprise-scale telemetry and analytical workbench serving 12,000+ engineers.</li>
+        <li>Designed unified GraphQL gateway and distributed caching fabric with Redis cluster topology.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div>Vanguard Tech Labs — Software Engineer</div>
+        <span>2018 – 2020</span>
+      </div>
+      <ul>
+        <li>Implemented core REST and gRPC services, automated CI/CD releases, and established 92% automated code coverage benchmarks.</li>
+        <li>Reduced service boundary failure cascades with circuit breakers and distributed tracing.</li>
+      </ul>
+    </div>
+
+    <h2>Education &amp; Certifications</h2>
+    <div class="job">
+      <div class="job-head">
+        <div>B.S. in Computer Science — University of California, Berkeley</div>
+        <span>Magna Cum Laude</span>
+      </div>
+      <div>• AWS Certified Solutions Architect – Professional (SAP-C02)</div>
+      <div>• Certified Kubernetes Administrator (CKA)</div>
+    </div>
+
+    <h2>Core Capabilities</h2>
+    <div class="skills-line"><strong>Architecture:</strong> Distributed Systems, Event-Driven Topologies, Microservices, Zero-Trust Security, Data Ingestion</div>
+    <div class="skills-line"><strong>Technologies:</strong> Go, TypeScript, Python, Rust, Kafka, Kubernetes, Docker, Terraform, Redis, PostgreSQL, AWS, GCP</div>
+  </main>
+
+  <script>
+    (function () {
+      const OS_KEY = 'portfolio-os-preference';
+      const THEME_KEY = 'portfolio-theme-preference';
+      const OS_LIST = ['macos', 'windows', 'fedora'];
+      const html = document.documentElement;
+
+      const osBtn = document.getElementById('resume-os-btn');
+      const osIcon = document.getElementById('os-icon');
+      const osLabel = document.getElementById('os-label');
+
+      const themeBtn = document.getElementById('resume-theme-btn');
+      const themeIcon = document.getElementById('theme-icon');
+      const themeLabel = document.getElementById('theme-label');
+
+      function applyOS(os) {
+        html.setAttribute('data-os', os);
+        localStorage.setItem(OS_KEY, os);
+        if (os === 'macos') {
+          osIcon.textContent = '';
+          osLabel.textContent = 'macOS';
+        } else if (os === 'windows') {
+          osIcon.textContent = '🪟';
+          osLabel.textContent = 'Windows 11';
+        } else {
+          osIcon.textContent = '🔵';
+          osLabel.textContent = 'Fedora GNOME';
+        }
+      }
+
+      function applyTheme(theme) {
+        html.setAttribute('data-theme', theme);
+        localStorage.setItem(THEME_KEY, theme);
+        const isDark = theme === 'dark';
+        themeIcon.textContent = isDark ? '🌙' : '☀️';
+        themeLabel.textContent = isDark ? 'Dark' : 'Light';
+      }
+
+      function cycleOS() {
+        const cur = html.getAttribute('data-os') || 'macos';
+        const next = OS_LIST[(OS_LIST.indexOf(cur) + 1) % OS_LIST.length];
+        applyOS(next);
+      }
+
+      function toggleTheme() {
+        const cur = html.getAttribute('data-theme') || 'dark';
+        applyTheme(cur === 'dark' ? 'light' : 'dark');
+      }
+
+      osBtn.addEventListener('click', cycleOS);
+      themeBtn.addEventListener('click', toggleTheme);
+
+      // Load saved preferences
+      applyOS(localStorage.getItem(OS_KEY) || 'macos');
+      applyTheme(localStorage.getItem(THEME_KEY) || 'dark');
+    })();
+  </script>
+</body>
+</html>
