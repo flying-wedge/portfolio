@@ -130,56 +130,16 @@
   updateClock();
   setInterval(updateClock, 1000);
 
-  // --- 4. VCARD GENERATION & DOWNLOAD ---
-  function downloadVCard() {
-    const vcardData = [
-      'BEGIN:VCARD',
-      'VERSION:3.0',
-      'N:Lang;Brian;;;',
-      'FN:Brian Lang',
-      'ORG:Robust Computing',
-      'TITLE:Technical Software Architect',
-      'TEL;TYPE=CELL,VOICE,PREF:+17855503966',
-      'EMAIL;TYPE=INTERNET,WORK,PREF:brian.lang@robustcomputing.com',
-      'X-SOCIALPROFILE;TYPE=whatsapp:https://wa.me/flyingwedge05',
-      'NOTE:Technical Software Architect specializing in large scale system transformations and enterprise integrations. WhatsApp: @flyingwedge05',
-      'ADR;TYPE=WORK:;;Kansas City Area;MO;;;USA',
-      'END:VCARD'
-    ].join('\r\n');
-
-    const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', 'Brian_Lang.vcf');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-
-    const vcardBtnText = document.getElementById('vcard-btn-text');
-    if (vcardBtnText) {
+  // --- 4. VCARD DOWNLOAD FEEDBACK ---
+  const vcardBtn = document.getElementById('download-vcard-btn');
+  const vcardBtnText = document.getElementById('vcard-btn-text');
+  if (vcardBtn && vcardBtnText) {
+    vcardBtn.addEventListener('click', () => {
       const originalText = vcardBtnText.textContent;
       vcardBtnText.textContent = 'saved!';
       setTimeout(() => {
         vcardBtnText.textContent = originalText;
       }, 2000);
-    }
-  }
-
-  const vcardBtn = document.getElementById('download-vcard-btn');
-  if (vcardBtn) {
-    vcardBtn.addEventListener('click', downloadVCard);
-  }
-
-  const vcardRow = document.getElementById('download-vcard-row');
-  if (vcardRow) {
-    vcardRow.addEventListener('click', downloadVCard);
-    vcardRow.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        downloadVCard();
-      }
     });
   }
 

@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Lang;Brian;;;
+FN:Brian Lang
+ORG:Robust Computing
+TITLE:Technical Software Architect
+TEL;TYPE=CELL,VOICE,PREF:+17855503966
+EMAIL;TYPE=INTERNET,WORK,PREF:brian.lang@robustcomputing.com
+X-SOCIALPROFILE;TYPE=whatsapp:https://wa.me/flyingwedge05
+NOTE:Technical Software Architect specializing in large scale system transformations and enterprise integrations. WhatsApp: @flyingwedge05
+ADR;TYPE=WORK:;;Kansas City Area;MO;;;USA
+END:VCARD
