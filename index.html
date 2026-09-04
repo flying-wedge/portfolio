@@ -1,41 +1,60 @@
 <!DOCTYPE html>
-<html lang="en" data-os="macos" data-theme="dark">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#0b1021">
+  <meta name="theme-color" content="#000000">
   <title>Brian Lang | Technical Software Architect</title>
-  <meta name="description" content="Brian Lang - Technical Software Architect Portfolio (macOS, Windows 11 & Fedora GNOME)">
+  <meta name="description" content="Brian Lang - Technical Software Architect. Resilient distributed backbones, event-driven streaming pipelines, and zero-trust cloud architectures.">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cantarell:wght@400;600;700&family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=SF+Pro+Display:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 </head>
-<body class="desktop-body">
+<body class="ios-body">
 
-  <!-- ================= iOS MOBILE STATUS BAR (Visible on mobile screens) ================= -->
-  <aside class="ios-status-bar" aria-label="iOS Status Bar">
-    <div class="ios-status-time" id="ios-clock">9:41</div>
-    <div class="ios-dynamic-island" id="ios-island" title="Dynamic Island - Brian Lang Architect Portfolio">
-      <div class="island-camera"></div>
+  <!-- ================= TOP iOS STATUS BAR & DYNAMIC ISLAND ================= -->
+  <header class="ios-status-bar" id="ios-status-bar">
+    <div class="ios-status-left">
+      <span class="ios-status-clock" id="status-clock">9:41</span>
     </div>
-    <div class="ios-status-icons">
-      <span class="ios-icon signal" title="Cellular Signal">
-        <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor">
-          <rect x="0" y="8" width="3" height="4" rx="1"/>
-          <rect x="4.5" y="6" width="3" height="6" rx="1"/>
-          <rect x="9" y="3" width="3" height="9" rx="1"/>
-          <rect x="13.5" y="0" width="3" height="12" rx="1"/>
+
+    <div class="ios-dynamic-island" id="dynamic-island" title="Interactive Dynamic Island">
+      <div class="island-pill-content">
+        <div class="island-icon-indicator">
+          <span class="island-pulse-dot"></span>
+          <span class="island-label">Architect Online</span>
+        </div>
+        <div class="island-camera"></div>
+      </div>
+      <div class="island-expanded-view">
+        <div class="island-exp-left">
+          <span class="island-exp-badge">Distributed Systems</span>
+          <span class="island-exp-title">Brian Lang • Technical Architect</span>
+        </div>
+        <div class="island-exp-right">
+          <a href="mailto:brian.lang@robustcomputing.com" class="island-action-pill">Connect</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ios-status-right">
+      <span class="ios-status-icon signal" title="Cellular Signal">
+        <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor">
+          <rect x="0" y="8.5" width="3.2" height="3.5" rx="1"/>
+          <rect x="4.8" y="6" width="3.2" height="6" rx="1"/>
+          <rect x="9.6" y="3" width="3.2" height="9" rx="1"/>
+          <rect x="14.4" y="0" width="3.2" height="12" rx="1"/>
         </svg>
       </span>
-      <span class="ios-icon wifi" title="Wi-Fi">
-        <svg width="15" height="12" viewBox="0 0 15 12" fill="currentColor">
-          <path d="M7.5 3.3a9.4 9.4 0 0 1 5.8 2.1.8.8 0 0 1-.1 1.2l-1 .8a.7.7 0 0 1-1-.1A6.7 6.7 0 0 0 7.5 5.7c-1.4 0-2.6.4-3.7 1.3a.7.7 0 0 1-1 .1l-1-.8a.8.8 0 0 1-.1-1.2 9.4 9.4 0 0 1 5.8-2.1zm0-3.3c3.1 0 6 1.1 8.2 3.1a.8.8 0 0 1 .1 1.2l-1 .8a.7.7 0 0 1-1-.1 9.9 9.9 0 0 0-6.3-2.2c-2.4 0-4.6.8-6.3 2.2a.7.7 0 0 1-1 .1l-1-.8a.8.8 0 0 1 .1-1.2A12.4 12.4 0 0 1 7.5 0zm0 6.6c1.3 0 2.5.5 3.4 1.3a.8.8 0 0 1 0 1.2l-3 3a.6.6 0 0 1-.8 0l-3-3a.8.8 0 0 1 0-1.2c.9-.8 2.1-1.3 3.4-1.3z"/>
+      <span class="ios-status-icon wifi" title="5G Wi-Fi">
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor">
+          <path d="M8 3.3a9.4 9.4 0 0 1 5.8 2.1.8.8 0 0 1-.1 1.2l-1 .8a.7.7 0 0 1-1-.1A6.7 6.7 0 0 0 8 5.7c-1.4 0-2.6.4-3.7 1.3a.7.7 0 0 1-1 .1l-1-.8a.8.8 0 0 1-.1-1.2 9.4 9.4 0 0 1 5.8-2.1zm0-3.3c3.1 0 6 1.1 8.2 3.1a.8.8 0 0 1 .1 1.2l-1 .8a.7.7 0 0 1-1-.1 9.9 9.9 0 0 0-6.3-2.2c-2.4 0-4.6.8-6.3 2.2a.7.7 0 0 1-1 .1l-1-.8a.8.8 0 0 1 .1-1.2A12.4 12.4 0 0 1 8 0zm0 6.6c1.3 0 2.5.5 3.4 1.3a.8.8 0 0 1 0 1.2l-3 3a.6.6 0 0 1-.8 0l-3-3a.8.8 0 0 1 0-1.2c.9-.8 2.1-1.3 3.4-1.3z"/>
         </svg>
       </span>
-      <span class="ios-icon battery" title="100% Battery">
+      <span class="ios-status-icon battery" title="Battery 100%">
         <svg width="25" height="12" viewBox="0 0 25 12" fill="currentColor">
           <rect x="0.5" y="0.5" width="21" height="11" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.1"/>
           <rect x="2" y="2" width="16" height="8" rx="2" fill="currentColor"/>
@@ -43,340 +62,248 @@
         </svg>
       </span>
     </div>
-  </aside>
-
-  <!-- ================= TOP PANEL 1: macOS Menu Bar ================= -->
-  <header class="macos-menubar os-element-macos">
-    <div class="menubar-left">
-      <div class="apple-menu-trigger" id="apple-menu-btn" title="About Brian Lang"></div>
-      <span class="menubar-app-title">Profile</span>
-      
-      <!-- Top Navigation Links for macOS -->
-      <button class="menubar-nav-btn active-nav" data-target="window-terminal">About</button>
-      <button class="menubar-nav-btn" data-target="window-skills">Stack</button>
-      <button class="menubar-nav-btn" data-target="window-experience">Experience</button>
-      <button class="menubar-nav-btn" data-target="window-resume">Resume / CV</button>
-    </div>
-
-    <div class="menubar-right">
-      <!-- OS Switcher Pill (macOS) -->
-      <button class="menubar-pill-btn os-switcher-btn" id="os-cycle-btn-macos" title="Switch Operating System (macOS → Windows 11 → Fedora GNOME)">
-        <span class="os-icon">🪟</span>
-        <span class="os-label">Windows 11</span>
-      </button>
-
-      <!-- Theme Switcher Pill -->
-      <button class="menubar-pill-btn theme-switcher-btn" id="theme-toggle-macos" title="Toggle Light / Dark Mode">
-        <span class="theme-icon">🌙</span>
-        <span class="theme-label">Dark</span>
-      </button>
-
-      <span class="menubar-time live-clock">Thu Sep 3 6:18 PM</span>
-    </div>
   </header>
 
-  <!-- ================= TOP PANEL 2: Fedora GNOME Top Bar ================= -->
-  <header class="gnome-topbar os-element-fedora">
-    <div class="gnome-left">
-      <button class="gnome-activities-btn" id="fedora-activities-trigger" title="GNOME Activities Overview">
-        <span>Activities</span>
-      </button>
-      <div class="gnome-nav-pills">
-        <button class="gnome-nav-pill" data-target="window-terminal">About</button>
-        <button class="gnome-nav-pill" data-target="window-skills">Stack</button>
-        <button class="gnome-nav-pill" data-target="window-experience">System Monitor</button>
-        <button class="gnome-nav-pill" data-target="window-resume">Document</button>
-      </div>
-    </div>
+  <!-- ================= MAIN iOS DEVICE VIEWPORT ================= -->
+  <div class="ios-device-viewport">
+    
+    <!-- View 1: iOS SpringBoard Homescreen -->
+    <main class="ios-view active" id="view-homescreen">
+      <div class="ios-scrollable-content">
 
-    <!-- Fedora GNOME Center Date & Time -->
-    <div class="gnome-center">
-      <button class="gnome-clock-btn live-clock" title="Calendar & Notifications">Sep 3 6:18 PM</button>
-    </div>
+        <!-- iOS Lock/Home Date & Header Widget -->
+        <section class="ios-date-widget">
+          <div class="ios-date-weekday" id="home-weekday">Thursday, September 3</div>
+          <div class="ios-date-bigclock" id="home-bigclock">9:41</div>
+        </section>
 
-    <div class="gnome-right">
-      <!-- OS Switcher Pill (Fedora) -->
-      <button class="gnome-pill-btn" id="os-cycle-btn-fedora" title="Switch Operating System (Fedora → macOS → Windows 11)">
-        <span></span> macOS
-      </button>
-
-      <!-- Theme Switcher (Fedora) -->
-      <button class="gnome-pill-btn" id="theme-toggle-fedora" title="Toggle Dark / Light Mode">
-        <span class="theme-icon">🌙</span>
-      </button>
-
-      <!-- GNOME Quick Settings Pill Group -->
-      <div class="gnome-quick-settings-pill" title="Network, Volume, Power">
-        <span class="gnome-icon">📶</span>
-        <span class="gnome-icon">🔊</span>
-        <span class="gnome-icon">🔋</span>
-      </div>
-    </div>
-  </header>
-
-  <!-- ================= DESKTOP CANVAS ================= -->
-  <div class="desktop-screen" id="desktop-screen">
-
-    <!-- ================= iOS MOBILE HOMESCREEN CONTENT ================= -->
-    <div class="ios-mobile-screen">
-      <!-- iOS Lockscreen/Homescreen Header & Widget -->
-      <div class="ios-widget-card" data-open="window-terminal">
-        <div class="ios-widget-header">
-          <div class="ios-widget-avatar">BL</div>
-          <div class="ios-widget-title-area">
-            <h1 class="ios-widget-name">Brian Lang</h1>
-            <p class="ios-widget-role">Technical Software Architect</p>
-          </div>
-          <div class="ios-widget-badge">iOS 18</div>
-        </div>
-        <p class="ios-widget-desc">
-          Resilient distributed systems, high-throughput streaming pipelines, and zero-trust cloud architectures.
-        </p>
-        <div class="ios-widget-meta">
-          <span>📍 SF Bay Area / Remote</span>
-          <span>⚡ High-Availability</span>
-        </div>
-      </div>
-
-      <!-- iOS App Grid (Squircle icons with badges) -->
-      <div class="ios-app-grid">
-        <div class="ios-app" data-open="window-terminal">
-          <div class="ios-app-icon terminal-ios">
-            <span>&gt;_</span>
-          </div>
-          <span class="ios-app-label">Terminal</span>
-        </div>
-
-        <div class="ios-app" data-open="window-resume">
-          <div class="ios-app-icon resume-ios">
-            <span>📄</span>
-          </div>
-          <span class="ios-app-label">Resume</span>
-        </div>
-
-        <div class="ios-app" data-open="window-skills">
-          <div class="ios-app-icon stack-ios">
-            <span>⚙️</span>
-          </div>
-          <span class="ios-app-label">Tech Stack</span>
-        </div>
-
-        <div class="ios-app" data-open="window-experience">
-          <div class="ios-app-icon exp-ios">
-            <span>📈</span>
-          </div>
-          <span class="ios-app-label">Experience</span>
-        </div>
-
-        <div class="ios-app" id="ios-theme-app-btn">
-          <div class="ios-app-icon theme-ios">
-            <span class="theme-icon">🌙</span>
-          </div>
-          <span class="ios-app-label">Appearance</span>
-        </div>
-
-        <div class="ios-app" id="ios-os-app-btn">
-          <div class="ios-app-icon os-ios">
-            <span class="os-icon">🪟</span>
-          </div>
-          <span class="ios-app-label">Desktop OS</span>
-        </div>
-
-        <a href="mailto:brian.lang@robustcomputing.com" class="ios-app">
-          <div class="ios-app-icon mail-ios">
-            <span>✉️</span>
-          </div>
-          <span class="ios-app-label">Mail</span>
-        </a>
-
-        <a href="tel:+15555555555" class="ios-app" id="ios-phone-app" style="display:none;">
-          <div class="ios-app-icon phone-ios">
-            <span>📞</span>
-          </div>
-          <span class="ios-app-label">Phone</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Desktop Icons (macOS & Windows 11 only, hidden on mobile screens) -->
-    <div class="desktop-icons-area os-element-macos os-element-win">
-      
-      <div class="desktop-icon" data-open="window-resume" title="Click to view Resume/Vitae">
-        <div class="icon-graphic resume-icon-file">
-          <span class="icon-ext">PDF</span>
-          <span class="icon-symbol">📄</span>
-        </div>
-        <span class="icon-label">Brian_Lang_Resume.pdf</span>
-      </div>
-
-      <div class="desktop-icon" data-open="window-skills" title="Click to view Technical Stack">
-        <div class="icon-graphic harddrive-icon">
-          <span>💾</span>
-        </div>
-        <span class="icon-label"><span class="os-text-macos">Macintosh HD</span><span class="os-text-win">This PC — C:\</span></span>
-      </div>
-
-      <div class="desktop-icon" data-open="window-experience" title="Click to view Career History">
-        <div class="icon-graphic app-icon activity-icon">
-          <span>📈</span>
-        </div>
-        <span class="icon-label">Career Timeline</span>
-      </div>
-
-      <div class="desktop-icon" data-open="window-terminal" title="Click to view Bio/Profile">
-        <div class="icon-graphic app-icon terminal-app-icon">
-          <span class="os-text-macos">&gt;_</span>
-          <span class="os-text-win">PS</span>
-        </div>
-        <span class="icon-label"><span class="os-text-macos">Terminal</span><span class="os-text-win">PowerShell</span></span>
-      </div>
-
-    </div>
-
-    <!-- ================= WINDOW 1: Terminal / Bio ================= -->
-    <div class="system-window active" id="window-terminal" style="top: 50px; left: 80px; width: 680px; z-index: 10;">
-      <div class="window-titlebar" data-drag="window-terminal">
-        
-        <!-- macOS Traffic Lights (Left) -->
-        <div class="traffic-lights os-element-macos">
-          <button class="t-btn t-close" data-window="window-terminal" title="Close"></button>
-          <button class="t-btn t-min" data-window="window-terminal" title="Minimize"></button>
-          <button class="t-btn t-max" data-window="window-terminal" title="Zoom"></button>
-        </div>
-
-        <div class="titlebar-title">
-          <span class="os-text-macos">brian@workstation: ~ (zsh) — 80×24</span>
-          <span class="os-text-win">Windows PowerShell — Brian Lang Profile</span>
-          <span class="os-text-fedora">brian@fedora: ~ — GNOME Terminal (bash)</span>
-        </div>
-
-        <!-- Windows 11 Window Controls (Right) -->
-        <div class="win-window-controls os-element-win">
-          <button class="win-btn win-min" data-window="window-terminal" title="Minimize">&#8211;</button>
-          <button class="win-btn win-max" data-window="window-terminal" title="Maximize">&#9633;</button>
-          <button class="win-btn win-close" data-window="window-terminal" title="Close">&#10005;</button>
-        </div>
-
-        <!-- Fedora GNOME Window Controls (Right) -->
-        <div class="gnome-window-controls os-element-fedora">
-          <button class="gnome-btn gnome-min" data-window="window-terminal" title="Minimize">&#8211;</button>
-          <button class="gnome-btn gnome-max" data-window="window-terminal" title="Maximize">&#9633;</button>
-          <button class="gnome-btn gnome-close" data-window="window-terminal" title="Close">&#10005;</button>
-        </div>
-      </div>
-
-      <div class="window-content terminal-window-content">
-        <div class="terminal-banner">
-          <span class="os-text-macos">Last login: Today on ttys001. Ready for commands.</span>
-          <span class="os-text-win">Windows PowerShell [Version 10.0.22631.3007] &copy; Microsoft Corporation.</span>
-          <span class="os-text-fedora">Fedora Linux 40 (Workstation Edition) — Linux 6.8.9-300.fc40.x86_64</span>
-        </div>
-        <div class="cmd-line">
-          <span class="os-text-macos"><span class="prompt-host">brian@macbook-pro</span>:<span class="prompt-dir">~</span>$ whoami --verbose</span>
-          <span class="os-text-win"><span class="prompt-ps">PS C:\Users\BrianLang&gt;</span> Get-EngineerProfile -Verbose</span>
-          <span class="os-text-fedora"><span class="prompt-fedora-user">[brian@fedora ~]$</span> cat /etc/architect-profile</span>
-        </div>
-        
-        <div class="terminal-profile-card">
-          <div class="terminal-avatar">
-            <div class="avatar-circle">BL</div>
-          </div>
-          <div class="terminal-info">
-            <div class="terminal-name-row">
-              <h2>Brian Lang</h2>
-              <span class="arch-badge">Technical Software Architect</span>
+        <!-- Large Hero Glassmorphism Widget -->
+        <section class="ios-hero-widget" id="hero-widget" tabindex="0" role="button" aria-label="Open About Profile">
+          <div class="hero-top-row">
+            <div class="hero-avatar-ring">
+              <div class="hero-avatar">BL</div>
             </div>
-            <p class="role-summary">
-              Designing resilient multi-region distributed systems, cloud-native platforms, and high-throughput data topologies.
-            </p>
-            <div class="contact-grid">
-              <div><span class="meta-label">Email:</span> <a href="mailto:brian.lang@robustcomputing.com">brian.lang@robustcomputing.com</a></div>
-              <div><span class="meta-label">Location:</span> San Francisco Bay Area / Distributed</div>
-              <div><span class="meta-label">Specialization:</span> Distributed Architecture • Event Streaming • High-Availability Systems</div>
-            </div>
-            <div class="terminal-quick-actions">
-              <button class="os-button primary nav-action-btn" data-target="window-resume">View Resume / CV</button>
-              <button class="os-button nav-action-btn" data-target="window-skills">Technical Stack</button>
-              <button class="os-button nav-action-btn" data-target="window-experience">Career Timeline</button>
-              <a href="mailto:brian.lang@robustcomputing.com" class="os-button highlight">Get in Touch</a>
+            <div class="hero-titles">
+              <span class="ios-chip-badge">SYSTEM ARCHITECT</span>
+              <h1 class="hero-name">Brian Lang</h1>
+              <p class="hero-role">Technical Software Architect</p>
             </div>
           </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ================= WINDOW 2: Resume / Vitae ================= -->
-    <div class="system-window" id="window-resume" style="top: 70px; left: 160px; width: 780px; z-index: 12;">
-      <div class="window-titlebar" data-drag="window-resume">
-        
-        <!-- macOS Traffic Lights (Left) -->
-        <div class="traffic-lights os-element-macos">
-          <button class="t-btn t-close" data-window="window-resume" title="Close"></button>
-          <button class="t-btn t-min" data-window="window-resume" title="Minimize"></button>
-          <button class="t-btn t-max" data-window="window-resume" title="Zoom"></button>
-        </div>
-
-        <div class="titlebar-title">
-          <span class="os-text-macos">Preview — Brian_Lang_Resume.pdf</span>
-          <span class="os-text-win">Adobe Acrobat / Edge — Brian_Lang_Resume.pdf</span>
-          <span class="os-text-fedora">Evince (Document Viewer) — Brian_Lang_Resume.pdf</span>
-        </div>
-
-        <div class="window-actions os-element-macos os-element-fedora">
-          <button class="titlebar-tool" onclick="window.print()" title="Print / Export to PDF">🖨️ Print</button>
-          <a href="assets/resume-placeholder.html" target="_blank" class="titlebar-tool" title="Open in new tab">↗ New Tab</a>
-        </div>
-
-        <!-- Windows 11 Window Controls (Right) -->
-        <div class="win-window-controls os-element-win">
-          <button class="titlebar-tool win-tool-print" onclick="window.print()" title="Print">🖨️</button>
-          <button class="win-btn win-min" data-window="window-resume" title="Minimize">&#8211;</button>
-          <button class="win-btn win-max" data-window="window-resume" title="Maximize">&#9633;</button>
-          <button class="win-btn win-close" data-window="window-resume" title="Close">&#10005;</button>
-        </div>
-
-        <!-- Fedora GNOME Controls (Right) -->
-        <div class="gnome-window-controls os-element-fedora">
-          <button class="gnome-btn gnome-min" data-window="window-resume" title="Minimize">&#8211;</button>
-          <button class="gnome-btn gnome-max" data-window="window-resume" title="Maximize">&#9633;</button>
-          <button class="gnome-btn gnome-close" data-window="window-resume" title="Close">&#10005;</button>
-        </div>
-      </div>
-
-      <div class="window-content resume-window-content">
-        <div class="resume-top-toolbar">
-          <div class="doc-badge">
-            <span class="doc-icon">📄</span>
-            <div>
-              <strong>Brian_Lang_Resume_2026.pdf</strong>
-              <div class="doc-meta">Curriculum Vitae • PDF Document • Updated Sep 2026</div>
-            </div>
+          <p class="hero-summary">
+            Designing resilient multi-region distributed systems, cloud-native platforms, and high-throughput data topologies.
+          </p>
+          <div class="hero-meta-strip">
+            <span class="meta-tag">📍 San Francisco / Distributed</span>
+            <span class="meta-tag">⚡ 99.99% Availability</span>
+            <span class="meta-tag">🛡️ Zero-Trust</span>
           </div>
-          <a href="assets/resume-placeholder.html" download="Brian_Lang_Resume.html" class="os-button primary download-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            Download PDF / CV
+          <div class="hero-footer-bar">
+            <span>Tap to explore profile details</span>
+            <span class="ios-chevron">›</span>
+          </div>
+        </section>
+
+        <!-- iOS Springboard 4-Column App Grid -->
+        <section class="ios-section-title">Applications</section>
+        <div class="ios-app-grid">
+          
+          <button class="ios-app-item" data-navigate="view-about" aria-label="About App">
+            <div class="ios-squircle app-terminal">
+              <span class="squircle-glyph">&gt;_</span>
+            </div>
+            <span class="ios-app-name">Profile</span>
+          </button>
+
+          <button class="ios-app-item" data-navigate="view-resume" aria-label="Resume App">
+            <div class="ios-squircle app-resume">
+              <span class="squircle-glyph">📄</span>
+            </div>
+            <span class="ios-app-name">Resume</span>
+          </button>
+
+          <button class="ios-app-item" data-navigate="view-stack" aria-label="Tech Stack App">
+            <div class="ios-squircle app-stack">
+              <span class="squircle-glyph">⚙️</span>
+            </div>
+            <span class="ios-app-name">Tech Stack</span>
+          </button>
+
+          <button class="ios-app-item" data-navigate="view-experience" aria-label="Experience App">
+            <div class="ios-squircle app-experience">
+              <span class="squircle-glyph">📈</span>
+            </div>
+            <span class="ios-app-name">Experience</span>
+          </button>
+
+          <a href="mailto:brian.lang@robustcomputing.com" class="ios-app-item" aria-label="Mail Brian Lang">
+            <div class="ios-squircle app-mail">
+              <span class="squircle-glyph">✉️</span>
+            </div>
+            <span class="ios-app-name">Mail</span>
           </a>
+
+          <a href="https://github.com/brianlang" target="_blank" rel="noopener noreferrer" class="ios-app-item" aria-label="GitHub Profile">
+            <div class="ios-squircle app-github">
+              <span class="squircle-glyph">🐙</span>
+            </div>
+            <span class="ios-app-name">GitHub</span>
+          </a>
+
+          <button class="ios-app-item" id="btn-share-portfolio" aria-label="Share Portfolio">
+            <div class="ios-squircle app-share">
+              <span class="squircle-glyph">📤</span>
+            </div>
+            <span class="ios-app-name">Share</span>
+          </button>
+
+          <button class="ios-app-item" data-navigate="view-contact" aria-label="Contact Card">
+            <div class="ios-squircle app-contacts">
+              <span class="squircle-glyph">🪪</span>
+            </div>
+            <span class="ios-app-name">Contact</span>
+          </button>
+
         </div>
 
-        <div class="paper-sheet">
-          <header class="paper-header">
-            <div>
-              <h1 class="paper-name">BRIAN LANG</h1>
-              <div class="paper-subtitle">Technical Software Architect</div>
+        <!-- Quick Glance Telemetry Card -->
+        <section class="ios-section-title">Telemetry & Competencies</section>
+        <div class="ios-glance-row">
+          <div class="glance-card" data-navigate="view-stack">
+            <div class="glance-top">
+              <span class="glance-icon">⚡</span>
+              <span class="glance-metric">250k+</span>
             </div>
-            <div class="paper-contact">
-              <div>Email: brian.lang@robustcomputing.com</div>
+            <div class="glance-label">Events/sec Ingested</div>
+            <div class="glance-sub">Kafka • Go • Streaming</div>
+          </div>
+          <div class="glance-card" data-navigate="view-experience">
+            <div class="glance-top">
+              <span class="glance-icon">🛡️</span>
+              <span class="glance-metric">99.99%</span>
+            </div>
+            <div class="glance-label">Multi-Region SLA</div>
+            <div class="glance-sub">AWS • GCP • Kubernetes</div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- View 2: Profile / Bio Sheet (Terminal aesthetic inside iOS Card) -->
+    <section class="ios-view" id="view-about">
+      <div class="ios-navbar">
+        <button class="ios-nav-back" data-back>
+          <span class="nav-chevron">‹</span>
+          <span>Home</span>
+        </button>
+        <span class="ios-nav-title">About Brian Lang</span>
+        <button class="ios-nav-action" data-navigate="view-resume">Resume</button>
+      </div>
+
+      <div class="ios-scrollable-content">
+        
+        <div class="ios-card profile-bio-card">
+          <div class="bio-avatar-row">
+            <div class="bio-avatar-lg">BL</div>
+            <div class="bio-name-block">
+              <h2>Brian Lang</h2>
+              <span class="bio-role-badge">Technical Software Architect</span>
+              <span class="bio-status"><span class="status-indicator-dot"></span> Available for Architecture & Advisory</span>
+            </div>
+          </div>
+          <p class="bio-paragraph">
+            Technical Software Architect specializing in the design and delivery of resilient, cloud-native distributed backbones.
+            Extensive background architecting fault-tolerant microservices, high-throughput event processing engines, and multi-region
+            infrastructure topologies that scale cleanly with enterprise workloads.
+          </p>
+        </div>
+
+        <div class="ios-list-group">
+          <div class="ios-list-header">Contact & Identity</div>
+          
+          <div class="ios-list-item">
+            <div class="item-icon-box blue">✉️</div>
+            <div class="item-content">
+              <span class="item-label">Email</span>
+              <a href="mailto:brian.lang@robustcomputing.com" class="item-value link">brian.lang@robustcomputing.com</a>
+            </div>
+          </div>
+
+          <div class="ios-list-item">
+            <div class="item-icon-box green">📍</div>
+            <div class="item-content">
+              <span class="item-label">Location</span>
+              <span class="item-value">San Francisco Bay Area, CA / Distributed</span>
+            </div>
+          </div>
+
+          <div class="ios-list-item">
+            <div class="item-icon-box purple">🌐</div>
+            <div class="item-content">
+              <span class="item-label">Focus Area</span>
+              <span class="item-value">Distributed Systems & Event Topologies</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ios-card terminal-card">
+          <div class="terminal-card-bar">
+            <span class="term-dot red"></span>
+            <span class="term-dot yellow"></span>
+            <span class="term-dot green"></span>
+            <span class="term-title">terminal — brian@workstation</span>
+          </div>
+          <div class="terminal-code">
+            <p><span class="term-prompt">brian@ios ~ %</span> whoami --verbose</p>
+            <p class="term-output">Brian Lang [Technical Software Architect]</p>
+            <p class="term-output">Specialization: High-Availability Cloud & Event Streams</p>
+            <p class="term-output">Consensus • mTLS Zero-Trust • Multi-Region Failover</p>
+            <p><span class="term-prompt">brian@ios ~ %</span> cat /etc/architect-principles</p>
+            <p class="term-output">1. Optimize for failure domains & fault isolation.</p>
+            <p class="term-output">2. Make asynchronous event boundaries explicit.</p>
+            <p class="term-output">3. Strive for sub-5ms p99 query latency targets.</p>
+          </div>
+        </div>
+
+        <div class="ios-action-center">
+          <button class="ios-primary-btn" data-navigate="view-resume">View Full Resume / CV</button>
+          <a href="mailto:brian.lang@robustcomputing.com" class="ios-secondary-btn">Initiate Discussion</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- View 3: Resume / Curriculum Vitae Sheet -->
+    <section class="ios-view" id="view-resume">
+      <div class="ios-navbar">
+        <button class="ios-nav-back" data-back>
+          <span class="nav-chevron">‹</span>
+          <span>Home</span>
+        </button>
+        <span class="ios-nav-title">Curriculum Vitae</span>
+        <button class="ios-nav-action" onclick="window.print()">Print</button>
+      </div>
+
+      <div class="ios-scrollable-content">
+
+        <div class="resume-sheet-container">
+          <header class="resume-header">
+            <div>
+              <h1 class="resume-name">BRIAN LANG</h1>
+              <div class="resume-subtitle">Technical Software Architect</div>
+            </div>
+            <div class="resume-contact-links">
+              <div>Email: <a href="mailto:brian.lang@robustcomputing.com">brian.lang@robustcomputing.com</a></div>
               <div>Web: brianlang.dev</div>
               <div>Location: San Francisco, CA / Remote</div>
               <div>GitHub: github.com/brianlang</div>
             </div>
           </header>
 
-          <hr class="paper-divider">
+          <hr class="resume-divider">
 
-          <section class="paper-section">
-            <h3 class="paper-heading">EXECUTIVE SUMMARY</h3>
+          <section class="resume-section">
+            <h3 class="resume-heading">EXECUTIVE SUMMARY</h3>
             <p>
               Technical Software Architect with comprehensive leadership experience architecting multi-region distributed backbones,
               fault-tolerant event platforms, and cloud infrastructure. Proven history driving cross-team system design, slashing latency,
@@ -384,427 +311,343 @@
             </p>
           </section>
 
-          <section class="paper-section">
-            <h3 class="paper-heading">SELECTED ARCHITECTURAL EXPERIENCE</h3>
+          <section class="resume-section">
+            <h3 class="resume-heading">SELECTED ARCHITECTURAL EXPERIENCE</h3>
             
-            <div class="paper-experience-block">
-              <div class="paper-exp-head">
-                <strong>Apex Cloud Systems — Staff Technical Architect</strong>
-                <span>2023 – Present</span>
+            <div class="resume-job">
+              <div class="job-head">
+                <span class="job-role">Apex Cloud Systems — Staff Technical Architect</span>
+                <span class="job-date">2023 – Present</span>
               </div>
-              <ul>
+              <ul class="job-bullets">
                 <li>Spearheaded distributed streaming architecture ingesting 15M+ events/day with 99.99% availability SLAs.</li>
                 <li>Designed autonomous multi-region failover and consensus pipelines across AWS and GCP.</li>
                 <li>Reduced global compute and network egress overhead by 30% through targeted architectural refactoring.</li>
               </ul>
             </div>
 
-            <div class="paper-experience-block">
-              <div class="paper-exp-head">
-                <strong>DataSphere Analytics — Principal Systems Architect</strong>
-                <span>2020 – 2023</span>
+            <div class="resume-job">
+              <div class="job-head">
+                <span class="job-role">DataSphere Analytics — Principal Systems Architect</span>
+                <span class="job-date">2020 – 2023</span>
               </div>
-              <ul>
+              <ul class="job-bullets">
                 <li>Built enterprise-scale telemetry and analytical workbench serving 12,000+ engineers.</li>
                 <li>Designed unified GraphQL gateway and distributed caching fabric with Redis cluster topology.</li>
               </ul>
             </div>
-          </section>
 
-          <section class="paper-section">
-            <h3 class="paper-heading">EDUCATION & CERTIFICATIONS</h3>
-            <div class="paper-exp-head">
-              <strong>B.S. in Computer Science — University of California, Berkeley</strong>
-              <span>Magna Cum Laude</span>
+            <div class="resume-job">
+              <div class="job-head">
+                <span class="job-role">Vanguard Tech Labs — Software Engineer</span>
+                <span class="job-date">2018 – 2020</span>
+              </div>
+              <ul class="job-bullets">
+                <li>Implemented core REST and gRPC microservices, automated CI/CD releases, and established 92% automated code coverage.</li>
+              </ul>
             </div>
-            <div>• AWS Certified Solutions Architect – Professional (SAP-C02)</div>
-            <div>• Certified Kubernetes Administrator (CKA)</div>
           </section>
 
-          <section class="paper-section">
-            <h3 class="paper-heading">CORE CAPABILITIES</h3>
+          <section class="resume-section">
+            <h3 class="resume-heading">EDUCATION & CERTIFICATIONS</h3>
+            <div class="job-head">
+              <span class="job-role">B.S. in Computer Science — University of California, Berkeley</span>
+              <span class="job-date">Magna Cum Laude</span>
+            </div>
+            <div class="cert-line">• AWS Certified Solutions Architect – Professional (SAP-C02)</div>
+            <div class="cert-line">• Certified Kubernetes Administrator (CKA)</div>
+          </section>
+
+          <section class="resume-section">
+            <h3 class="resume-heading">CORE CAPABILITIES</h3>
             <p><strong>Architecture:</strong> Distributed Systems, Event-Driven Topologies, Microservices, Zero-Trust Security, Data Ingestion</p>
             <p><strong>Stack:</strong> Go, TypeScript, Python, Rust, Kafka, Kubernetes, Docker, Terraform, Redis, PostgreSQL, AWS, GCP</p>
           </section>
         </div>
 
-      </div>
-    </div>
-
-    <!-- ================= WINDOW 3: Technical Stack ================= -->
-    <div class="system-window" id="window-skills" style="top: 130px; left: 180px; width: 660px; z-index: 9;">
-      <div class="window-titlebar" data-drag="window-skills">
-        <!-- macOS Traffic Lights (Left) -->
-        <div class="traffic-lights os-element-macos">
-          <button class="t-btn t-close" data-window="window-skills" title="Close"></button>
-          <button class="t-btn t-min" data-window="window-skills" title="Minimize"></button>
-          <button class="t-btn t-max" data-window="window-skills" title="Zoom"></button>
-        </div>
-
-        <div class="titlebar-title">
-          <span class="os-text-macos">System Information — Technical Competencies</span>
-          <span class="os-text-win">Settings &gt; System &gt; Architecture & Tech Stack</span>
-          <span class="os-text-fedora">GNOME Control Center — Technical Capabilities</span>
-        </div>
-
-        <!-- Windows 11 Window Controls (Right) -->
-        <div class="win-window-controls os-element-win">
-          <button class="win-btn win-min" data-window="window-skills" title="Minimize">&#8211;</button>
-          <button class="win-btn win-max" data-window="window-skills" title="Maximize">&#9633;</button>
-          <button class="win-btn win-close" data-window="window-skills" title="Close">&#10005;</button>
-        </div>
-
-        <!-- Fedora GNOME Controls (Right) -->
-        <div class="gnome-window-controls os-element-fedora">
-          <button class="gnome-btn gnome-min" data-window="window-skills" title="Minimize">&#8211;</button>
-          <button class="gnome-btn gnome-max" data-window="window-skills" title="Maximize">&#9633;</button>
-          <button class="gnome-btn gnome-close" data-window="window-skills" title="Close">&#10005;</button>
-        </div>
-      </div>
-
-      <div class="window-content skills-window-content">
-        <div class="stack-grid">
-          <div class="stack-card">
-            <h4><span class="cat-icon">💻</span> Languages</h4>
-            <div class="pill-group">
-              <span>Go (Golang)</span><span>TypeScript</span><span>Python</span><span>Rust</span><span>SQL</span><span>Bash / Zsh / PowerShell</span>
-            </div>
-          </div>
-          <div class="stack-card">
-            <h4><span class="cat-icon">🏛️</span> Architecture & Data</h4>
-            <div class="pill-group">
-              <span>Distributed Systems</span><span>Event-Driven</span><span>Microservices</span><span>Kafka</span><span>Redis</span><span>PostgreSQL</span>
-            </div>
-          </div>
-          <div class="stack-card">
-            <h4><span class="cat-icon">☁️</span> Cloud & Platforms</h4>
-            <div class="pill-group">
-              <span>AWS</span><span>Google Cloud (GCP)</span><span>Docker</span><span>Kubernetes</span><span>Terraform</span><span>CI/CD Pipelines</span>
-            </div>
-          </div>
-          <div class="stack-card">
-            <h4><span class="cat-icon">🎨</span> Frontend & Interfaces</h4>
-            <div class="pill-group">
-              <span>React & Next.js</span><span>WebSockets</span><span>Design Systems</span><span>Accessibility (a11y)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ================= WINDOW 5: Experience Timeline ================= -->
-    <div class="system-window" id="window-experience" style="top: 150px; left: 210px; width: 680px; z-index: 8;">
-      <div class="window-titlebar" data-drag="window-experience">
-        <!-- macOS Traffic Lights (Left) -->
-        <div class="traffic-lights os-element-macos">
-          <button class="t-btn t-close" data-window="window-experience" title="Close"></button>
-          <button class="t-btn t-min" data-window="window-experience" title="Minimize"></button>
-          <button class="t-btn t-max" data-window="window-experience" title="Zoom"></button>
-        </div>
-
-        <div class="titlebar-title">
-          <span class="os-text-macos">Activity Monitor — Career History</span>
-          <span class="os-text-win">Task Manager — Career History & Impact</span>
-          <span class="os-text-fedora">GNOME System Monitor — Career Progression</span>
-        </div>
-
-        <!-- Windows 11 Window Controls (Right) -->
-        <div class="win-window-controls os-element-win">
-          <button class="win-btn win-min" data-window="window-experience" title="Minimize">&#8211;</button>
-          <button class="win-btn win-max" data-window="window-experience" title="Maximize">&#9633;</button>
-          <button class="win-btn win-close" data-window="window-experience" title="Close">&#10005;</button>
-        </div>
-
-        <!-- Fedora GNOME Controls (Right) -->
-        <div class="gnome-window-controls os-element-fedora">
-          <button class="gnome-btn gnome-min" data-window="window-experience" title="Minimize">&#8211;</button>
-          <button class="gnome-btn gnome-max" data-window="window-experience" title="Maximize">&#9633;</button>
-          <button class="gnome-btn gnome-close" data-window="window-experience" title="Close">&#10005;</button>
-        </div>
-      </div>
-
-      <div class="window-content experience-window-content">
-        <div class="desktop-timeline">
-          <div class="timeline-row">
-            <div class="timeline-dot"></div>
-            <div class="timeline-details">
-              <div class="t-head">
-                <span class="t-role">Staff Technical Architect</span>
-                <span class="t-co">Apex Cloud Systems</span>
-                <span class="t-years">2023 — Present</span>
-              </div>
-              <p class="t-text">Directed multi-region ingestion architecture scaling to 15M+ operations daily. Mentored 8 senior engineers and reduced p99 query latency by 38%.</p>
-              <div class="t-chips"><span>Go</span><span>Kafka</span><span>AWS</span><span>Terraform</span></div>
-            </div>
-          </div>
-
-          <div class="timeline-row">
-            <div class="timeline-dot"></div>
-            <div class="timeline-details">
-              <div class="t-head">
-                <span class="t-role">Principal Systems Architect</span>
-                <span class="t-co">DataSphere Analytics</span>
-                <span class="t-years">2020 — 2023</span>
-              </div>
-              <p class="t-text">Architected distributed analytics platforms and real-time visualization systems utilized by 12,000+ enterprise analysts.</p>
-              <div class="t-chips"><span>TypeScript</span><span>React</span><span>GraphQL</span><span>PostgreSQL</span></div>
-            </div>
-          </div>
-
-          <div class="timeline-row">
-            <div class="timeline-dot"></div>
-            <div class="timeline-details">
-              <div class="t-head">
-                <span class="t-role">Software Engineer</span>
-                <span class="t-co">Vanguard Tech Labs</span>
-                <span class="t-years">2018 — 2020</span>
-              </div>
-              <p class="t-text">Implemented core REST and gRPC services, automated CI/CD releases, and established 92% automated code coverage benchmarks.</p>
-              <div class="t-chips"><span>Python</span><span>Django</span><span>Docker</span><span>Redis</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ================= WINDOWS 11 START MENU ================= -->
-    <div class="win-start-menu os-element-win" id="win-start-menu">
-      <div class="win-start-search">
-        <span class="search-icon">🔍</span>
-        <input type="text" placeholder="Type here to search apps, skills, files..." readonly class="nav-action-btn" data-target="window-terminal">
-      </div>
-
-      <div class="win-start-pinned">
-        <div class="start-section-title">Pinned</div>
-        <div class="start-apps-grid">
-          <div class="start-app-item nav-action-btn" data-target="window-terminal">
-            <div class="start-app-icon ps-bg">PS</div>
-            <span>PowerShell</span>
-          </div>
-          <div class="start-app-item nav-action-btn" data-target="window-resume">
-            <div class="start-app-icon pdf-bg">📄</div>
-            <span>Resume / CV</span>
-          </div>
-          <div class="start-app-item nav-action-btn" data-target="window-skills">
-            <div class="start-app-icon sys-bg">⚙️</div>
-            <span>Skills</span>
-          </div>
-          <div class="start-app-item nav-action-btn" data-target="window-experience">
-            <div class="start-app-icon act-bg">📈</div>
-            <span>Timeline</span>
-          </div>
-          <a href="mailto:brian.lang@robustcomputing.com" class="start-app-item">
-            <div class="start-app-icon mail-bg">✉️</div>
-            <span>Outlook</span>
+        <div class="resume-download-bar">
+          <a href="assets/resume-placeholder.html" download="Brian_Lang_Resume.html" class="ios-primary-btn">
+            Download PDF Document
+          </a>
+          <a href="assets/resume-placeholder.html" target="_blank" class="ios-secondary-btn">
+            Open Standalone Printable Page ↗
           </a>
         </div>
+
+      </div>
+    </section>
+
+    <!-- View 4: Technical Stack Sheet (iOS Settings / Control Center style) -->
+    <section class="ios-view" id="view-stack">
+      <div class="ios-navbar">
+        <button class="ios-nav-back" data-back>
+          <span class="nav-chevron">‹</span>
+          <span>Home</span>
+        </button>
+        <span class="ios-nav-title">Technical Stack</span>
+        <button class="ios-nav-action" data-navigate="view-experience">History</button>
       </div>
 
-      <div class="win-start-footer">
-        <div class="user-profile-badge">
-          <div class="win-user-avatar">BL</div>
-          <div class="win-user-info">
-            <strong>Brian Lang</strong>
-            <span>Technical Architect</span>
+      <div class="ios-scrollable-content">
+
+        <div class="ios-list-group">
+          <div class="ios-list-header">Programming Languages</div>
+          
+          <div class="ios-list-item">
+            <div class="item-icon-box cyan">💻</div>
+            <div class="item-content">
+              <span class="item-label">Go (Golang)</span>
+              <span class="item-sub">Microservices, concurrency, high-throughput engines</span>
+            </div>
+            <span class="item-badge blue">Primary</span>
+          </div>
+
+          <div class="ios-list-item">
+            <div class="item-icon-box blue">TS</div>
+            <div class="item-content">
+              <span class="item-label">TypeScript / Node.js</span>
+              <span class="item-sub">APIs, GraphQL gateways, fullstack reactive interfaces</span>
+            </div>
+            <span class="item-badge">Daily</span>
+          </div>
+
+          <div class="ios-list-item">
+            <div class="item-icon-box green">PY</div>
+            <div class="item-content">
+              <span class="item-label">Python</span>
+              <span class="item-sub">Automation, data transformation, telemetry</span>
+            </div>
+            <span class="item-badge">Proficient</span>
+          </div>
+
+          <div class="ios-list-item">
+            <div class="item-icon-box orange">RS</div>
+            <div class="item-content">
+              <span class="item-label">Rust</span>
+              <span class="item-sub">Low-latency gateways, memory-safe network tools</span>
+            </div>
+            <span class="item-badge">Systems</span>
           </div>
         </div>
-        <div class="win-footer-actions">
-          <button class="win-theme-pill" id="theme-toggle-win" title="Toggle Light / Dark Mode">
-            <span class="theme-icon">🌙</span>
-            <span class="theme-label">Dark</span>
-          </button>
-          <button class="win-os-pill" id="os-cycle-btn-win" title="Switch Operating System">
-            <span class="os-cycle-icon">🔵</span> Fedora
-          </button>
+
+        <div class="ios-list-group">
+          <div class="ios-list-header">Architecture & Data Topologies</div>
+          
+          <div class="ios-list-item">
+            <div class="item-icon-box purple">🏛️</div>
+            <div class="item-content">
+              <span class="item-label">Distributed Systems</span>
+              <span class="item-sub">Consensus algorithms, event sourcing, CQRS</span>
+            </div>
+          </div>
+
+          <div class="ios-list-item">
+            <div class="item-icon-box red">⚡</div>
+            <div class="item-content">
+              <span class="item-label">Apache Kafka</span>
+              <span class="item-sub">Event streaming fabric, partitioning, consumer groups</span>
+            </div>
+          </div>
+
+          <div class="ios-list-item">
+            <div class="item-icon-box blue">🐘</div>
+            <div class="item-content">
+              <span class="item-label">PostgreSQL & Redis</span>
+              <span class="item-sub">Sharded databases, distributed caching, ACID transactions</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ios-list-group">
+          <div class="ios-list-header">Cloud Platforms & DevOps</div>
+
+          <div class="ios-list-item">
+            <div class="item-icon-box orange">☁️</div>
+            <div class="item-content">
+              <span class="item-label">AWS & Google Cloud (GCP)</span>
+              <span class="item-sub">Multi-region VPCs, IAM zero-trust, serverless, BigQuery</span>
+            </div>
+          </div>
+
+          <div class="ios-list-item">
+            <div class="item-icon-box blue">☸️</div>
+            <div class="item-content">
+              <span class="item-label">Kubernetes & Docker</span>
+              <span class="item-sub">Cluster topologies, ingress controllers, service mesh</span>
+            </div>
+          </div>
+
+          <div class="ios-list-item">
+            <div class="item-icon-box purple">🛠️</div>
+            <div class="item-content">
+              <span class="item-label">Terraform & CI/CD</span>
+              <span class="item-sub">Declarative infrastructure as code, automated pipelines</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- View 5: Career Experience Sheet (iOS Activity style) -->
+    <section class="ios-view" id="view-experience">
+      <div class="ios-navbar">
+        <button class="ios-nav-back" data-back>
+          <span class="nav-chevron">‹</span>
+          <span>Home</span>
+        </button>
+        <span class="ios-nav-title">Career Experience</span>
+        <button class="ios-nav-action" data-navigate="view-resume">Resume</button>
+      </div>
+
+      <div class="ios-scrollable-content">
+
+        <div class="ios-timeline-feed">
+
+          <div class="ios-timeline-card">
+            <div class="timeline-date-chip">2023 — PRESENT</div>
+            <div class="timeline-card-header">
+              <div class="company-badge-box">APEX</div>
+              <div>
+                <h3 class="timeline-role">Staff Technical Architect</h3>
+                <span class="timeline-co">Apex Cloud Systems</span>
+              </div>
+            </div>
+            <p class="timeline-desc">
+              Directed enterprise multi-region ingestion architecture scaling to 15M+ operations daily. Mentored 8 senior engineers and reduced p99 query latency by 38%.
+            </p>
+            <div class="timeline-pills">
+              <span>Go</span><span>Kafka</span><span>AWS Multi-Region</span><span>Kubernetes</span>
+            </div>
+          </div>
+
+          <div class="ios-timeline-card">
+            <div class="timeline-date-chip">2020 — 2023</div>
+            <div class="timeline-card-header">
+              <div class="company-badge-box">DATA</div>
+              <div>
+                <h3 class="timeline-role">Principal Systems Architect</h3>
+                <span class="timeline-co">DataSphere Analytics</span>
+              </div>
+            </div>
+            <p class="timeline-desc">
+              Architected distributed analytics platforms and real-time visualization engines serving 12,000+ enterprise analysts across Fortune 500 customers.
+            </p>
+            <div class="timeline-pills">
+              <span>TypeScript</span><span>React</span><span>GraphQL</span><span>PostgreSQL</span><span>Redis</span>
+            </div>
+          </div>
+
+          <div class="ios-timeline-card">
+            <div class="timeline-date-chip">2018 — 2020</div>
+            <div class="timeline-card-header">
+              <div class="company-badge-box">VTL</div>
+              <div>
+                <h3 class="timeline-role">Software Engineer</h3>
+                <span class="timeline-co">Vanguard Tech Labs</span>
+              </div>
+            </div>
+            <p class="timeline-desc">
+              Implemented core REST and gRPC microservices, automated CI/CD releases, and established 92% automated code coverage benchmarks.
+            </p>
+            <div class="timeline-pills">
+              <span>Python</span><span>Django</span><span>Docker</span><span>Redis</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- View 6: Contact Card Sheet -->
+    <section class="ios-view" id="view-contact">
+      <div class="ios-navbar">
+        <button class="ios-nav-back" data-back>
+          <span class="nav-chevron">‹</span>
+          <span>Home</span>
+        </button>
+        <span class="ios-nav-title">Contact Card</span>
+        <button class="ios-nav-action" data-navigate="view-about">Profile</button>
+      </div>
+
+      <div class="ios-scrollable-content">
+        <div class="ios-card contact-hero-card">
+          <div class="contact-avatar">BL</div>
+          <h2>Brian Lang</h2>
+          <p>Technical Software Architect</p>
+          <div class="contact-quick-buttons">
+            <a href="mailto:brian.lang@robustcomputing.com" class="quick-circle-btn">
+              <span>✉️</span>
+              <label>Mail</label>
+            </a>
+            <button class="quick-circle-btn" id="btn-copy-email">
+              <span>📋</span>
+              <label id="copy-status">Copy</label>
+            </button>
+            <a href="https://github.com/brianlang" target="_blank" rel="noopener noreferrer" class="quick-circle-btn">
+              <span>🐙</span>
+              <label>GitHub</label>
+            </a>
+          </div>
+        </div>
+
+        <div class="ios-list-group">
+          <div class="ios-list-item">
+            <div class="item-icon-box blue">✉️</div>
+            <div class="item-content">
+              <span class="item-label">Email</span>
+              <a href="mailto:brian.lang@robustcomputing.com" class="item-value link">brian.lang@robustcomputing.com</a>
+            </div>
+          </div>
+          <div class="ios-list-item">
+            <div class="item-icon-box green">🌐</div>
+            <div class="item-content">
+              <span class="item-label">Website</span>
+              <span class="item-value">brianlang.dev</span>
+            </div>
+          </div>
+          <div class="ios-list-item">
+            <div class="item-icon-box purple">📍</div>
+            <div class="item-content">
+              <span class="item-label">Location</span>
+              <span class="item-value">San Francisco, CA / Remote</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- ================= FEDORA GNOME OVERVIEW LAUNCHER ================= -->
-    <div class="gnome-overview os-element-fedora" id="fedora-overview">
-      <div class="gnome-search-box">
-        <span class="gnome-search-icon">🔍</span>
-        <input type="text" placeholder="Type to search..." readonly class="nav-action-btn" data-target="window-terminal">
-      </div>
-      <div class="gnome-app-grid">
-        <div class="gnome-app-item nav-action-btn" data-target="window-terminal">
-          <div class="gnome-app-icon gnome-terminal-icon">&gt;_</div>
-          <span>Terminal</span>
-        </div>
-        <div class="gnome-app-item nav-action-btn" data-target="window-resume">
-          <div class="gnome-app-icon gnome-evince-icon">📄</div>
-          <span>Document Viewer</span>
-        </div>
-        <div class="gnome-app-item nav-action-btn" data-target="window-skills">
-          <div class="gnome-app-icon gnome-settings-icon">⚙️</div>
-          <span>Settings</span>
-        </div>
-        <div class="gnome-app-item nav-action-btn" data-target="window-experience">
-          <div class="gnome-app-icon gnome-monitor-icon">📈</div>
-          <span>System Monitor</span>
-        </div>
-        <a href="mailto:brian.lang@robustcomputing.com" class="gnome-app-item">
-          <div class="gnome-app-icon gnome-mail-icon">✉️</div>
-          <span>Geary Mail</span>
-        </a>
-      </div>
-    </div>
+  </div> <!-- /ios-device-viewport -->
 
-  </div> <!-- /desktop-screen -->
-
-  <!-- ================= macOS DOCK (os-element-macos) ================= -->
-  <nav class="macos-dock os-element-macos" aria-label="macOS Dock">
-    <div class="dock-app" data-target="window-terminal" data-tooltip="Terminal (About Me)">
-      <div class="dock-app-icon dark-dock-icon"><span>&gt;_</span></div>
-      <div class="dock-dot"></div>
-    </div>
-    <div class="dock-app" data-target="window-resume" data-tooltip="Resume / CV (Preview)">
-      <div class="dock-app-icon preview-dock-icon"><span>📄</span></div>
-      <div class="dock-dot"></div>
-    </div>
-    <div class="dock-app" data-target="window-skills" data-tooltip="Technical Stack">
-      <div class="dock-app-icon stack-dock-icon"><span>💾</span></div>
-      <div class="dock-dot"></div>
-    </div>
-    <div class="dock-app" data-target="window-experience" data-tooltip="Experience Monitor">
-      <div class="dock-app-icon activity-dock-icon"><span>📈</span></div>
-      <div class="dock-dot"></div>
-    </div>
-    <div class="dock-divider"></div>
-    <div class="dock-app" id="dock-theme-btn" data-tooltip="Switch Theme (Dark/Light)">
-      <div class="dock-app-icon settings-dock-icon"><span class="theme-icon">🌙</span></div>
-    </div>
-    <a href="mailto:brian.lang@robustcomputing.com" class="dock-app" data-tooltip="Email Brian Lang">
-      <div class="dock-app-icon mail-dock-icon"><span>✉️</span></div>
-    </a>
-  </nav>
-
-  <!-- ================= FEDORA GNOME DASH DOCK (os-element-fedora) ================= -->
-  <nav class="gnome-dash-dock os-element-fedora" aria-label="Fedora GNOME Dash">
-    <div class="dash-item" data-target="window-terminal" data-tooltip="GNOME Terminal">
-      <div class="dash-icon fedora-term-icon"><span>&gt;_</span></div>
-      <div class="dash-dot"></div>
-    </div>
-    <div class="dash-item" data-target="window-resume" data-tooltip="Evince (Resume)">
-      <div class="dash-icon fedora-doc-icon"><span>📄</span></div>
-      <div class="dash-dot"></div>
-    </div>
-    <div class="dash-item" data-target="window-skills" data-tooltip="Control Center (Stack)">
-      <div class="dash-icon fedora-settings-icon"><span>⚙️</span></div>
-      <div class="dash-dot"></div>
-    </div>
-    <div class="dash-item" data-target="window-experience" data-tooltip="System Monitor">
-      <div class="dash-icon fedora-monitor-icon"><span>📈</span></div>
-      <div class="dash-dot"></div>
-    </div>
-    <div class="dash-separator"></div>
-    <div class="dash-item" id="dash-theme-btn" data-tooltip="Toggle Dark / Light Theme">
-      <div class="dash-icon fedora-theme-icon"><span class="theme-icon">🌙</span></div>
-    </div>
-    <a href="mailto:brian.lang@robustcomputing.com" class="dash-item" data-tooltip="Mail Client">
-      <div class="dash-icon fedora-mail-icon"><span>✉️</span></div>
-    </a>
-  </nav>
-
-  <!-- ================= WINDOWS 11 TASKBAR (os-element-win) ================= -->
-  <footer class="win-taskbar os-element-win" aria-label="Windows 11 Taskbar">
-    
-    <!-- Weather Widget (Left) -->
-    <div class="win-taskbar-left">
-      <div class="win-weather-widget" title="Current Weather & Conditions">
-        <span class="weather-icon">⛅</span>
-        <div class="weather-meta">
-          <span class="weather-temp">68°F</span>
-          <span class="weather-cond">Sunny</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Centered Taskbar App Icons -->
-    <div class="win-taskbar-center">
-      <!-- Start Button -->
-      <button class="win-taskbar-icon win-start-btn" id="win-start-trigger" title="Start">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.951-1.801"/>
-        </svg>
-      </button>
-
-      <!-- Task View -->
-      <div class="win-taskbar-icon" title="Task View" id="win-taskview-btn">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M4 4h7v7H4V4zm9 0h7v7h-7V4zm-9 9h7v7H4v-7zm9 0h7v7h-7v-7z"/>
-        </svg>
-      </div>
-
-      <div class="win-taskbar-icon" data-target="window-terminal" title="PowerShell (About)">
-        <div class="win-app-glyph ps-glyph">PS</div>
-        <div class="win-task-dot"></div>
-      </div>
-
-      <div class="win-taskbar-icon" data-target="window-resume" title="Resume.pdf">
-        <div class="win-app-glyph">📄</div>
-        <div class="win-task-dot"></div>
-      </div>
-
-      <div class="win-taskbar-icon" data-target="window-skills" title="Settings (Stack)">
-        <div class="win-app-glyph">⚙️</div>
-        <div class="win-task-dot"></div>
-      </div>
-
-      <div class="win-taskbar-icon" data-target="window-experience" title="Task Manager (Career)">
-        <div class="win-app-glyph">📈</div>
-        <div class="win-task-dot"></div>
-      </div>
-    </div>
-
-    <!-- System Tray (Right) -->
-    <div class="win-taskbar-right">
-      <!-- OS Switcher Button for Win 11 -->
-      <button class="win-tray-btn" id="os-cycle-btn-win-tray" title="Switch Operating System">
-        <span class="tray-pill">🔵 Fedora</span>
-      </button>
-
-      <!-- Theme Switcher Button for Win 11 -->
-      <button class="win-tray-btn" id="theme-toggle-win-tray" title="Toggle Dark/Light Mode">
-        <span class="theme-icon">🌙</span>
-      </button>
-
-      <!-- Quick Settings Group -->
-      <div class="win-tray-group" title="Internet, Sound, Battery">
-        <span class="tray-icon">📶</span>
-        <span class="tray-icon">🔊</span>
-        <span class="tray-icon">🔋</span>
-      </div>
-
-      <!-- Date & Time Group -->
-      <div class="win-time-group" title="Notifications & Calendar">
-        <div class="win-time-clock live-time-clock">6:18 PM</div>
-        <div class="win-time-date live-date">9/3/2026</div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ================= iOS MOBILE BOTTOM DOCK (Visible on mobile screens) ================= -->
-  <nav class="ios-bottom-dock" aria-label="iOS Floating Dock">
-    <div class="ios-dock-icon" data-open="window-terminal" title="Terminal">
-      <div class="ios-dock-glyph terminal-glyph">&gt;_</div>
-    </div>
-    <div class="ios-dock-icon" data-open="window-resume" title="Resume">
-      <div class="ios-dock-glyph resume-glyph">📄</div>
-    </div>
-    <div class="ios-dock-icon" data-open="window-skills" title="Stack">
-      <div class="ios-dock-glyph stack-glyph">⚙️</div>
-    </div>
-    <div class="ios-dock-icon" data-open="window-experience" title="Experience">
-      <div class="ios-dock-glyph exp-glyph">📈</div>
-    </div>
-    <a href="mailto:brian.lang@robustcomputing.com" class="ios-dock-icon" title="Email Brian Lang">
-      <div class="ios-dock-glyph mail-glyph">✉️</div>
-    </a>
+  <!-- ================= iOS FLOATING BOTTOM DOCK ================= -->
+  <nav class="ios-dock" aria-label="iOS Dock">
+    <button class="ios-dock-btn active" data-navigate="view-homescreen" title="Home">
+      <div class="dock-glyph dock-home-glyph">🏠</div>
+      <span class="dock-btn-label">Home</span>
+    </button>
+    <button class="ios-dock-btn" data-navigate="view-about" title="Profile">
+      <div class="dock-glyph dock-term-glyph">&gt;_</div>
+      <span class="dock-btn-label">Profile</span>
+    </button>
+    <button class="ios-dock-btn" data-navigate="view-resume" title="Resume">
+      <div class="dock-glyph dock-resume-glyph">📄</div>
+      <span class="dock-btn-label">Resume</span>
+    </button>
+    <button class="ios-dock-btn" data-navigate="view-stack" title="Stack">
+      <div class="dock-glyph dock-stack-glyph">⚙️</div>
+      <span class="dock-btn-label">Stack</span>
+    </button>
+    <button class="ios-dock-btn" data-navigate="view-experience" title="Experience">
+      <div class="dock-glyph dock-exp-glyph">📈</div>
+      <span class="dock-btn-label">Career</span>
+    </button>
   </nav>
 
   <!-- ================= iOS HOME INDICATOR BAR ================= -->
-  <div class="ios-home-indicator" id="ios-home-indicator" title="Swipe to Home / Close Active Sheet"></div>
+  <footer class="ios-home-bar-area" id="ios-home-bar" title="Swipe or tap for Homescreen">
+    <div class="ios-home-indicator"></div>
+  </footer>
 
   <script src="script.js"></script>
 </body>

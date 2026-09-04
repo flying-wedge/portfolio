@@ -1,1787 +1,1387 @@
 /* ==========================================================================
-   Comprehensive Triple Desktop Theme System
-   - macOS (Dark / Light)
-   - Windows 11 (Dark / Light with Mica/Acrylic Fluent Design)
-   - Fedora Linux GNOME 46 (Dark / Light with Adwaita styling, Top Bar & Dash)
+   Brian Lang - Technical Software Architect Portfolio
+   Pure Apple iOS 18 Dark Mode Design System
+   Responsive layout for mobile, tablet, and desktop viewports
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. COLOR PALETTES & THEME VARIABLES
+   1. iOS DESIGN TOKENS & SYSTEM VARIABLES
    -------------------------------------------------------------------------- */
+:root {
+  /* iOS System Dark Palette */
+  --ios-black: #000000;
+  --ios-bg: #000000;
+  --ios-surface-1: #1c1c1e;
+  --ios-surface-2: #2c2c2e;
+  --ios-surface-3: #3a3a3c;
+  --ios-surface-glass: rgba(30, 30, 36, 0.72);
+  --ios-dock-glass: rgba(26, 26, 32, 0.82);
 
-/* /* Default: macOS Dark (Authentic Stock macOS Big Sur / Monterey Night Desktop) */
-:root, [data-os="macos"][data-theme="dark"] {
-  --wallpaper: #0b1021 url("assets/macos-dark.jpg") center center / cover no-repeat fixed;
-  --menubar-bg: rgba(26, 27, 34, 0.72);
-  --menubar-text: #E5E5EA;
-  --menubar-border: rgba(255, 255, 255, 0.08);
+  /* iOS Accents */
+  --ios-blue: #0A84FF;
+  --ios-green: #30D158;
+  --ios-indigo: #5E5CE6;
+  --ios-orange: #FF9F0A;
+  --ios-pink: #FF375F;
+  --ios-purple: #BF5AF2;
+  --ios-red: #FF453A;
+  --ios-teal: #64D2FF;
+  --ios-yellow: #FFD60A;
 
-  --window-bg: rgba(30, 32, 40, 0.82);
-  --window-header-bg: rgba(36, 38, 48, 0.9);
-  --window-border: rgba(255, 255, 255, 0.14);
-  --window-radius: 12px;
-  --window-shadow: 0 28px 75px rgba(0, 0, 0, 0.65), 0 0 1px rgba(255, 255, 255, 0.25);
-  
-  --dock-bg: rgba(25, 27, 33, 0.68);
-  --dock-border: rgba(255, 255, 255, 0.14);
-  --dock-shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
+  /* Typography Colors */
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(235, 235, 245, 0.68);
+  --text-tertiary: rgba(235, 235, 245, 0.38);
+  --text-quaternary: rgba(235, 235, 245, 0.2);
 
-  --text-primary: #F5F5F7;
-  --text-secondary: #A1A1A6;
-  --text-muted: #6E6E73;
-  --text-highlight: #2997FF;
+  /* Borders & Dividers */
+  --ios-separator: rgba(84, 84, 88, 0.36);
+  --ios-border: rgba(255, 255, 255, 0.12);
 
-  --accent-blue: #0A84FF;
-  --accent-green: #30D158;
-  --accent-orange: #FF9F0A;
-  --accent-purple: #BF5AF2;
+  /* Radii */
+  --radius-squircle: 22.37%; /* Apple continuous corner squircle */
+  --radius-card: 26px;
+  --radius-sheet: 32px;
+  --radius-pill: 9999px;
 
-  --card-bg: rgba(44, 46, 56, 0.6);
-  --card-border: rgba(255, 255, 255, 0.08);
+  /* Shadows */
+  --shadow-dock: 0 20px 48px rgba(0, 0, 0, 0.75), 0 0 1px rgba(255, 255, 255, 0.2);
+  --shadow-card: 0 14px 36px rgba(0, 0, 0, 0.45);
+  --shadow-app: 0 8px 20px rgba(0, 0, 0, 0.35);
 
-  --paper-bg: #1c1e24;
-  --paper-text: #E5E5EA;
-  --paper-border: rgba(255, 255, 255, 0.12);
-
-  --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", sans-serif;
+  /* Typography */
+  --font-ios: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", -apple-system-headline, sans-serif;
   --font-mono: "SF Mono", "Fira Code", Menlo, Monaco, Consolas, monospace;
 }
 
-/* macOS Light (Authentic Stock macOS Big Sur / Monterey Daylight Desktop) */
-[data-os="macos"][data-theme="light"] {
-  --wallpaper: #c2d6f0 url("assets/macos-light.jpg") center center / cover no-repeat fixed;
-  --menubar-bg: rgba(255, 255, 255, 0.75);
-  --menubar-text: #1D1D1F;
-  --menubar-border: rgba(0, 0, 0, 0.08);
-
-  --window-bg: rgba(255, 255, 255, 0.88);
-  --window-header-bg: rgba(246, 246, 248, 0.94);
-  --window-border: rgba(0, 0, 0, 0.14);
-  --window-radius: 12px;
-  --window-shadow: 0 20px 60px rgba(0, 0, 0, 0.18), 0 0 1px rgba(0, 0, 0, 0.2);
-
-  --dock-bg: rgba(255, 255, 255, 0.65);
-  --dock-border: rgba(0, 0, 0, 0.1);
-  --dock-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
-
-  --text-primary: #1D1D1F;
-  --text-secondary: #515154;
-  --text-muted: #86868B;
-  --text-highlight: #0066CC;
-
-  --accent-blue: #0071E3;
-  --accent-green: #34C759;
-  --accent-orange: #FF9500;
-  --accent-purple: #AF52DE;
-
-  --card-bg: rgba(245, 245, 247, 0.8);
-  --card-border: rgba(0, 0, 0, 0.06);
-
-  --paper-bg: #FFFFFF;
-  --paper-text: #1D1D1F;
-  --paper-border: #E5E5EA;
-
-  --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", sans-serif;
-  --font-mono: "SF Mono", "Fira Code", Menlo, Monaco, Consolas, monospace;
-}
-
-/* Windows 11 Dark (Authentic Stock Windows 11 Dark Bloom Desktop) */
-[data-os="windows"][data-theme="dark"] {
-  --wallpaper: #0b111e url("assets/win11-dark.jpg") center center / cover no-repeat fixed;
-  --taskbar-bg: rgba(32, 32, 32, 0.85);
-  --taskbar-border: rgba(255, 255, 255, 0.08);
-
-  --window-bg: rgba(32, 32, 36, 0.92);
-  --window-header-bg: rgba(40, 40, 44, 0.96);
-  --window-border: rgba(255, 255, 255, 0.12);
-  --window-radius: 8px;
-  --window-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1);
-
-  --text-primary: #FFFFFF;
-  --text-secondary: #D1D1D1;
-  --text-muted: #999999;
-  --text-highlight: #60CDFF;
-
-  --accent-blue: #0078D4;
-  --accent-green: #107C41;
-  --accent-orange: #D83B01;
-  --accent-purple: #881798;
-
-  --card-bg: rgba(45, 45, 52, 0.7);
-  --card-border: rgba(255, 255, 255, 0.08);
-
-  --paper-bg: #1F1F24;
-  --paper-text: #FFFFFF;
-  --paper-border: rgba(255, 255, 255, 0.15);
-
-  --font-system: "Segoe UI Variable", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: "Cascadia Code", "Consolas", "SF Mono", monospace;
-}
-
-/* Windows 11 Light (Authentic Stock Windows 11 Light Bloom Desktop) */
-[data-os="windows"][data-theme="light"] {
-  --wallpaper: #cde0f8 url("assets/win11-light.jpg") center center / cover no-repeat fixed;
-  --taskbar-bg: rgba(243, 243, 243, 0.86);
-  --taskbar-border: rgba(0, 0, 0, 0.08);
-
-  --window-bg: rgba(255, 255, 255, 0.94);
-  --window-header-bg: rgba(246, 248, 250, 0.98);
-  --window-border: rgba(0, 0, 0, 0.12);
-  --window-radius: 8px;
-  --window-shadow: 0 18px 50px rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
-
-  --text-primary: #000000;
-  --text-secondary: #444444;
-  --text-muted: #737373;
-  --text-highlight: #0067C0;
-
-  --accent-blue: #0067C0;
-  --accent-green: #107C41;
-  --accent-orange: #CA5010;
-  --accent-purple: #881798;
-
-  --card-bg: rgba(246, 248, 250, 0.85);
-  --card-border: rgba(0, 0, 0, 0.06);
-
-  --paper-bg: #FFFFFF;
-  --paper-text: #1E1E1E;
-  --paper-border: #E0E0E0;
-
-  --font-system: "Segoe UI Variable", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: "Cascadia Code", "Consolas", "SF Mono", monospace;
-}
-
-/* Fedora GNOME Dark (Authentic Stock Fedora 40 Default Night Desktop) */
-[data-os="fedora"][data-theme="dark"] {
-  --wallpaper: #0b1528 url("assets/fedora-dark.jpg") center center / cover no-repeat fixed;
-  --gnome-topbar-bg: #000000;
-  --gnome-topbar-text: #FFFFFF;
-  
-  --dash-bg: rgba(36, 36, 36, 0.85);
-  --dash-border: rgba(255, 255, 255, 0.1);
-  --dash-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
-
-  --window-bg: #242424; /* Official GNOME 46 Libadwaita dark background */
-  --window-header-bg: #303030;
-  --window-border: rgba(255, 255, 255, 0.12);
-  --window-radius: 12px;
-  --window-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
-
-  --text-primary: #FFFFFF;
-  --text-secondary: #C0BFBC;
-  --text-muted: #9A9996;
-  --text-highlight: #78AEED;
-
-  --accent-blue: #3584E4; /* Official Fedora / GNOME Blue */
-  --accent-green: #33D17A;
-  --accent-orange: #FF7800;
-  --accent-purple: #9141AC;
-
-  --card-bg: #2E2E2E;
-  --card-border: rgba(255, 255, 255, 0.06);
-
-  --paper-bg: #1e1e1e;
-  --paper-text: #FFFFFF;
-  --paper-border: rgba(255, 255, 255, 0.12);
-
-  --font-system: "Cantarell", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: "Fira Code", "Source Code Pro", monospace;
-}
-
-/* Fedora GNOME Light (Authentic Stock Fedora 40 Default Daylight Desktop) */
-[data-os="fedora"][data-theme="light"] {
-  --wallpaper: #d5e5f8 url("assets/fedora-light.jpg") center center / cover no-repeat fixed;
-  --gnome-topbar-bg: #EAEAEA;
-  --gnome-topbar-text: #2E3436;
-
-  --dash-bg: rgba(240, 240, 240, 0.85);
-  --dash-border: rgba(0, 0, 0, 0.1);
-  --dash-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
-
-  --window-bg: #FAFAFA;
-  --window-header-bg: #EBEBEB;
-  --window-border: rgba(0, 0, 0, 0.14);
-  --window-radius: 12px;
-  --window-shadow: 0 18px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.06);
-
-  --text-primary: #2E3436;
-  --text-secondary: #5E5C64;
-  --text-muted: #77767B;
-  --text-highlight: #1C71D8;
-
-  --accent-blue: #3584E4;
-  --accent-green: #26A269;
-  --accent-orange: #E66100;
-  --accent-purple: #9141AC;
-
-  --card-bg: #FFFFFF;
-  --card-border: rgba(0, 0, 0, 0.08);
-
-  --paper-bg: #FFFFFF;
-  --paper-text: #2E3436;
-  --paper-border: #DCDCDC;
-
-  --font-system: "Cantarell", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: "Fira Code", "Source Code Pro", monospace;
-}
-
 /* --------------------------------------------------------------------------
-   2. OS CONDITIONAL VISIBILITY
-   -------------------------------------------------------------------------- */
-[data-os="macos"] .os-element-win,
-[data-os="macos"] .os-element-fedora,
-[data-os="macos"] .os-text-win,
-[data-os="macos"] .os-text-fedora {
-  display: none !important;
-}
-
-[data-os="windows"] .os-element-macos,
-[data-os="windows"] .os-element-fedora,
-[data-os="windows"] .os-text-macos,
-[data-os="windows"] .os-text-fedora {
-  display: none !important;
-}
-
-[data-os="fedora"] .os-element-macos,
-[data-os="fedora"] .os-element-win,
-[data-os="fedora"] .os-text-macos,
-[data-os="fedora"] .os-text-win {
-  display: none !important;
-}
-
-/* --------------------------------------------------------------------------
-   3. GLOBAL CANVAS & LAYOUT BOUNDS
+   2. GLOBAL RESET & BASE CANVAS
    -------------------------------------------------------------------------- */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
   user-select: none;
 }
 
 html, body {
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  font-family: var(--font-system);
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  background-color: var(--ios-bg);
+  background-image: 
+    radial-gradient(at 10% 20%, rgba(10, 132, 255, 0.12) 0px, transparent 50%),
+    radial-gradient(at 90% 80%, rgba(94, 92, 230, 0.12) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(48, 209, 88, 0.05) 0px, transparent 60%);
+  background-attachment: fixed;
   color: var(--text-primary);
-  background: var(--wallpaper);
+  font-family: var(--font-ios);
+  overflow: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-/* macOS: top 30px, bottom 80px */
-[data-os="macos"] .desktop-screen {
-  position: absolute;
-  top: 30px;
+/* --------------------------------------------------------------------------
+   3. iOS STATUS BAR & DYNAMIC ISLAND
+   -------------------------------------------------------------------------- */
+.ios-status-bar {
+  position: fixed;
+  top: 0;
   left: 0;
   right: 0;
-  bottom: 80px;
+  height: 52px;
+  padding: 0 24px;
+  padding-top: env(safe-area-inset-top, 8px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10000;
+  pointer-events: none;
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+.ios-status-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.ios-status-clock {
+  font-weight: 600;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+  color: #FFFFFF;
+}
+
+.ios-dynamic-island {
+  pointer-events: auto;
+  position: relative;
+  background: #000000;
+  height: 32px;
+  min-width: 124px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 0.5px solid rgba(255, 255, 255, 0.15);
+}
+
+.island-pill-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+
+.island-icon-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--ios-green);
+  font-weight: 600;
+}
+
+.island-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--ios-green);
+  box-shadow: 0 0 8px var(--ios-green);
+  animation: islandPulse 2s infinite ease-in-out;
+}
+
+@keyframes islandPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+.island-label {
+  font-size: 11px;
+  letter-spacing: -0.1px;
+}
+
+.island-camera {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #0c0d14;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.4);
+}
+
+.island-expanded-view {
+  display: none;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ios-dynamic-island.expanded {
+  min-width: 320px;
+  height: 52px;
+  padding: 0 16px;
+  border-radius: 28px;
+}
+
+.ios-dynamic-island.expanded .island-pill-content {
+  display: none;
+}
+
+.ios-dynamic-island.expanded .island-expanded-view {
+  display: flex;
+}
+
+.island-exp-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.island-exp-badge {
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ios-blue);
+  letter-spacing: 0.4px;
+}
+
+.island-exp-title {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.island-action-pill {
+  background: var(--ios-blue);
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  transition: opacity 0.15s ease;
+}
+
+.island-action-pill:active {
+  opacity: 0.7;
+}
+
+.ios-status-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+}
+
+.ios-status-icon {
+  display: inline-flex;
+  align-items: center;
+  color: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   4. DEVICE VIEWPORT & VIEW MANAGER
+   -------------------------------------------------------------------------- */
+.ios-device-viewport {
+  position: relative;
+  width: 100%;
+  max-width: 680px; /* Tablet & desktop container limit */
+  height: 100%;
+  margin: 0 auto;
   overflow: hidden;
 }
 
-/* Windows: top 0, bottom 48px */
-[data-os="windows"] .desktop-screen {
+/* Each iOS View (Homescreen or Sheet View) */
+.ios-view {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 48px;
-  overflow: hidden;
-}
-
-/* Fedora GNOME: top 32px (topbar), bottom 78px (dash) */
-[data-os="fedora"] .desktop-screen {
-  position: absolute;
-  top: 32px;
-  left: 0;
-  right: 0;
-  bottom: 78px;
-  overflow: hidden;
-}
-
-/* Desktop Icons Alignment */
-[data-os="macos"] .desktop-icons-area {
-  position: absolute;
-  top: 20px;
-  right: 24px;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  z-index: 1;
+  background: transparent;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.96) translateY(20px);
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.24s ease;
+  z-index: 10;
 }
 
-[data-os="windows"] .desktop-icons-area {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  z-index: 1;
+.ios-view.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1) translateY(0);
+  z-index: 20;
 }
 
-.desktop-icon {
-  width: 86px;
+.ios-scrollable-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 60px 18px 120px;
+  scroll-behavior: smooth;
   display: flex;
   flex-direction: column;
+  gap: 24px;
+}
+
+/* Custom Clean Scrollbar */
+.ios-scrollable-content::-webkit-scrollbar {
+  width: 4px;
+}
+.ios-scrollable-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   5. VIEW NAVIGATION BAR (iOS Navigation Controller)
+   -------------------------------------------------------------------------- */
+.ios-navbar {
+  height: 52px;
+  display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: space-between;
+  padding: 0 16px;
+  padding-top: env(safe-area-inset-top, 6px);
+  background: rgba(18, 18, 22, 0.85);
+  backdrop-filter: blur(35px) saturate(190%);
+  -webkit-backdrop-filter: blur(35px) saturate(190%);
+  border-bottom: 0.5px solid var(--ios-separator);
+  z-index: 50;
+  position: sticky;
+  top: 0;
+}
+
+.ios-nav-back {
+  background: transparent;
+  border: none;
+  color: var(--ios-blue);
+  font-size: 17px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 3px;
   cursor: pointer;
   padding: 6px 4px;
-  border-radius: 6px;
-  transition: background 0.15s ease;
 }
 
-.desktop-icon:hover {
-  background: rgba(255, 255, 255, 0.12);
+.nav-chevron {
+  font-size: 24px;
+  line-height: 1;
 }
 
-[data-theme="light"] .desktop-icon:hover {
-  background: rgba(0, 0, 0, 0.08);
+.ios-nav-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #FFFFFF;
+  letter-spacing: -0.2px;
 }
 
-.icon-graphic {
-  width: 48px;
-  height: 48px;
-  border-radius: 8px;
+.ios-nav-action {
+  background: transparent;
+  border: none;
+  color: var(--ios-blue);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 4px;
+}
+
+.ios-nav-action:active,
+.ios-nav-back:active {
+  opacity: 0.5;
+}
+
+/* --------------------------------------------------------------------------
+   6. HOMESCREEN DATE & HERO WIDGET
+   -------------------------------------------------------------------------- */
+.ios-date-widget {
+  text-align: center;
+  padding: 10px 0 6px;
+}
+
+.ios-date-weekday {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ios-blue);
+  letter-spacing: -0.1px;
+}
+
+.ios-date-bigclock {
+  font-size: 64px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.05;
+  color: #FFFFFF;
+}
+
+.ios-hero-widget {
+  background: var(--ios-surface-glass);
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  border: 1px solid var(--ios-border);
+  border-radius: var(--radius-card);
+  padding: 22px;
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  transition: transform 0.16s ease, border-color 0.2s ease;
+  outline: none;
+}
+
+.ios-hero-widget:active {
+  transform: scale(0.975);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.hero-top-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.hero-avatar-ring {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--ios-blue), var(--ios-indigo));
+  box-shadow: 0 6px 16px rgba(10, 132, 255, 0.4);
+  flex-shrink: 0;
+}
+
+.hero-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #11141c;
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 26px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
-  position: relative;
 }
 
-.resume-icon-file {
-  background: linear-gradient(135deg, #E5E5EA, #FFFFFF);
-  border: 1px solid rgba(0,0,0,0.1);
-  color: #1c1c1e;
+.hero-titles {
+  flex: 1;
 }
 
-.resume-icon-file .icon-ext {
-  position: absolute;
-  bottom: 3px;
-  font-size: 8px;
+.ios-chip-badge {
+  font-size: 10px;
   font-weight: 700;
-  background: #FF3B30;
-  color: white;
-  padding: 1px 3px;
-  border-radius: 3px;
+  color: var(--ios-teal);
+  letter-spacing: 0.6px;
 }
 
-.folder-icon {
-  background: linear-gradient(135deg, #0A84FF, #0066CC);
-  color: #fff;
+.hero-name {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  color: #FFFFFF;
+  line-height: 1.2;
 }
 
-[data-os="windows"] .folder-icon {
-  background: linear-gradient(135deg, #F9D05A, #D6971E);
+.hero-role {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ios-blue);
+  margin-top: 2px;
 }
 
-.harddrive-icon {
-  background: linear-gradient(135deg, #8E8E93, #636366);
+.hero-summary {
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
 }
 
-.app-icon {
-  background: rgba(45, 47, 56, 0.9);
+.hero-meta-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.meta-tag {
+  font-size: 11.5px;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 4px 9px;
+  border-radius: 8px;
+  color: var(--text-secondary);
+}
+
+.hero-footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 0.5px solid var(--ios-separator);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ios-blue);
+}
+
+.ios-chevron {
+  font-size: 18px;
+}
+
+/* --------------------------------------------------------------------------
+   7. SPRINGBOARD 4-COLUMN APP GRID
+   -------------------------------------------------------------------------- */
+.ios-section-title {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-tertiary);
+  margin-left: 6px;
+  margin-bottom: -10px;
+}
+
+.ios-app-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 10px;
+  padding: 6px 4px;
+}
+
+.ios-app-item {
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.ios-app-item:active {
+  transform: scale(0.86);
+}
+
+.ios-squircle {
+  width: 62px;
+  height: 62px;
+  border-radius: 15px; /* iOS continuous squircle ratio */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-app);
+  position: relative;
+  transition: box-shadow 0.15s ease;
+}
+
+.squircle-glyph {
+  font-size: 28px;
+  line-height: 1;
+  color: #FFFFFF;
+}
+
+/* App Squircle Themes */
+.app-terminal {
+  background: linear-gradient(135deg, #252830, #0c0d12);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.app-terminal .squircle-glyph {
+  color: var(--ios-green);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.app-resume {
+  background: linear-gradient(135deg, #FF453A, #C91A10);
+}
+
+.app-stack {
+  background: linear-gradient(135deg, #64D2FF, #0A84FF);
+}
+
+.app-experience {
+  background: linear-gradient(135deg, #30D158, #1E8236);
+}
+
+.app-mail {
+  background: linear-gradient(135deg, #0A84FF, #0040DD);
+}
+
+.app-github {
+  background: linear-gradient(135deg, #3a3d46, #16181d);
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.terminal-app-icon {
-  background: #000;
-  color: #30D158;
-  font-family: var(--font-mono);
-  font-weight: bold;
+.app-share {
+  background: linear-gradient(135deg, #FF9F0A, #E06700);
 }
 
-[data-os="windows"] .terminal-app-icon {
-  background: #012456;
+.app-contacts {
+  background: linear-gradient(135deg, #BF5AF2, #5E5CE6);
+}
+
+.ios-app-name {
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: -0.1px;
   color: #FFFFFF;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   8. QUICK GLANCE TELEMETRY CARDS
+   -------------------------------------------------------------------------- */
+.ios-glance-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.glance-card {
+  background: var(--ios-surface-glass);
+  backdrop-filter: blur(35px) saturate(180%);
+  -webkit-backdrop-filter: blur(35px) saturate(180%);
+  border: 1px solid var(--ios-border);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.glance-card:active {
+  transform: scale(0.97);
+}
+
+.glance-top {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.glance-icon {
   font-size: 16px;
 }
 
-.icon-label {
-  font-size: 11px;
-  font-weight: 500;
-  text-align: center;
+.glance-metric {
+  font-size: 22px;
+  font-weight: 800;
   color: #FFFFFF;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-  line-height: 1.25;
-  word-break: break-word;
+  letter-spacing: -0.5px;
 }
 
-[data-theme="light"] .icon-label {
-  color: #1a1a1a;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
-}
-
-/* --------------------------------------------------------------------------
-   4. SYSTEM WINDOW STYLING & CONTROLS
-   -------------------------------------------------------------------------- */
-.system-window {
-  position: absolute;
-  background: var(--window-bg);
-  backdrop-filter: blur(40px) saturate(190%);
-  -webkit-backdrop-filter: blur(40px) saturate(190%);
-  border: 1px solid var(--window-border);
-  border-radius: var(--window-radius);
-  box-shadow: var(--window-shadow);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease;
-}
-
-.system-window.minimized {
-  transform: scale(0.6) translateY(500px);
-  opacity: 0;
-  pointer-events: none;
-}
-
-.system-window.hidden {
-  display: none !important;
-}
-
-.system-window.active {
-  box-shadow: 0 35px 85px rgba(0, 0, 0, 0.75), 0 0 1px rgba(255, 255, 255, 0.35);
-}
-
-.window-titlebar {
-  height: 38px;
-  background: var(--window-header-bg);
-  border-bottom: 1px solid var(--card-border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 12px;
-  cursor: grab;
-}
-
-.window-titlebar:active {
-  cursor: grabbing;
-}
-
-/* macOS Traffic Lights */
-.traffic-lights {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  width: 60px;
-}
-
-.t-btn {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-}
-
-.t-close { background-color: #FF5F56; }
-.t-min { background-color: #FFBD2E; }
-.t-max { background-color: #27C93F; }
-
-/* Windows 11 Controls */
-.win-window-controls {
-  display: flex;
-  align-items: stretch;
-  height: 100%;
-}
-
-.win-btn {
-  width: 44px;
-  height: 38px;
-  background: transparent;
-  border: none;
-  color: var(--text-secondary);
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.12s ease;
-}
-
-.win-btn:hover { background: rgba(255, 255, 255, 0.1); color: var(--text-primary); }
-[data-theme="light"] .win-btn:hover { background: rgba(0, 0, 0, 0.08); }
-.win-btn.win-close:hover { background: #E81123 !important; color: #FFFFFF !important; }
-
-/* Fedora GNOME Window Controls */
-.gnome-window-controls {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.gnome-btn {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text-secondary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-[data-theme="light"] .gnome-btn {
-  background: rgba(0, 0, 0, 0.08);
-  color: #333;
-}
-
-.gnome-btn:hover {
-  background: rgba(255, 255, 255, 0.22);
-  color: #fff;
-}
-
-[data-theme="light"] .gnome-btn:hover {
-  background: rgba(0, 0, 0, 0.15);
-}
-
-.gnome-btn.gnome-close:hover {
-  background: #E01B24;
-  color: #fff;
-}
-
-.titlebar-title {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  text-align: center;
-  flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-[data-os="windows"] .titlebar-title {
-  text-align: left;
-  padding-left: 8px;
-}
-
-.window-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.titlebar-tool {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-primary);
-  border-radius: 5px;
-  padding: 2px 8px;
-  font-size: 11px;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.titlebar-tool:hover {
-  background: rgba(255, 255, 255, 0.16);
-}
-
-.window-content {
-  overflow-y: auto;
-  max-height: 520px;
-  user-select: text;
-}
-
-/* --------------------------------------------------------------------------
-   5. WINDOW CONTENT STYLES
-   -------------------------------------------------------------------------- */
-.terminal-window-content {
-  padding: 22px 24px;
-  font-family: var(--font-mono);
-  background: rgba(18, 19, 24, 0.94);
-}
-
-[data-theme="light"] .terminal-window-content {
-  background: rgba(250, 250, 252, 0.95);
-}
-
-[data-os="windows"] .terminal-window-content {
-  background: #012456;
-  color: #FFFFFF;
-}
-
-[data-os="windows"][data-theme="light"] .terminal-window-content {
-  background: #F3F3F3;
-  color: #000;
-}
-
-[data-os="fedora"] .terminal-window-content {
-  background: #1e1e1e;
-  color: #FFFFFF;
-}
-
-[data-os="fedora"][data-theme="light"] .terminal-window-content {
-  background: #FFFFFF;
-  color: #2e3436;
-}
-
-.terminal-banner {
-  color: var(--text-muted);
-  font-size: 11.5px;
-  margin-bottom: 14px;
-  border-bottom: 1px dashed var(--card-border);
-  padding-bottom: 10px;
-}
-
-.cmd-line {
+.glance-label {
   font-size: 12.5px;
-  margin-bottom: 18px;
-}
-
-.prompt-host { color: var(--accent-green); }
-.prompt-dir { color: var(--accent-blue); }
-.prompt-ps { color: #FFFF00; }
-.prompt-fedora-user { color: #78AEED; }
-
-.terminal-profile-card {
-  display: flex;
-  gap: 20px;
-  font-family: var(--font-system);
-}
-
-.avatar-circle {
-  width: 76px;
-  height: 76px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #0A84FF, #5E5CE6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  font-weight: 700;
-  color: #FFFFFF;
-  box-shadow: 0 8px 20px rgba(10, 132, 255, 0.4);
-}
-
-[data-os="windows"] .avatar-circle { border-radius: 8px; }
-[data-os="fedora"] .avatar-circle { border-radius: 50%; background: linear-gradient(135deg, #3584E4, #1C71D8); }
-
-.terminal-info {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.terminal-name-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.terminal-name-row h2 {
-  font-size: 24px;
-  font-weight: 700;
-}
-
-.arch-badge {
-  font-size: 11px;
   font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 20px;
-  background: rgba(10, 132, 255, 0.15);
-  color: var(--accent-blue);
-  border: 1px solid rgba(10, 132, 255, 0.3);
-}
-
-[data-os="windows"] .arch-badge { border-radius: 4px; }
-[data-os="fedora"] .arch-badge { border-radius: 6px; background: rgba(53, 132, 228, 0.15); color: #78AEED; border-color: rgba(53, 132, 228, 0.3); }
-
-.role-summary {
-  font-size: 13.5px;
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
-
-.contact-grid {
-  font-size: 12px;
-  color: var(--text-secondary);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-top: 4px;
-}
-
-.contact-grid a {
-  color: var(--text-highlight);
-  text-decoration: none;
-}
-
-.contact-grid a:hover { text-decoration: underline; }
-.meta-label { color: var(--text-muted); font-weight: 600; }
-
-.terminal-quick-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-  flex-wrap: wrap;
-}
-
-.os-button {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.14);
   color: var(--text-primary);
-  border-radius: 6px;
-  padding: 6px 14px;
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+  margin-bottom: 3px;
 }
 
-[data-os="windows"] .os-button { border-radius: 4px; }
-[data-os="fedora"] .os-button { border-radius: 8px; }
-
-.os-button:hover { background: rgba(255, 255, 255, 0.16); }
-.os-button.primary { background: var(--accent-blue); border-color: var(--accent-blue); color: #fff; }
-.os-button.highlight { color: var(--accent-orange); background: rgba(255, 159, 10, 0.12); border-color: rgba(255, 159, 10, 0.3); }
-
-/* Resume Document Sheet */
-.resume-window-content { padding: 20px; background: rgba(24, 25, 31, 0.6); }
-.resume-top-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  padding: 10px 16px;
-  border-radius: 8px;
-  margin-bottom: 18px;
-}
-.doc-badge { display: flex; align-items: center; gap: 10px; }
-.doc-icon { font-size: 24px; }
-.doc-meta { font-size: 11px; color: var(--text-muted); }
-.paper-sheet {
-  background: var(--paper-bg);
-  color: var(--paper-text);
-  border: 1px solid var(--paper-border);
-  border-radius: 6px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  padding: 34px 38px;
-  font-size: 13px;
-  line-height: 1.55;
-  max-width: 720px;
-  margin: 0 auto;
-}
-.paper-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 14px; }
-.paper-name { font-size: 22px; letter-spacing: -0.01em; }
-.paper-subtitle { font-size: 13px; color: var(--accent-blue); font-weight: 600; }
-.paper-contact { font-size: 11.5px; color: var(--text-muted); text-align: right; line-height: 1.5; }
-.paper-divider { border: none; height: 1px; background: var(--card-border); margin: 16px 0; }
-.paper-section { margin-bottom: 18px; }
-.paper-heading {
+.glance-sub {
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-  border-bottom: 1px solid var(--card-border);
-  padding-bottom: 4px;
-  margin-bottom: 8px;
+  color: var(--text-tertiary);
 }
-.paper-experience-block { margin-bottom: 12px; }
-.paper-exp-head { display: flex; justify-content: space-between; margin-bottom: 4px; }
-.paper-sheet ul { padding-left: 18px; color: var(--text-secondary); }
-.paper-sheet li { margin-bottom: 3px; }
 
-/* Finder / File Explorer / Nautilus */
-.finder-window-content { display: flex; height: 440px; }
-.finder-sidebar {
-  width: 170px;
-  background: rgba(24, 25, 31, 0.5);
-  border-right: 1px solid var(--card-border);
-  padding: 14px 10px;
+/* --------------------------------------------------------------------------
+   9. iOS CARDS & GROUPED LISTS
+   -------------------------------------------------------------------------- */
+.ios-card {
+  background: var(--ios-surface-glass);
+  backdrop-filter: blur(35px) saturate(180%);
+  -webkit-backdrop-filter: blur(35px) saturate(180%);
+  border: 1px solid var(--ios-border);
+  border-radius: var(--radius-card);
+  padding: 20px;
+  box-shadow: var(--shadow-card);
+}
+
+.profile-bio-card {
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.bio-avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.bio-avatar-lg {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--ios-blue), var(--ios-indigo));
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(10, 132, 255, 0.45);
   flex-shrink: 0;
 }
-[data-theme="light"] .finder-sidebar { background: rgba(240, 240, 244, 0.6); }
-.sidebar-title {
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding-left: 8px;
-  margin-bottom: 6px;
-  display: block;
+
+.bio-name-block h2 {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
 }
-.sidebar-item {
-  font-size: 12px;
-  padding: 5px 8px;
-  border-radius: 6px;
-  color: var(--text-secondary);
-  cursor: pointer;
+
+.bio-role-badge {
+  display: inline-block;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ios-blue);
+  margin: 2px 0 6px;
+}
+
+.bio-status {
   display: flex;
   align-items: center;
   gap: 6px;
+  font-size: 11.5px;
+  color: var(--ios-green);
+  font-weight: 500;
 }
-.sidebar-item:hover { background: rgba(255, 255, 255, 0.08); color: var(--text-primary); }
-.sidebar-item.active { background: var(--accent-blue); color: #fff; }
-.color-dot { width: 8px; height: 8px; border-radius: 50%; }
-.color-dot.blue { background: #3584E4; }
-.color-dot.green { background: #33D17A; }
-.color-dot.orange { background: #FF7800; }
 
-.finder-main { flex: 1; padding: 18px; overflow-y: auto; }
-.project-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
-.p-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
-.p-card:hover { border-color: var(--accent-blue); }
-.p-card-top { display: flex; justify-content: space-between; align-items: center; }
-.p-icon { font-size: 20px; }
-.p-badge { font-size: 9.5px; font-weight: 600; padding: 2px 6px; border-radius: 10px; }
-.p-badge.blue { background: rgba(53,132,228,0.15); color: var(--accent-blue); }
-.p-badge.green { background: rgba(51,209,122,0.15); color: var(--accent-green); }
-.p-badge.orange { background: rgba(255,120,0,0.15); color: var(--accent-orange); }
-.p-badge.purple { background: rgba(145,65,172,0.15); color: var(--accent-purple); }
-.p-title { font-size: 13.5px; font-weight: 600; }
-.p-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.45; flex-grow: 1; }
-.p-tags { display: flex; flex-wrap: wrap; gap: 4px; }
-.p-tags span { font-size: 10px; font-family: var(--font-mono); background: rgba(255, 255, 255, 0.06); padding: 2px 5px; border-radius: 4px; color: var(--text-muted); }
-.p-links a { font-size: 11.5px; font-weight: 600; color: var(--text-highlight); text-decoration: none; }
-.p-links a:hover { text-decoration: underline; }
+.status-indicator-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--ios-green);
+  box-shadow: 0 0 6px var(--ios-green);
+}
 
-/* Skills & Experience */
-.skills-window-content, .experience-window-content { padding: 20px; }
-.stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
-.stack-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 14px; }
-.stack-card h4 { font-size: 13px; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
-.pill-group { display: flex; flex-wrap: wrap; gap: 6px; }
-.pill-group span { font-size: 11.5px; font-family: var(--font-mono); background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.1); padding: 3px 8px; border-radius: 5px; }
+.bio-paragraph {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  user-select: text;
+}
 
-.desktop-timeline { display: flex; flex-direction: column; gap: 20px; padding-left: 14px; border-left: 2px solid var(--card-border); margin-left: 6px; }
-.timeline-row { position: relative; }
-.timeline-dot { position: absolute; left: -21px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent-blue); border: 2px solid var(--window-bg); }
-.t-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; margin-bottom: 4px; }
-.t-role { font-size: 14px; font-weight: 600; }
-.t-co { font-size: 13px; color: var(--accent-blue); }
-.t-years { font-size: 11.5px; color: var(--text-muted); font-family: var(--font-mono); margin-left: auto; }
-.t-text { font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 8px; }
-.t-chips { display: flex; gap: 6px; }
-.t-chips span { font-size: 10.5px; font-family: var(--font-mono); padding: 2px 6px; background: rgba(255, 255, 255, 0.06); border-radius: 4px; color: var(--text-muted); }
+/* iOS Grouped Inset Lists (Settings / TableView style) */
+.ios-list-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.ios-list-header {
+  font-size: 12.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-tertiary);
+  margin: 0 0 8px 14px;
+}
+
+.ios-list-item {
+  background: rgba(30, 30, 36, 0.8);
+  padding: 13px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 0.5px solid var(--ios-separator);
+  user-select: text;
+}
+
+.ios-list-group .ios-list-item:first-of-type {
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+}
+
+.ios-list-group .ios-list-item:last-of-type {
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  border-bottom: none;
+}
+
+.item-icon-box {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFFFFF;
+  flex-shrink: 0;
+}
+
+.item-icon-box.blue { background-color: var(--ios-blue); }
+.item-icon-box.green { background-color: var(--ios-green); }
+.item-icon-box.purple { background-color: var(--ios-purple); }
+.item-icon-box.orange { background-color: var(--ios-orange); }
+.item-icon-box.cyan { background-color: var(--ios-teal); }
+.item-icon-box.red { background-color: var(--ios-red); }
+
+.item-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.item-label {
+  font-size: 15px;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.item-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 1px;
+}
+
+.item-value {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 1px;
+}
+
+.item-value.link {
+  color: var(--ios-blue);
+  text-decoration: none;
+}
+
+.item-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+}
+
+.item-badge.blue {
+  background: rgba(10, 132, 255, 0.2);
+  color: var(--ios-teal);
+}
+
+/* Terminal Card */
+.terminal-card {
+  padding: 0;
+  overflow: hidden;
+  background: #0d0e14;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.terminal-card-bar {
+  background: #181922;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.term-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+.term-dot.red { background-color: #FF5F56; }
+.term-dot.yellow { background-color: #FFBD2E; }
+.term-dot.green { background-color: #27C93F; }
+
+.term-title {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-tertiary);
+  margin-left: 6px;
+}
+
+.terminal-code {
+  padding: 16px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.65;
+  user-select: text;
+}
+
+.term-prompt {
+  color: var(--ios-green);
+  font-weight: 600;
+}
+
+.term-output {
+  color: var(--text-secondary);
+}
 
 /* --------------------------------------------------------------------------
-   6. macOS TOP MENUBAR & DOCK
+   10. PRINTABLE RESUME SHEET
    -------------------------------------------------------------------------- */
-.macos-menubar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 30px;
-  background: var(--menubar-bg);
-  backdrop-filter: blur(28px) saturate(200%);
-  -webkit-backdrop-filter: blur(28px) saturate(200%);
-  border-bottom: 1px solid var(--menubar-border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 14px;
-  font-size: 13px;
-  font-weight: 500;
-  z-index: 99999;
-}
-.menubar-left, .menubar-right { display: flex; align-items: center; gap: 14px; }
-.apple-menu-trigger { font-size: 15px; cursor: pointer; padding: 2px 4px; border-radius: 4px; }
-.menubar-app-title { font-weight: 700; letter-spacing: -0.01em; }
-.menubar-pill-btn { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.14); color: var(--text-primary); border-radius: 6px; padding: 2px 8px; font-size: 11.5px; font-weight: 500; display: flex; align-items: center; gap: 5px; cursor: pointer; }
-.menubar-pill-btn:hover { background: rgba(255, 255, 255, 0.16); }
-.menubar-time { font-variant-numeric: tabular-nums; font-size: 12px; opacity: 0.9; }
-
-.menubar-nav-btn {
-  background: transparent;
-  border: none;
-  color: var(--menubar-text);
-  opacity: 0.85;
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  padding: 3px 8px;
-  border-radius: 4px;
-  transition: background 0.15s ease, opacity 0.15s ease, color 0.15s ease;
-}
-.menubar-nav-btn:hover { background: rgba(255, 255, 255, 0.12); opacity: 1; color: var(--text-primary); }
-[data-theme="light"] .menubar-nav-btn:hover { background: rgba(0, 0, 0, 0.08); }
-.menubar-nav-btn.active-nav { background: rgba(10, 132, 255, 0.2); color: var(--accent-blue); opacity: 1; font-weight: 600; }
-
-.macos-dock {
-  position: fixed;
-  bottom: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--dock-bg);
-  backdrop-filter: blur(30px) saturate(220%);
-  -webkit-backdrop-filter: blur(30px) saturate(220%);
-  border: 1px solid var(--dock-border);
-  padding: 6px 12px;
+.resume-sheet-container {
+  background: #FFFFFF;
+  color: #1a1a1a;
   border-radius: 20px;
+  padding: 28px 24px;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6);
+  user-select: text;
+}
+
+.resume-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.resume-name {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #111111;
+}
+
+.resume-subtitle {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #0066CC;
+}
+
+.resume-contact-links {
+  font-size: 12px;
+  color: #555555;
+  line-height: 1.5;
+}
+
+.resume-contact-links a {
+  color: #0066CC;
+  text-decoration: none;
+}
+
+.resume-divider {
+  border: none;
+  height: 1.5px;
+  background: #E5E5EA;
+  margin: 16px 0;
+}
+
+.resume-section {
+  margin-bottom: 20px;
+}
+
+.resume-heading {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #0066CC;
+  border-bottom: 1px solid #E5E5EA;
+  padding-bottom: 4px;
+  margin-bottom: 10px;
+}
+
+.resume-section p {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #333333;
+}
+
+.resume-job {
+  margin-bottom: 14px;
+}
+
+.job-head {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.job-role {
+  font-weight: 700;
+  color: #111111;
+}
+
+.job-date {
+  font-size: 12px;
+  color: #666666;
+}
+
+.job-bullets {
+  padding-left: 18px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #444444;
+}
+
+.job-bullets li {
+  margin-bottom: 4px;
+}
+
+.cert-line {
+  font-size: 12.5px;
+  color: #333333;
+  margin-top: 4px;
+}
+
+.resume-download-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   11. TIMELINE FEED (CAREER VIEW)
+   -------------------------------------------------------------------------- */
+.ios-timeline-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ios-timeline-card {
+  background: var(--ios-surface-glass);
+  backdrop-filter: blur(35px) saturate(180%);
+  -webkit-backdrop-filter: blur(35px) saturate(180%);
+  border: 1px solid var(--ios-border);
+  border-radius: var(--radius-card);
+  padding: 20px;
+  box-shadow: var(--shadow-card);
+}
+
+.timeline-date-chip {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--ios-teal);
+  margin-bottom: 8px;
+}
+
+.timeline-card-header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  box-shadow: var(--dock-shadow);
-  z-index: 9999;
+  gap: 12px;
+  margin-bottom: 10px;
 }
-.dock-app { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; position: relative; text-decoration: none; transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); }
-.dock-app:hover { transform: scale(1.26) translateY(-8px); }
-.dock-app-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); }
-.dark-dock-icon { background: #121316; color: #30D158; font-family: var(--font-mono); font-weight: bold; }
-.preview-dock-icon { background: #FF9F0A; color: #fff; }
-.finder-dock-icon { background: #0A84FF; color: #fff; }
-.stack-dock-icon { background: #5E5CE6; color: #fff; }
-.activity-dock-icon { background: #30D158; color: #fff; }
-.settings-dock-icon { background: #636366; color: #fff; }
-.mail-dock-icon { background: #0071E3; color: #fff; }
-.dock-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--text-muted); }
-.dock-app.open .dock-dot { background: var(--text-primary); box-shadow: 0 0 4px #fff; }
-.dock-divider { width: 1px; height: 32px; background: var(--dock-border); margin: 0 2px; }
 
-.dock-app::after, .dash-item::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  top: -34px;
-  background: var(--window-header-bg);
-  color: var(--text-primary);
+.company-badge-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #2c2f38, #16181f);
+  color: #FFFFFF;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.timeline-role {
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.timeline-co {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+}
+
+.timeline-desc {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  user-select: text;
+}
+
+.timeline-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.timeline-pills span {
   font-size: 11px;
   font-weight: 500;
+  background: rgba(255, 255, 255, 0.08);
   padding: 3px 8px;
   border-radius: 6px;
-  border: 1px solid var(--window-border);
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(4px);
-  transition: opacity 0.15s ease, transform 0.15s ease;
+  color: var(--text-secondary);
 }
-.dock-app:hover::after, .dash-item:hover::after { opacity: 1; transform: translateY(0); }
 
 /* --------------------------------------------------------------------------
-   7. WINDOWS 11 TASKBAR & START MENU
+   12. CONTACT VIEW
    -------------------------------------------------------------------------- */
-.win-taskbar {
+.contact-hero-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 20px;
+}
+
+.contact-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--ios-blue), var(--ios-purple));
+  color: #FFFFFF;
+  font-size: 28px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(10, 132, 255, 0.4);
+  margin-bottom: 14px;
+}
+
+.contact-hero-card h2 {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.contact-hero-card p {
+  font-size: 13.5px;
+  color: var(--ios-blue);
+  margin-top: 2px;
+  margin-bottom: 20px;
+}
+
+.contact-quick-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.quick-circle-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 60px;
+  padding: 10px 0;
+  border-radius: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.quick-circle-btn:active {
+  transform: scale(0.9);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.quick-circle-btn span {
+  font-size: 20px;
+}
+
+.quick-circle-btn label {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--ios-blue);
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   13. BUTTON SYSTEM
+   -------------------------------------------------------------------------- */
+.ios-primary-btn {
+  background: var(--ios-blue);
+  color: #FFFFFF;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 20px;
+  border-radius: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  box-shadow: 0 6px 18px rgba(10, 132, 255, 0.35);
+  transition: opacity 0.15s ease, transform 0.12s ease;
+}
+
+.ios-primary-btn:active {
+  transform: scale(0.98);
+  opacity: 0.85;
+}
+
+.ios-secondary-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 13px 20px;
+  border-radius: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  transition: background 0.15s ease, transform 0.12s ease;
+}
+
+.ios-secondary-btn:active {
+  transform: scale(0.98);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.ios-action-center {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   14. iOS FLOATING BOTTOM DOCK & HOME INDICATOR
+   -------------------------------------------------------------------------- */
+.ios-dock {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  max-width: 440px;
+  height: 72px;
+  background: var(--ios-dock-glass);
+  backdrop-filter: blur(45px) saturate(220%);
+  -webkit-backdrop-filter: blur(45px) saturate(220%);
+  border: 1px solid var(--ios-border);
+  border-radius: 36px;
+  box-shadow: var(--shadow-dock);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 12px;
+  z-index: 10000;
+}
+
+.ios-dock-btn {
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: transform 0.15s ease;
+  outline: none;
+}
+
+.ios-dock-btn:active {
+  transform: scale(0.85);
+}
+
+.dock-glyph {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+  transition: transform 0.15s ease;
+}
+
+.dock-home-glyph { background: linear-gradient(135deg, #3a3d46, #1b1d24); }
+.dock-term-glyph { background: linear-gradient(135deg, #1f232a, #0b0c10); color: var(--ios-green); font-family: var(--font-mono); font-weight: 700; font-size: 16px; border: 1px solid rgba(255, 255, 255, 0.12); }
+.dock-resume-glyph { background: linear-gradient(135deg, #FF453A, #C91A10); }
+.dock-stack-glyph { background: linear-gradient(135deg, #64D2FF, #0A84FF); }
+.dock-exp-glyph { background: linear-gradient(135deg, #30D158, #1E8236); }
+
+.dock-btn-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  letter-spacing: -0.1px;
+}
+
+.ios-dock-btn.active .dock-btn-label {
+  color: var(--ios-blue);
+}
+
+.ios-dock-btn.active .dock-glyph {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(10, 132, 255, 0.4);
+}
+
+/* Home Indicator Bar */
+.ios-home-bar-area {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 48px;
-  background: var(--taskbar-bg);
-  backdrop-filter: blur(30px) saturate(180%);
-  -webkit-backdrop-filter: blur(30px) saturate(180%);
-  border-top: 1px solid var(--taskbar-border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 14px;
-  z-index: 99999;
-}
-.win-taskbar-left, .win-taskbar-right { display: flex; align-items: center; gap: 12px; min-width: 140px; }
-.win-weather-widget { display: flex; align-items: center; gap: 8px; padding: 4px 10px; border-radius: 4px; cursor: pointer; }
-.win-weather-widget:hover { background: rgba(255, 255, 255, 0.08); }
-.weather-icon { font-size: 18px; }
-.weather-meta { display: flex; flex-direction: column; font-size: 11px; line-height: 1.2; }
-.weather-temp { font-weight: 600; }
-.weather-cond { color: var(--text-muted); }
-
-.win-taskbar-center { position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 4px; }
-.win-taskbar-icon { width: 40px; height: 40px; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; position: relative; background: transparent; border: none; color: var(--text-primary); transition: background 0.12s ease; }
-.win-taskbar-icon:hover { background: rgba(255, 255, 255, 0.12); }
-[data-theme="light"] .win-taskbar-icon:hover { background: rgba(0, 0, 0, 0.08); }
-.win-start-btn { color: #0078D4; }
-.win-start-btn:hover { background: rgba(0, 120, 212, 0.15) !important; }
-.win-app-glyph { font-size: 20px; }
-.ps-glyph { font-size: 11px; font-weight: 700; background: #012456; color: #FFFFFF; padding: 3px 5px; border-radius: 3px; }
-.win-task-dot { position: absolute; bottom: 2px; width: 14px; height: 3px; border-radius: 2px; background: transparent; }
-.win-taskbar-icon.open .win-task-dot { background: var(--accent-blue); }
-.win-taskbar-right { justify-content: flex-end; }
-.win-tray-btn { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.1); color: var(--text-primary); border-radius: 4px; padding: 3px 8px; font-size: 11px; cursor: pointer; display: flex; align-items: center; gap: 4px; }
-.win-tray-btn:hover { background: rgba(255, 255, 255, 0.14); }
-.win-tray-group { display: flex; align-items: center; gap: 6px; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 13px; }
-.win-tray-group:hover { background: rgba(255, 255, 255, 0.08); }
-.win-time-group { display: flex; flex-direction: column; align-items: flex-end; padding: 2px 8px; border-radius: 4px; cursor: pointer; line-height: 1.25; }
-.win-time-group:hover { background: rgba(255, 255, 255, 0.08); }
-.win-time-clock { font-size: 12px; font-weight: 500; }
-.win-time-date { font-size: 11px; color: var(--text-muted); }
-
-/* Windows 11 Start Menu */
-.win-start-menu {
-  position: fixed;
-  bottom: 56px;
-  left: 50%;
-  transform: translateX(-50%) translateY(20px);
-  width: 520px;
-  background: var(--window-bg);
-  backdrop-filter: blur(40px) saturate(180%);
-  -webkit-backdrop-filter: blur(40px) saturate(180%);
-  border: 1px solid var(--window-border);
-  border-radius: 10px;
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
-  padding: 24px;
-  display: none;
-  flex-direction: column;
-  gap: 18px;
-  z-index: 99998;
-  opacity: 0;
-  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.18s ease;
-}
-.win-start-menu.open { display: flex; transform: translateX(-50%) translateY(0); opacity: 1; }
-.win-start-search input { width: 100%; background: rgba(255, 255, 255, 0.07); border: 1px solid var(--card-border); border-radius: 20px; padding: 8px 14px 8px 36px; color: var(--text-primary); font-size: 12.5px; outline: none; }
-.win-start-search { position: relative; }
-.win-start-search .search-icon { position: absolute; left: 12px; top: 9px; font-size: 14px; opacity: 0.6; }
-.start-section-title { font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 12px; }
-.start-apps-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; text-align: center; }
-.start-app-item { display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; padding: 8px 4px; border-radius: 6px; text-decoration: none; color: var(--text-primary); font-size: 11.5px; }
-.start-app-item:hover { background: rgba(255, 255, 255, 0.08); }
-.start-app-icon { width: 42px; height: 42px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
-.ps-bg { background: #012456; color: #fff; font-weight: bold; font-size: 13px; }
-.pdf-bg { background: #E81123; color: #fff; }
-.folder-bg { background: #F9D05A; color: #333; }
-.sys-bg { background: #0078D4; color: #fff; }
-.act-bg { background: #107C41; color: #fff; }
-.mail-bg { background: #0067C0; color: #fff; }
-.win-start-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--card-border); padding-top: 14px; margin-top: 4px; }
-.user-profile-badge { display: flex; align-items: center; gap: 10px; }
-.win-user-avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--accent-blue); color: #fff; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; }
-.win-user-info { display: flex; flex-direction: column; font-size: 12px; line-height: 1.25; }
-.win-user-info span { font-size: 11px; color: var(--text-muted); }
-.win-footer-actions { display: flex; gap: 8px; }
-.win-theme-pill, .win-os-pill { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); color: var(--text-primary); border-radius: 6px; padding: 4px 10px; font-size: 11.5px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
-.win-theme-pill:hover, .win-os-pill:hover { background: rgba(255, 255, 255, 0.16); }
-
-/* --------------------------------------------------------------------------
-   8. FEDORA GNOME 46 TOP BAR, DASH DOCK & ACTIVITIES OVERVIEW
-   -------------------------------------------------------------------------- */
-.gnome-topbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 32px;
-  background: var(--gnome-topbar-bg);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 10px;
-  font-size: 12.5px;
-  color: var(--gnome-topbar-text);
-  z-index: 99999;
-}
-.gnome-left, .gnome-right { display: flex; align-items: center; gap: 10px; }
-
-.gnome-activities-btn {
-  background: transparent;
-  border: none;
-  color: var(--gnome-topbar-text);
-  font-family: inherit;
-  font-weight: 700;
-  font-size: 12.5px;
-  padding: 3px 12px;
-  border-radius: 16px;
-  cursor: pointer;
-  transition: background 0.15s ease;
-}
-.gnome-activities-btn:hover { background: rgba(255, 255, 255, 0.15); }
-[data-theme="light"] .gnome-activities-btn:hover { background: rgba(0, 0, 0, 0.08); }
-
-.gnome-nav-pills { display: flex; align-items: center; gap: 4px; }
-.gnome-nav-pill {
-  background: transparent;
-  border: none;
-  color: var(--text-secondary);
-  font-family: inherit;
-  font-size: 12px;
-  padding: 3px 8px;
-  border-radius: 12px;
-  cursor: pointer;
-}
-.gnome-nav-pill:hover { background: rgba(255, 255, 255, 0.12); color: var(--text-primary); }
-[data-theme="light"] .gnome-nav-pill:hover { background: rgba(0, 0, 0, 0.06); }
-.gnome-nav-pill.active-nav { background: rgba(53, 132, 228, 0.25); color: #78AEED; font-weight: 600; }
-
-.gnome-center { position: absolute; left: 50%; transform: translateX(-50%); }
-.gnome-clock-btn {
-  background: transparent;
-  border: none;
-  color: var(--gnome-topbar-text);
-  font-family: inherit;
-  font-weight: 700;
-  font-size: 12.5px;
-  padding: 2px 10px;
-  border-radius: 14px;
-  cursor: pointer;
-}
-.gnome-clock-btn:hover { background: rgba(255, 255, 255, 0.12); }
-[data-theme="light"] .gnome-clock-btn:hover { background: rgba(0, 0, 0, 0.08); }
-
-.gnome-pill-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  color: var(--gnome-topbar-text);
-  border-radius: 14px;
-  padding: 2px 10px;
-  font-size: 11px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.gnome-pill-btn:hover { background: rgba(255, 255, 255, 0.2); }
-[data-theme="light"] .gnome-pill-btn { background: rgba(0, 0, 0, 0.08); }
-[data-theme="light"] .gnome-pill-btn:hover { background: rgba(0, 0, 0, 0.14); }
-
-.gnome-quick-settings-pill {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 3px 10px;
-  border-radius: 16px;
-  cursor: pointer;
-  font-size: 12px;
-}
-.gnome-quick-settings-pill:hover { background: rgba(255, 255, 255, 0.2); }
-[data-theme="light"] .gnome-quick-settings-pill { background: rgba(0, 0, 0, 0.08); }
-
-/* Fedora GNOME Dash Dock */
-.gnome-dash-dock {
-  position: fixed;
-  bottom: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--dash-bg);
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
-  border: 1px solid var(--dash-border);
-  box-shadow: var(--dash-shadow);
-  padding: 6px 14px;
-  border-radius: 24px; /* GNOME iconic rounded pill dash */
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  z-index: 9999;
-}
-.dash-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-  position: relative;
-  text-decoration: none;
-  transition: transform 0.18s ease;
-}
-.dash-item:hover { transform: scale(1.2) translateY(-6px); }
-.dash-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-}
-.fedora-term-icon { background: #2E3436; color: #3584E4; font-family: var(--font-mono); font-weight: bold; }
-.fedora-doc-icon { background: #C01C28; color: #fff; }
-.fedora-files-icon { background: #3584E4; color: #fff; }
-.fedora-settings-icon { background: #5E5C64; color: #fff; }
-.fedora-monitor-icon { background: #26A269; color: #fff; }
-.fedora-theme-icon { background: #77767B; color: #fff; }
-.fedora-mail-icon { background: #1C71D8; color: #fff; }
-
-.dash-dot { width: 4px; height: 4px; border-radius: 50%; background: transparent; }
-.dash-item.open .dash-dot { background: var(--accent-blue); box-shadow: 0 0 4px var(--accent-blue); }
-.dash-separator { width: 1px; height: 32px; background: var(--dash-border); margin: 0 2px; }
-
-/* Fedora GNOME Activities Overview */
-.gnome-overview {
-  position: fixed;
-  top: 40px;
-  left: 50%;
-  transform: translateX(-50%) translateY(-10px);
-  width: 540px;
-  background: var(--window-bg);
-  backdrop-filter: blur(35px) saturate(180%);
-  -webkit-backdrop-filter: blur(35px) saturate(180%);
-  border: 1px solid var(--window-border);
-  border-radius: 16px;
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
-  padding: 24px;
-  display: none;
-  flex-direction: column;
-  gap: 18px;
-  z-index: 99998;
-  opacity: 0;
-  transition: all 0.18s ease;
-}
-.gnome-overview.open { display: flex; opacity: 1; transform: translateX(-50%) translateY(0); }
-.gnome-search-box input {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid var(--card-border);
-  border-radius: 20px;
-  padding: 8px 14px 8px 36px;
-  color: var(--text-primary);
-  font-size: 13px;
-  outline: none;
-}
-.gnome-search-box { position: relative; }
-.gnome-search-box .gnome-search-icon { position: absolute; left: 12px; top: 9px; font-size: 13px; opacity: 0.6; }
-.gnome-app-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-}
-.gnome-app-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 8px;
-  border-radius: 10px;
+  z-index: 10001;
   cursor: pointer;
-  color: var(--text-primary);
-  font-size: 12px;
-  text-decoration: none;
-  text-align: center;
 }
-.gnome-app-item:hover { background: rgba(255, 255, 255, 0.08); }
-.gnome-app-icon {
-  width: 46px;
-  height: 46px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-}
-.gnome-terminal-icon { background: #2E3436; color: #3584E4; font-family: var(--font-mono); font-weight: bold; }
-.gnome-evince-icon { background: #C01C28; color: #fff; }
-.gnome-nautilus-icon { background: #3584E4; color: #fff; }
-.gnome-settings-icon { background: #5E5C64; color: #fff; }
-.gnome-monitor-icon { background: #26A269; color: #fff; }
-.gnome-mail-icon { background: #1C71D8; color: #fff; }
 
-/* --------------------------------------------------------------------------
-   9. iOS MOBILE INTERFACE & RESPONSIVE DESIGN
-   -------------------------------------------------------------------------- */
-
-/* Hidden on desktop viewport (>840px) */
-.ios-status-bar,
-.ios-mobile-screen,
-.ios-bottom-dock,
 .ios-home-indicator {
-  display: none;
+  width: 140px;
+  height: 5px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.65);
+  transition: transform 0.15s ease, background 0.15s ease;
 }
 
-@media (max-width: 840px) {
-  /* Hide desktop-only navigation shells and icons */
-  .macos-menubar,
-  .gnome-topbar,
-  .win-taskbar,
-  .macos-dock,
-  .gnome-dash-dock,
-  .desktop-icons-area {
-    display: none !important;
+.ios-home-bar-area:active .ios-home-indicator {
+  transform: scaleX(0.9);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* --------------------------------------------------------------------------
+   15. RESPONSIVE BEHAVIOR FOR DESKTOP & TABLET
+   -------------------------------------------------------------------------- */
+@media (min-width: 681px) {
+  /* On larger screens, center like an iPad / iPhone Pro Max mockup */
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  html, body {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    position: fixed;
-    background: var(--wallpaper);
-    background-size: cover;
-    background-position: center;
-    -webkit-tap-highlight-color: transparent;
+  .ios-device-viewport {
+    height: 94vh;
+    max-height: 940px;
+    border-radius: 46px;
+    border: 3.5px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 35px 95px rgba(0, 0, 0, 0.85), 0 0 1px rgba(255, 255, 255, 0.3);
   }
 
-  /* 1. iOS Status Bar with Dynamic Island */
   .ios-status-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 48px;
-    padding: 0 20px;
-    padding-top: env(safe-area-inset-top, 6px);
-    z-index: 100000;
-    pointer-events: none;
-    color: #FFFFFF;
-    font-size: 14px;
-    font-weight: 600;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  }
-
-  [data-theme="light"] .ios-status-bar {
-    color: #000000;
-  }
-
-  .ios-status-time {
-    font-weight: 600;
-    letter-spacing: -0.2px;
-    min-width: 48px;
-  }
-
-  .ios-dynamic-island {
-    width: 120px;
-    height: 30px;
-    background: #000000;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 0 10px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
-    transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-
-  .island-camera {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #0d0d1a;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-  }
-
-  .ios-status-icons {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    min-width: 48px;
-    justify-content: flex-end;
-  }
-
-  .ios-icon {
-    display: inline-flex;
-    align-items: center;
-  }
-
-  /* 2. iOS Mobile Canvas & Homescreen */
-  .desktop-screen {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch;
-    padding: 56px 16px 110px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 20px !important;
-  }
-
-  .ios-mobile-screen {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: 100%;
-    max-width: 460px;
-    margin: 0 auto;
-    animation: iosFadeIn 0.3s ease-out;
-  }
-
-  @keyframes iosFadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* iOS Glassmorphic Hero Widget Card */
-  .ios-widget-card {
-    background: rgba(30, 32, 42, 0.65);
-    backdrop-filter: blur(35px) saturate(190%);
-    -webkit-backdrop-filter: blur(35px) saturate(190%);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 26px;
-    padding: 20px;
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
-    cursor: pointer;
-    transition: transform 0.16s ease, background 0.2s ease;
-  }
-
-  .ios-widget-card:active {
-    transform: scale(0.97);
-  }
-
-  [data-theme="light"] .ios-widget-card {
-    background: rgba(255, 255, 255, 0.72);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
-  }
-
-  .ios-widget-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 12px;
-  }
-
-  .ios-widget-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #0A84FF, #5E5CE6);
-    color: #FFFFFF;
-    font-weight: 700;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 6px 16px rgba(10, 132, 255, 0.4);
-    flex-shrink: 0;
-  }
-
-  .ios-widget-title-area {
-    flex: 1;
-  }
-
-  .ios-widget-name {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--text-primary);
-    line-height: 1.2;
-    margin: 0;
-  }
-
-  .ios-widget-role {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--accent-blue);
-    margin-top: 2px;
-  }
-
-  .ios-widget-badge {
-    font-size: 10px;
-    font-weight: 700;
-    background: rgba(255, 255, 255, 0.12);
-    padding: 3px 8px;
-    border-radius: 12px;
-    color: var(--text-secondary);
-  }
-
-  .ios-widget-desc {
-    font-size: 13.5px;
-    line-height: 1.45;
-    color: var(--text-secondary);
-    margin-bottom: 14px;
-  }
-
-  .ios-widget-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    font-size: 11.5px;
-    color: var(--text-muted);
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding-top: 10px;
-  }
-
-  [data-theme="light"] .ios-widget-meta {
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
-  }
-
-  /* iOS App Grid (Rounded Squircles 60x60) */
-  .ios-app-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px 10px;
-    padding: 4px 8px;
-  }
-
-  .ios-app {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    text-decoration: none;
-    cursor: pointer;
-    background: transparent;
-    border: none;
-    outline: none;
-    -webkit-tap-highlight-color: transparent;
-    transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-
-  .ios-app:active {
-    transform: scale(0.88);
-  }
-
-  .ios-app-icon {
-    width: 60px;
-    height: 60px;
-    border-radius: 14px; /* iOS squircle profile */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 26px;
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
-    position: relative;
-    transition: box-shadow 0.15s ease;
-  }
-
-  .terminal-ios {
-    background: linear-gradient(135deg, #1f232a, #0b0c10);
-    color: #30D158;
-    font-family: var(--font-mono);
-    font-weight: 700;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-  }
-
-  .resume-ios {
-    background: linear-gradient(135deg, #FF453A, #D70015);
-    color: #FFFFFF;
-  }
-
-  .stack-ios {
-    background: linear-gradient(135deg, #64D2FF, #0A84FF);
-    color: #FFFFFF;
-  }
-
-  .exp-ios {
-    background: linear-gradient(135deg, #30D158, #248A3D);
-    color: #FFFFFF;
-  }
-
-  .theme-ios {
-    background: linear-gradient(135deg, #BF5AF2, #5E5CE6);
-    color: #FFFFFF;
-  }
-
-  .os-ios {
-    background: linear-gradient(135deg, #FF9F0A, #FF375F);
-    color: #FFFFFF;
-  }
-
-  .mail-ios {
-    background: linear-gradient(135deg, #0A84FF, #0040DD);
-    color: #FFFFFF;
-  }
-
-  .phone-ios {
-    background: linear-gradient(135deg, #30D158, #34C759);
-    color: #FFFFFF;
-  }
-
-  .ios-app-label {
-    font-size: 11.5px;
-    font-weight: 500;
-    color: #FFFFFF;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
-    text-align: center;
-    letter-spacing: -0.1px;
-  }
-
-  [data-theme="light"] .ios-app-label {
-    color: #1a1a1a;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
-  }
-
-  /* 3. iOS Floating Bottom Dock */
-  .ios-bottom-dock {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    position: fixed;
-    bottom: 22px;
-    left: 16px;
-    right: 16px;
-    height: 76px;
-    max-width: 440px;
-    margin: 0 auto;
-    background: rgba(36, 38, 48, 0.68);
-    backdrop-filter: blur(40px) saturate(200%);
-    -webkit-backdrop-filter: blur(40px) saturate(200%);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 34px;
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
-    padding: 0 14px;
-    z-index: 99999;
-  }
-
-  [data-theme="light"] .ios-bottom-dock {
-    background: rgba(255, 255, 255, 0.72);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
-  }
-
-  .ios-dock-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    text-decoration: none;
-    -webkit-tap-highlight-color: transparent;
-    transition: transform 0.12s ease;
-  }
-
-  .ios-dock-icon:active {
-    transform: scale(0.86);
-  }
-
-  .ios-dock-glyph {
-    width: 52px;
-    height: 52px;
-    border-radius: 13px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
-  }
-
-  .terminal-glyph { background: linear-gradient(135deg, #1f232a, #0b0c10); color: #30D158; font-family: var(--font-mono); font-weight: 700; border: 1px solid rgba(255, 255, 255, 0.1); }
-  .resume-glyph { background: linear-gradient(135deg, #FF453A, #D70015); color: #FFFFFF; }
-  .stack-glyph { background: linear-gradient(135deg, #64D2FF, #0A84FF); color: #FFFFFF; }
-  .exp-glyph { background: linear-gradient(135deg, #30D158, #248A3D); color: #FFFFFF; }
-  .mail-glyph { background: linear-gradient(135deg, #0A84FF, #0040DD); color: #FFFFFF; }
-
-  /* 4. iOS Home Indicator Bar */
-  .ios-home-indicator {
-    display: block;
-    position: fixed;
-    bottom: 6px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 138px;
-    height: 5px;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 10px;
-    z-index: 100001;
-    pointer-events: auto;
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.15s ease;
-  }
-
-  .ios-home-indicator:active {
-    transform: translateX(-50%) scale(0.95);
-    background: rgba(255, 255, 255, 0.95);
-  }
-
-  [data-theme="light"] .ios-home-indicator {
-    background: rgba(0, 0, 0, 0.6);
-  }
-
-  /* 5. iOS Bottom Sheet Modal Windows (Smooth App Experience) */
-  .system-window {
-    position: fixed !important;
-    top: 52px !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    width: 100% !important;
-    height: auto !important;
-    max-height: none !important;
-    border-radius: 28px 28px 0 0 !important;
-    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.55) !important;
-    display: none;
-    flex-direction: column !important;
-    z-index: 99990 !important;
-    border: 1px solid var(--window-border) !important;
-    border-bottom: none !important;
-    overflow: hidden;
-    transform: translateY(100%);
-    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
-  }
-
-  /* Sheet grab handle at top of modal */
-  .system-window::before {
-    content: '';
     position: absolute;
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 38px;
-    height: 5px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.3);
-    z-index: 10;
-  }
-
-  [data-theme="light"] .system-window::before {
-    background: rgba(0, 0, 0, 0.2);
-  }
-
-  .system-window.active:not(.minimized):not(.hidden) {
-    display: flex !important;
-    transform: translateY(0) !important;
-  }
-
-  /* Ensure close buttons and controls are clean, accessible, and tap-friendly on iOS mobile sheets */
-  .window-titlebar {
-    padding-top: 14px;
-    height: 50px;
-    cursor: default;
-    display: flex !important;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  /* Force traffic lights / close button visible on mobile sheet regardless of OS */
-  .system-window .traffic-lights {
-    display: flex !important;
-    width: auto;
-    gap: 8px;
-  }
-  .system-window .traffic-lights .t-btn {
-    width: 14px;
-    height: 14px;
-  }
-
-  .window-content {
-    max-height: none !important;
-    flex: 1;
-    overflow-y: auto !important;
-    padding-bottom: 90px !important; /* Space above floating dock */
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* Terminal profile card responsive wrap on mobile */
-  .terminal-profile-card {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 16px;
-  }
-
-  .contact-grid {
-    text-align: left;
     width: 100%;
+    border-top-left-radius: 46px;
+    border-top-right-radius: 46px;
   }
 
-  .terminal-quick-actions {
-    justify-content: center;
-    width: 100%;
+  .ios-dock {
+    position: absolute;
+    bottom: 22px;
   }
 
-  .skills-card-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  .paper-sheet {
-    padding: 20px 16px !important;
-  }
-
-  /* Hide desktop Start menu & Fedora overview on mobile */
-  .win-start-menu,
-  .gnome-overview {
-    display: none !important;
+  .ios-home-bar-area {
+    position: absolute;
+    bottom: 4px;
   }
 }
 
+/* Print Overrides */
+@media print {
+  body, html {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    overflow: visible !important;
+  }
+  .ios-status-bar,
+  .ios-dock,
+  .ios-home-bar-area,
+  .ios-navbar,
+  .resume-download-bar,
+  #view-homescreen,
+  #view-about,
+  #view-stack,
+  #view-experience,
+  #view-contact {
+    display: none !important;
+  }
+  #view-resume {
+    display: block !important;
+    position: static !important;
+    opacity: 1 !important;
+  }
+  .resume-sheet-container {
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+}
